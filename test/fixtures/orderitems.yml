@@ -2,6 +2,10 @@
 
 one:
   order: one
+  order_state: pending
+  quantity: 2
 
 two:
-  order: two
+  order: one
+  order_state: pending
+  quantity: 1
