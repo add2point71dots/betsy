@@ -10,32 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419072025) do
+ActiveRecord::Schema.define(version: 20170419220537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "label"
+    t.string "label"
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "categories_products", force: :cascade do |t|
+    t.integer  "category_id"
     t.integer  "product_id"
-    t.integer  "rating"
-    t.text     "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_reviews_on_product_id", using: :btree
-  end
-
-  create_table "vendors", force: :cascade do |t|
-    t.integer  "uid"
-    t.string   "provider"
-    t.string   "email"
-    t.string   "username"
-
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_categories_products_on_category_id", using: :btree
+    t.index ["product_id"], name: "index_categories_products_on_product_id", using: :btree
   end
 
   create_table "orderitems", force: :cascade do |t|
@@ -64,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170419072025) do
     t.string   "billing_zip_code"
   end
 
-  add_foreign_key "orderitems", "orders"
   create_table "products", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -76,4 +65,23 @@ ActiveRecord::Schema.define(version: 20170419072025) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "rating"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_reviews_on_product_id", using: :btree
+  end
+
+  create_table "vendors", force: :cascade do |t|
+    t.integer  "uid"
+    t.string   "provider"
+    t.string   "email"
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "orderitems", "orders"
 end
