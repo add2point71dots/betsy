@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+blue1:
+  user_id: 1
+  name: blender
+  description: multi purpose high speed
+  photo_url:
+  price: 99.9
+  quantity: 2
+
+blue2:
+  user_id: 2
+  name: scarf
+  description:
+  photo_url:
+  price: 1.5
+  quantity: 4
+
+  # blue3:
+  #   user_id: 4
+  #   name: test has only required fields
+  #   price: 14.99
+  #   quantity: 2
+  #
+  # blue4:
+  #   user_id: 5
+  #   name: test with text quantity
+  #   price: 14.99
+  #   quantity: four
