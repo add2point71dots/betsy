@@ -62,16 +62,25 @@ describe Product do
 
     end
 
-    it "has_many orderitems " do
-
+    it "has a list of orderitems " do
+      # blue1 = products(:blue1)
+      # blue1.must_respond_to :orderitems
+      # blue1.orderitems.each do |item|
+      # item.must_be_kind_of OrderItem
     end
 
-    it "has_many itemcategories " do
-
+    it "has a list of itemcategories " do
+      # blue2 = products(:blue2)
+      # blue2.must_respond_to :itemcategories
+      # blue2.itemcategories.each do |item|
+      # item.must_be_kind_of ItemCategory
     end
 
-    it "has_many reviews " do
-
+    it "has a list of reviews " do
+    # blue2 = products(:blue2)
+    # blue2.must_respond_to :reviews
+    # blue2.reviews.each do |review|
+    # review.must_be_kind_of Review
     end
   end
 
