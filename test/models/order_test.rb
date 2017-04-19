@@ -1,9 +1,16 @@
 require "test_helper"
 
 describe Order do
-  let(:order) { Order.new }
+  describe "relations" do
+    it "has at least one orderitems" do
+    end
 
-  it "must be valid" do
-    value(order).must_be :valid?
+    it "has a list of orderitems" do
+    end
+  end
+
+  describe "validations" do skip
+    it "requires a name" do
+    end
   end
 end
