@@ -1,9 +1,14 @@
 class Product < ApplicationRecord
 
   belongs_to :user
-  belongs_to :order_item
-  belongs_to :category
-  belongs_to :review
+  has_many :orderitems, :itemcategories, :reviews
+
+
+  validates :name, presence: true, uniqueness: true
+  validates :price, presence: true
+
+
+
 
 
 end

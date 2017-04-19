@@ -8,7 +8,7 @@ describe Product do
       value(product).must_be :valid?
     end
 
-    it "must be valid" do
+    it "Can create a product with all attributes" do
       value(product).must_be :valid?
     end
 
@@ -20,7 +20,7 @@ describe Product do
       value(product).must_be :valid?
     end
 
-    
+
 
   end
 end
