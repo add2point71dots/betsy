@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(params[:id])
+    @product = Product.find_by_id(params[:id])
       if !@product
         render_404
       end
@@ -16,16 +16,3 @@ class ProductsController < ApplicationController
 
 
   end
-
-
-
-
-
-
-
-
-
-
-
-
-end

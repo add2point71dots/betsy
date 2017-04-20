@@ -1,4 +1,5 @@
 require "test_helper"
+# require "simplecov"
 
 describe Product do
   # let(:product) { Product.new }
@@ -7,7 +8,7 @@ describe Product do
 
     it "can create a product with valid name, price and quantity" do
       # product = Product.new(name: "blender", price: 99.9, quantity: 2)
-      product = products(:one)
+      product = products(:two)
        product.valid?.must_equal true
     end
 
