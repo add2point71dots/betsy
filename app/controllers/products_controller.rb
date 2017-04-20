@@ -10,19 +10,11 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find_by(params[:id])
       if !@product
-        render file: "#{Rails.root}/public/404.html", status: 404
+        render_404
       end
   end
 
 
-  def show_by_vendor_id
-    vendor = Vendor.find_by_id(params[:vendor_id])
-    if vendor
-    @products = vendor.products
-    else
-      flash[:warning] = "Invalid vendor id"
-      redirect_back fallback_location: products_path
-    end
   end
 
 
