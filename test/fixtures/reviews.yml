@@ -4,8 +4,32 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  comment: this blue blender is the best!
+  product: one
+  rating: 5
+
+two:
+  comment: this scarf is just ok.
+  product: two
+  rating: 2
+
+three:
+  comment: this blouse is silky and fancy.
+  product: three
+  rating: 5
+
+four:
+  comment: these shower curtains are terrible and not mildew resistant!
+  product: four
+  rating: 1
+
+five:
+  comment: these scissors are not ceremonial enough!
+  product: five
+  rating: 3
+
+six:
+  comment: sturdy and easy to clean!
+  product: one
+  rating: 4

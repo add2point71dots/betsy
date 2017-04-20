@@ -17,3 +17,17 @@ one:
   exp_month: 02
   exp_year: 18
   cvv: 123
+
+two:
+  name: jane doe
+  email: janedoe@gmail.com
+  street_address: 666 hay st.
+  city: columbus
+  state: ohio
+  zip_code: 54321
+  billing_zip_code: 54321
+  name_on_card: jane doe
+  card_number: 4444555566667777
+  exp_month: 12
+  exp_year: 10
+  cvv: 333
