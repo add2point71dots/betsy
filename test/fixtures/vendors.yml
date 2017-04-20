@@ -5,40 +5,26 @@
 # below each fixture, per the syntax in the comments below
 #
 
-tobias:
+one:
   uid: 1234
   provider: github
   email: tobias@example.com
   username: mrs_featherbottom
 
-maeby:
+two:
   uid: 2345
   provider: github
   email: maeby@example.com
   username: marryme
 
-lindsay:
-  uid: 44444
+three:
+  uid: 4444
   provider: github
   email: lindsay@example.com
   username: besthair
 
-no_username:
-  uid: 456
-  provider: github
-  email: buster@example.com
-
-no_email:
-  uid: 90
-  provider: github
-  username: ivemadeahugemistake
-
-no_uid:
+four:
+  uid: 4569
   provider: github
   email: george.michael@example.com
   username: mr_manager
-
-no_provider:
-  uid: 808080
-  email: lucille@example.com
-  username: lucille1

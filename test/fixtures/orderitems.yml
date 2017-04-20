@@ -3,9 +3,35 @@
 one:
   order: one
   order_state: pending
+  product: one
   quantity: 2
 
 two:
   order: one
-  order_state: pending
+  order_state: paid
+  product: two
   quantity: 1
+
+three:
+  order: one
+  order_state: completed
+  product: two
+  quantity: 1
+
+four:
+  order: two
+  order_state: canceled
+  product: four
+  quantity: 1
+
+five:
+  order: two
+  order_state: pending
+  product: five
+  quantity: 2
+
+six:
+  order: two
+  order_state: pending
+  product: one
+  quantity: 2
