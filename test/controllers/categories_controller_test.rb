@@ -1,4 +1,4 @@
 require "test_helper"
 
-describe CategoriesController 
+describe CategoriesController do
 end
