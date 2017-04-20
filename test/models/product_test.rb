@@ -53,7 +53,9 @@ describe Product do
 
   describe "relationships" do
 
-    it "belongs to user" do
+    it "belongs to vendor" do
+      products = vendors(:one).products
+      products.must_equal [:one, :four]
 
     end
 
