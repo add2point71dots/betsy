@@ -9,7 +9,7 @@ describe Order do
     end
   end
 
-  describe "validations" do skip
+  describe "validations" do
     it "requires a name" do
     end
   end
