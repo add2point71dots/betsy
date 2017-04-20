@@ -1,29 +1,39 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-blue1:
-  user_id: 1
+one:
+  vendor: funke outlet
   name: blender
   description: multi purpose high speed
-  photo_url:
+  photo_url: http://www.dionwired.co.za/media/catalog/product/cache/1/thumbnail/14f6260e656af55ad0e5dd0aab46f1ea/5/9/599475.jpg
   price: 99.9
+  quantity: 10
+
+two:
+  vendor: lu-seal's boutique
+  name: scarf
+  description: dyded raw cotton
+  photo_url: https://s-media-cache-ak0.pinimg.com/736x/3d/2b/7f/3d2b7fefa5fab7526072890997f315d0.jpg
+  price: 20.5
   quantity: 2
 
-blue2:
-  user_id: 2
-  name: scarf
-  description:
-  photo_url:
-  price: 1.5
-  quantity: 4
+three:
+  vendor: lu-seal's boutique
+  name: silk blouse
+  description: silky and super fancy
+  photo_url: https://s-media-cache-ak0.pinimg.com/736x/3d/2b/7f/3d2b7fefa5fab7526072890997f315d0.jpg
+  price: 20.5
+  quantity: 0
 
-  # blue3:
-  #   user_id: 4
-  #   name: test has only required fields
-  #   price: 14.99
-  #   quantity: 2
-  #
-  # blue4:
-  #   user_id: 5
-  #   name: test with text quantity
-  #   price: 14.99
-  #   quantity: four
+four:
+  vendor: funke outlet
+  name: shower curtain (no image)
+  description: mildew resistant fabric
+  price: 29.9
+  quantity: 10
+
+five:
+  vendor: lu-seal's boutique
+  name: novelty ceremonial scissors (no description)
+  price: 6.99
+  quantity: 10
+  photo_url: https://images-na.ssl-images-amazon.com/images/I/31OFyjMe1kL.jpg
