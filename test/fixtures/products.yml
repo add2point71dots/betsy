@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  vendor: funke outlet
+  # vendor: funke outlet
+  vendor: one
   name: blender
   description: multi purpose high speed
   photo_url: http://www.dionwired.co.za/media/catalog/product/cache/1/thumbnail/14f6260e656af55ad0e5dd0aab46f1ea/5/9/599475.jpg
@@ -9,7 +10,8 @@ one:
   quantity: 10
 
 two:
-  vendor: lu-seal's boutique
+  # vendor: lu-seal's boutique
+  vendor: three
   name: scarf
   description: dyded raw cotton
   photo_url: https://s-media-cache-ak0.pinimg.com/736x/3d/2b/7f/3d2b7fefa5fab7526072890997f315d0.jpg
@@ -17,7 +19,8 @@ two:
   quantity: 2
 
 three:
-  vendor: lu-seal's boutique
+  # vendor: lu-seal's boutique
+  vendor: three
   name: silk blouse
   description: silky and super fancy
   photo_url: https://s-media-cache-ak0.pinimg.com/736x/3d/2b/7f/3d2b7fefa5fab7526072890997f315d0.jpg
@@ -25,14 +28,16 @@ three:
   quantity: 0
 
 four:
-  vendor: funke outlet
+  # vendor: funke outlet
+  vendor: one
   name: shower curtain (no image)
   description: mildew resistant fabric
   price: 29.9
   quantity: 10
 
 five:
-  vendor: lu-seal's boutique
+  # vendor: lu-seal's boutique
+  vendor: two
   name: novelty ceremonial scissors (no description)
   price: 6.99
   quantity: 10
