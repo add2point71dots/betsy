@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170419223401) do
     t.string   "provider"
     t.string   "email"
     t.string   "username"
-
   end
 
   add_foreign_key "orderitems", "orders"
