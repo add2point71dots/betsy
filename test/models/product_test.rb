@@ -54,30 +54,36 @@ describe Product do
   describe "relationships" do
 
     it "belongs to vendor" do
-      products = vendors(:one).products
-      products.must_equal [:one, :four]
-
+      product = products(:one)
+      product.vendor.must_be_kind_of Vendor
+      # product.vendor.must_equal 'one'
     end
 
     it "has a list of orderitems " do
-      # blue1 = products(:blue1)
-      # blue1.must_respond_to :orderitems
-      # blue1.orderitems.each do |item|
-      # item.must_be_kind_of OrderItem
+      one = products(:one)
+      one.must_respond_to :orderitems
+
+      one.orderitems.each do |orderitem|
+        orderitem.must_be_kind_of Orderitem
+      end
     end
 
-    it "has a list of itemcategories " do
-      # blue2 = products(:blue2)
-      # blue2.must_respond_to :itemcategories
-      # blue2.itemcategories.each do |item|
-      # item.must_be_kind_of ItemCategory
+    it "has a list of categories " do
+      two = products(:two)
+      two.must_respond_to :categories
+
+      two.categories.each do |category|
+        category.must_be_kind_of Category
+      end
     end
 
     it "has a list of reviews " do
-    # blue2 = products(:blue2)
-    # blue2.must_respond_to :reviews
-    # blue2.reviews.each do |review|
-    # review.must_be_kind_of Review
+      three = products(:three)
+      three.must_respond_to :reviews
+
+      three.reviews.each do |review|
+        review.must_be_kind_of Review
+      end
     end
   end
 
