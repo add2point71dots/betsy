@@ -7,8 +7,11 @@ describe Product do
   describe "validations" do
 
     it "can create a product with valid name, price and quantity" do
-      product = products(:two)
-       product.valid?.must_equal true
+
+      # product = Product.new(name: "blender", price: 99.9, quantity: 2)
+      product = products(:one)
+      product.valid?.must_equal true
+
     end
 
     it "can't create a product without a valid name" do

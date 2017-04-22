@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419223401) do
+ActiveRecord::Schema.define(version: 20170422002337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "label"
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories_products", force: :cascade do |t|
@@ -29,10 +31,9 @@ ActiveRecord::Schema.define(version: 20170419223401) do
   end
 
   create_table "orderitems", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "quantity"
-    t.string   "order_state"
     t.integer  "order_id"
     t.integer  "product_id"
     t.index ["order_id"], name: "index_orderitems_on_order_id", using: :btree
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170419223401) do
     t.string   "exp_year"
     t.string   "cvv"
     t.string   "billing_zip_code"
+    t.string   "order_state"
   end
 
   create_table "products", force: :cascade do |t|

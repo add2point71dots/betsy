@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'products#index'
 
   resources :categories do
@@ -6,7 +7,5 @@ Rails.application.routes.draw do
   end
 
   resources :products
-
-
 
 end
