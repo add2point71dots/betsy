@@ -1,35 +1,3 @@
 <h1>Products#index</h1>
 <p></p>
 
-<h1>Products</h1>
-
-<table>
-    <tr>
-      <thead>
-      name
-    </thead>
-      <thead>
-       price
-    </thead>
-      <thead>
-      quantity
-    </thead>
-      <thead>
-        description
-      </thead>
-      <thead>
-        url
-      </thead>
-
-    </tr>
-      <% @products.each do |product| %>
-    <tr>
-      <td><%= link_to product.name, product_path(product.id) %></td>
-      <td><%= product.quantity%></td>
-      <td><%= product.description %></td>
-      <td><%= product.price %></td>
-
-
-    </tr>
-      <% end %>
-  </table>
