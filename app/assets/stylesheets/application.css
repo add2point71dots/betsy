@@ -14,7 +14,7 @@
  *= require_self
  */
 html, body, div, span, applet, object, iframe,
-blockquote, pre, h1, p, a, abbr, acronym, address, big, cite, code,
+blockquote, pre, h1, h2, h3, h4, h5, h6, p, a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
@@ -63,154 +63,215 @@ html, body {
      min-height: 100%;
      width: 100%;
 
-     color: #000;
+     background-color: #fff;
+     color: #2e7b96;
      font-family: 'Prompt', serif;
      font-size: 10px;
 }
 
-     header {
+     .frame {
           display: flex;
-          flex-flow: row nowrap;
-          flex: 1 1 100%;
+          flex-flow: column nowrap;
 
-          align-items: center;
-          justify-content: space-between;
+          margin: 2rem;
 
-          max-height: 8em;
+          background-color: #f2f2f2
      }
 
-          .logo {
-               display: flex;
-               flex: 1 0 auto;
-          }
-
-               .logo img {
-                    max-height: 8em;
-               }
-
-          nav {
+          header {
                display: flex;
                flex-flow: row nowrap;
-               flex: 1 0 auto;
+               flex: 1 1 100%;
 
-               justify-content: flex-end;
+               align-items: center;
+               justify-content: space-between;
+
+               max-height: 12rem;
           }
 
-               nav a {
-                    padding: 1.2em;
+               .logo {
+                    display: flex;
+                    flex: 1 0 auto;
 
-                    font-size: 1.4em;
+                    margin: 2rem;
+               }
+
+                    .logo img {
+                         max-height: 6rem;
+                    }
+
+               nav {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    flex: 1 0 auto;
+
+                    justify-content: flex-end;
+                    margin: 2rem;
                }
 
                     nav a:hover {
-                         background: #af4f35;
-                         border-radius: .5em;
+                        background: #2e7b96;
+                        color: #fff;
                     }
 
+          .headline {
+               display: flex;
+               flex-flow: row wrap;
+               flex: 1 1 auto%;
 
-     main {
-          display: flex;
-          flex-flow: row nowrap;
-          flex: 1 1 auto;
-     }
-
-
-     footer {
-          display: flex;
-          flex-flow: row nowrap;
-
-          justify-content: space-between;
-          max-height: 6em;
-          padding: 3em;
-
-          background-color: #4b3024;
-     }
-
-          footer h6 {
-               font-size: 1.4em;
+               justify-content: center;
+               margin: 2rem;
           }
 
-          .social {
+          .categories {
                display: flex;
-               flex: 1 1 auto;
+               flex-flow: row wrap;
+               flex: 1 1 auto%;
 
                align-items: center;
+               align-content: center;
                justify-content: flex-end;
-               margin-right: 3em;
+
+               min-height: 8em;
+               margin: 2rem;
           }
 
-               .facebook {
+               .label {
+                    background: #2e7b96;
+                    color: #fff;
+                    padding: .8em;
+                    margin-right: .4em;
+                    font-size: 1.4em;
+                    border-radius: 8px;
+                    text-transform: lowercase;
+               }
+
+
+          main {
+               -moz-column-count: 4;
+               -webkit-column-count: 4;
+               column-count: 4;
+
+               -webkit-column-gap: 1em;
+               -moz-column-gap: 1em;
+               column-gap: 1em;
+
+               margin: 2em;
+          }
+
+               main:hover .product {
+                    opacity: 0.3;
+               }
+
+               main:hover .price, .name {
+                    opacity: 0;
+               }
+               main:hover .product:hover {
+                    opacity: 1;
+               }
+
+               .product:hover .price,  .product:hover .name {
+                    opacity: 1;
+               }
+
+               .product {
+                    display: inline-block;
+                    position: relative;
+
+                    margin-bottom: 1em;
+                    transition: .8s opacity;
+               }
+
+                    .price {
+                         opacity: 0;
+                         position: absolute;
+                         bottom: 8px;
+                         right: 8px;
+                         font-size: 1.8em;
+                         background-color: #4c97b1;
+                         color: #fff;
+                         padding: .4em;
+                         font-weight: 100;
+                    }
+
+                    .name {
+                         opacity: 0;
+                         position: absolute;
+                         bottom: 8px;
+                         left: 8px;
+                         font-size: 2.4em;
+                         background-color: #4c97b1;
+                         color: #fff;
+                         padding: .4em;
+                         font-weight: 100;
+                    }
+
+                    .product img {
+                         max-width: 100%
+                    }
+
+          footer {
+               display: flex;
+               flex-flow: row nowrap;
+
+               align-items: center;
+               justify-content: space-between;
+               max-height: 6em;
+               padding: 3em;
+
+               background-color: #4c97b1;
+          }
+
+               .social {
+                    display: flex;
+                    flex: 1 1 auto;
+
+                    align-items: center;
+                    justify-content: flex-end;
                     margin-right: 3em;
-
-                    background-image: url("social-facebook.png");
                }
 
-                    .facebook:hover {
-                         background-image: url("social-facebook-hover.png");
+                    .facebook {
+                         margin-right: 3em;
+
+                         background-image: url("social-facebook.png");
                     }
 
-               .instagram {
-                    margin-right: 3em;
+                         .facebook:hover {
+                              background-image: url("social-facebook-hover.png");
+                         }
 
-                    background-image: url("social-instagram.png");
-               }
+                    .instagram {
+                         margin-right: 3em;
 
-                    .instagram:hover {
-                         background-image: url("social-instagram-hover.png");
+                         background-image: url("social-instagram.png");
                     }
 
-               .mail {
-                    background-image: url("social-mail.png");
-               }
+                         .instagram:hover {
+                              background-image: url("social-instagram-hover.png");
+                         }
 
-                    .mail:hover {
-                         background-image: url("social-mail-hover.png");
+                    .mail {
+                         background-image: url("social-mail.png");
                     }
 
-               .social-icon {
-                    background-size: cover;
-                    height: 5em;
-                    width: 5em;
-               }
+                         .mail:hover {
+                              background-image: url("social-mail-hover.png");
+                         }
 
-               .social-link {
-                    position: absolute;
+                    .social-icon {
+                         background-size: cover;
+                         height: 5em;
+                         width: 5em;
+                    }
 
-                    background-color: transparent;
-                    height: 5em;
-                    width: 5em;
-               }
+                    .social-link {
+                         position: absolute;
 
- .accountant {
- 	background-image: url("accountant.png");
- }
-
- .bride-and-groom {
- 	background-image: url("bride-and-groom.png");
- }
-
- .designer {
- 	background-image: url("designer.png");
- }
-
- .developer {
- 	background-image: url("developer.png");
- }
-
- .engaged {
- 	background-image: url("engaged.png");
- }
-
- .traveler {
- 	background-image: url("traveler.png");
- }
-
- .background {
- 	background-color: #2f5754;
- 	background-position: center top;
- 	background-repeat: no-repeat;
- 	background-size: cover;
- }
+                         background-color: transparent;
+                         height: 5em;
+                         width: 5em;
+                    }
 
  .hidden {
       display: none;
@@ -228,16 +289,17 @@ html, body {
  	line-height: 1.6em;
  }
 
- h1, h2, h3 {
+h1, h2, h3 {
  	letter-spacing: -.01em;
- 	text-transform: lowercase;
  }
 
  h1 {
+     color: #d2d3d4;
  	font-size: 4.8em;
+     font-weight: 100;
  }
 
- h2 {
+  /*h2 {
  	font-size: 3.0em;
  }
 
@@ -253,24 +315,30 @@ html, body {
  	font-size: 2.4em;
  }
 
+ */
+
  h6 {
- 	font-size: 1em;
+     color: #fff;
+ 	font-size: 1.4em;
+     font-weight: 300;
  	letter-spacing: .06em;
- 	text-transform: uppercase;
+ 	text-transform: lowercase;
  }
 
- p, span {
+ /* p, span {
  	font-size: 1.6em;
  	letter-spacing: .04em;
  	line-height: 1.8em;
- }
+ }*/
 
  a {
- 	color: white;
- 	font-size: 1.2em;
- 	letter-spacing: .08em;
+     padding: 1em;
+
+ 	color: #2e7b96;
+     font-family: 'Prompt', serif;
+ 	font-size: 1.8em;
  	text-decoration: none;
- 	text-transform: uppercase;
+     text-transform: lowercase;
  }
 
  input[type=submit] {

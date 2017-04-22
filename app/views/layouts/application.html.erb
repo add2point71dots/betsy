@@ -1,15 +1,153 @@
 <!DOCTYPE html>
 <html>
-<head>
-     <title>Blue Yourself</title>
-     <%= csrf_meta_tags %>
+     <head>
+          <title>Blue Yourself</title>
+          <%= csrf_meta_tags %>
 
-     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-     <% stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Prompt' %>
-</head>
+          <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+          <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+          <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Prompt' %>
+     </head>
 
      <body>
-          <%= yield %>
+          <div class="frame">
+               <header>
+                    <div class='logo'>
+                         <%= link_to root_path do %>
+                              <%= image_tag 'logo.png' %>
+                         <% end %>
+                    </div>
+                    <nav>
+                      <% if @current_vendor %>
+                         <p> Logged in as <%= link_to @current_vendor.first_name, vendor_path(@current_vendor) %></p>
+                              <%= link_to "Log Out", logout_path, method: :post %>
+                              <% else %>
+                              <%= link_to "Login", '/auth/google' %>
+                      <% end %>
+                    </nav>
+               </header>
+
+               <% if content_for?(:headline) %>
+                    <section class='headline'>
+                         <%= yield :headline%>
+                    </section>
+               <% end %>
+
+                    <section class='categories'>
+                         <!-- <%= yield :categories%> -->
+                         <p class='label'> Empire </p>
+                         <p class='label'> Strikes </p>
+                         <p class='label'> Back </p>
+                         <p class='label'> Return </p>
+                         <p class='label'> of </p>
+                         <p class='label'> the </p>
+                         <p class='label'> Jedi </p>
+                         <p class='label'> Star </p>
+                         <p class='label'> Wars </p>
+                    </section>
+
+               <main>
+                    <!-- # <%= yield %> -->
+                    <div class='product'>
+                         <%=image_tag "category-07.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-04.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-05.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-06.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-08.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-09.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-10.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-11.jpg" %>
+                         <p class='price'>$19</p>
+                         <p class='name'>Stuff</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-12.jpg" %>
+                         <p class='price'>$19</p>
+                         <p class='name'>Stuff</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-13.jpg" %>
+                         <p class='price'>$19</p>
+                         <p class='name'>Stuff</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-14.jpg" %>
+                         <p class='price'>$19</p>
+                         <p class='name'>Stuff</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-15.jpg" %>
+                         <p class='price'>$19</p>
+                         <p class='name'>Stuff</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-16.jpg" %>
+                         <p class='price'>$19</p>
+                         <p class='name'>Stuff</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-17.jpg" %>
+                         <p class='price'>$19</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-18.jpg" %>
+                         <p class='price'>$19</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-19.jpg" %>
+                         <p class='price'>$19</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-20.jpg" %>
+                         <p class='price'>$19</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-21.jpg" %>
+                         <p class='price'>$19</p>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-23.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-24.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-25.jpg" %>
+                    </div>
+                    <div class='product'>
+                         <%=image_tag "category-26.jpg" %>
+                    </div>
+               </main>
+
+               <footer>
+                    <h6> &copy; 2017 Arrested Developers. All rights reserved. </h6>
+
+                    <ul class='social'>
+                         <li class='facebook social-icon'>
+                         <a class='social-link' href='#' target='_blank'></a>
+                         </li>
+                         <li class='instagram social-icon'>
+                         <a class='social-link' href='#' target='_blank'></a>
+                         </li>
+                         <li class='mail social-icon'>
+                         <a class='social-link' href='#'></a>
+                         </li>
+                    </ul>
+               </footer>
+          </div>
      </body>
 </html>
