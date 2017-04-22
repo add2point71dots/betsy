@@ -13,3 +13,355 @@
  *= require_tree .
  *= require_self
  */
+html, body, div, span, applet, object, iframe,
+blockquote, pre, h1, p, a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     vertical-align: baseline;
+}
+HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+     display: block;
+}
+body {
+     line-height: 1;
+}
+ol, ul {
+     list-style: none;
+}
+blockquote, q {
+     quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+     content: '';
+     content: none;
+}
+table {
+     border-collapse: collapse;
+     border-spacing: 0;
+}
+
+html, body {
+     display: flex;
+     flex-flow: column nowrap;
+
+     justify-content: flex-start;
+
+     min-height: 100%;
+     width: 100%;
+
+     color: #000;
+     font-family: 'Prompt', serif;
+     font-size: 10px;
+}
+
+     header {
+          display: flex;
+          flex-flow: row nowrap;
+          flex: 1 1 100%;
+
+          align-items: center;
+          justify-content: space-between;
+
+          max-height: 8em;
+     }
+
+          .logo {
+               display: flex;
+               flex: 1 0 auto;
+          }
+
+               .logo img {
+                    max-height: 8em;
+               }
+
+          nav {
+               display: flex;
+               flex-flow: row nowrap;
+               flex: 1 0 auto;
+
+               justify-content: flex-end;
+          }
+
+               nav a {
+                    padding: 1.2em;
+
+                    font-size: 1.4em;
+               }
+
+                    nav a:hover {
+                         background: #af4f35;
+                         border-radius: .5em;
+                    }
+
+
+     main {
+          display: flex;
+          flex-flow: row nowrap;
+          flex: 1 1 auto;
+     }
+
+
+     footer {
+          display: flex;
+          flex-flow: row nowrap;
+
+          justify-content: space-between;
+          max-height: 6em;
+          padding: 3em;
+
+          background-color: #4b3024;
+     }
+
+          footer h6 {
+               font-size: 1.4em;
+          }
+
+          .social {
+               display: flex;
+               flex: 1 1 auto;
+
+               align-items: center;
+               justify-content: flex-end;
+               margin-right: 3em;
+          }
+
+               .facebook {
+                    margin-right: 3em;
+
+                    background-image: url("social-facebook.png");
+               }
+
+                    .facebook:hover {
+                         background-image: url("social-facebook-hover.png");
+                    }
+
+               .instagram {
+                    margin-right: 3em;
+
+                    background-image: url("social-instagram.png");
+               }
+
+                    .instagram:hover {
+                         background-image: url("social-instagram-hover.png");
+                    }
+
+               .mail {
+                    background-image: url("social-mail.png");
+               }
+
+                    .mail:hover {
+                         background-image: url("social-mail-hover.png");
+                    }
+
+               .social-icon {
+                    background-size: cover;
+                    height: 5em;
+                    width: 5em;
+               }
+
+               .social-link {
+                    position: absolute;
+
+                    background-color: transparent;
+                    height: 5em;
+                    width: 5em;
+               }
+
+ .accountant {
+ 	background-image: url("accountant.png");
+ }
+
+ .bride-and-groom {
+ 	background-image: url("bride-and-groom.png");
+ }
+
+ .designer {
+ 	background-image: url("designer.png");
+ }
+
+ .developer {
+ 	background-image: url("developer.png");
+ }
+
+ .engaged {
+ 	background-image: url("engaged.png");
+ }
+
+ .traveler {
+ 	background-image: url("traveler.png");
+ }
+
+ .background {
+ 	background-color: #2f5754;
+ 	background-position: center top;
+ 	background-repeat: no-repeat;
+ 	background-size: cover;
+ }
+
+ .hidden {
+      display: none;
+ }
+
+ .highlight {
+ 	display: inline-block;
+ 	padding: 2em;
+
+      background: #fff;
+ 	border: .3em solid #af4f35;
+ 	color: #af4f35;
+ 	font-size: 1.2em;
+ 	font-weight: bold;
+ 	line-height: 1.6em;
+ }
+
+ h1, h2, h3 {
+ 	letter-spacing: -.01em;
+ 	text-transform: lowercase;
+ }
+
+ h1 {
+ 	font-size: 4.8em;
+ }
+
+ h2 {
+ 	font-size: 3.0em;
+ }
+
+ h3 {
+ 	font-size: 2.0em;
+ }
+
+ h4, h5, h6, p, span, a, input, textarea {
+ 	font-weight:400;
+ }
+
+ h4 {
+ 	font-size: 2.4em;
+ }
+
+ h6 {
+ 	font-size: 1em;
+ 	letter-spacing: .06em;
+ 	text-transform: uppercase;
+ }
+
+ p, span {
+ 	font-size: 1.6em;
+ 	letter-spacing: .04em;
+ 	line-height: 1.8em;
+ }
+
+ a {
+ 	color: white;
+ 	font-size: 1.2em;
+ 	letter-spacing: .08em;
+ 	text-decoration: none;
+ 	text-transform: uppercase;
+ }
+
+ input[type=submit] {
+      padding: .6em .8em;
+
+      background-color: #af4f35;
+      border: none;
+      border-radius: .4em;
+      color: white;
+      display: inline-block;
+      font-family: 'Source Sans Pro', serif;
+      font-size: 2.8em;
+      font-weight: 400;
+      letter-spacing: .04rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+ }
+
+ input[type=submit]:hover {
+      background-color: #ca5839;
+ }
+
+ input[type=submit].small {
+      font-size: 1.8em;
+ }
+
+ input:not([type=submit]):not([type=file]), textarea, select {
+ 	display: flex;
+
+ 	background: transparent;
+ 	border: solid .6em white;
+ 	border-bottom: none;
+ 	border-right: none;
+ 	border-top: none;
+ 	border-radius: .4em;
+
+ 	color: white;
+ 	font-family: 'Source Sans Pro', sans-serif;
+ 	font-size: 1.8em;
+ 	font-weight: 400;
+ 	letter-spacing: .04em;
+
+ 	transition: all 0.3s ease-in-out;
+ }
+
+ input:not([type=submit]):not([type=file]) {
+ 	padding: .6em .6em;
+ 	margin-bottom: .6em;
+
+ 	transition: all 0.3s ease-in-out;
+ }
+
+ select {
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     padding: 1.2em .6em;
+ }
+
+ textarea, select {
+ 	padding: 1.2em .6em;
+ 	margin-bottom: 1em;
+ }
+
+ input:not([type=submit]):not([type=file]):hover, textarea:hover, select:hover {
+ 	background: white;
+ 	border: solid .6em #af4f35;
+ 	border-bottom: none;
+ 	border-right: none;
+ 	border-top: none;
+
+ 	color: #af4f35;
+ }
+
+ ::-webkit-input-placeholder {
+ 	color: white;
+ 	opacity: 0.3;
+ }
+
+ :-ms-input-placeholder {
+ 	color: white;
+ 	opacity: 0.3;
+ }
+
+ ::-moz-placeholder {
+ 	color: white;
+ 	opacity: 0.3;
+ }
+
+ :-moz-placeholder {
+ 	color: white;
+ 	opacity: 0.3;
+ }
