@@ -1,4 +1,5 @@
 require "test_helper"
+# require "simplecov"
 
 describe Product do
   # let(:product) { Product.new }
@@ -6,25 +7,24 @@ describe Product do
   describe "validations" do
 
     it "can create a product with valid name, price and quantity" do
+
       # product = Product.new(name: "blender", price: 99.9, quantity: 2)
       product = products(:one)
       product.valid?.must_equal true
+
     end
 
     it "can't create a product without a valid name" do
       product = Product.new(name: "", price: 99.9, quantity: 2)
       product.valid?.must_equal false
       product.errors.messages.must_include :name
-
     end
 
     it "product name should be unique" do
-      product_1= products(:blue1)
-      product_2 = Product.new(name: "blender", price: 99.9, quantity: 2)
+      product_1= products(:three)
+      product_2 = Product.new(name: "scarf", price: 99.9, quantity: 2)
       product_2.valid?.must_equal false
-
     end
-
 
     it "can't create a product without a valid price" do
       product_2 = Product.new(name: "blender", price: nil, quantity: 2)
@@ -46,41 +46,47 @@ describe Product do
       product_2.valid?.must_equal false
     end
 
-
     it "quantity should be integer" do
       #products(:blue4).valid?.must_equal false
       product_2 = Product.new(name: "hat", price: 14.99, quantity: "four")
       product_2.valid?.must_equal false
       product_2.errors.messages.must_include :quantity
     end
-
   end
 
   describe "relationships" do
 
-    it "belongs to user" do
-
+    it "belongs to vendor" do
+      product = products(:one)
+      product.vendor.must_be_kind_of Vendor
+      # product.vendor.must_equal 'one'
     end
 
     it "has a list of orderitems " do
-      # blue1 = products(:blue1)
-      # blue1.must_respond_to :orderitems
-      # blue1.orderitems.each do |item|
-      # item.must_be_kind_of OrderItem
+      one = products(:one)
+      one.must_respond_to :orderitems
+
+      one.orderitems.each do |orderitem|
+        orderitem.must_be_kind_of Orderitem
+      end
     end
 
-    it "has a list of itemcategories " do
-      # blue2 = products(:blue2)
-      # blue2.must_respond_to :itemcategories
-      # blue2.itemcategories.each do |item|
-      # item.must_be_kind_of ItemCategory
+    it "has a list of categories " do
+      two = products(:two)
+      two.must_respond_to :categories
+
+      two.categories.each do |category|
+        category.must_be_kind_of Category
+      end
     end
 
     it "has a list of reviews " do
-    # blue2 = products(:blue2)
-    # blue2.must_respond_to :reviews
-    # blue2.reviews.each do |review|
-    # review.must_be_kind_of Review
+      three = products(:three)
+      three.must_respond_to :reviews
+
+      three.reviews.each do |review|
+        review.must_be_kind_of Review
+      end
     end
   end
 

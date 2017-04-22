@@ -13,9 +13,4 @@ class Product < ApplicationRecord
   validates :quantity, numericality: true
 
 
-
-
-
-
-
 end

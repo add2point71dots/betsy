@@ -1,0 +1,28 @@
+<ul>
+  <% @product.errors.each do |field, message| %>
+  <li>
+    <%= field %> <%= message %>
+  </li>
+  <% end %>
+</ul>
+
+<%= form_for @product do |f| %>
+
+<%= f.label :name %></br>
+<%= f.text_field :name %></br>
+
+<%= f.label :photo_url %></br>
+<%= f.text_field :photo_url %></br>
+
+<%= f.label :price %></br>
+<%= f.text_field :price %></br>
+
+<%= f.label :quantity %></br>
+<%= f.text_field :quantity %></br>
+
+<%= f.label :description %></br>
+<%= f.text_field :description %></br>
+
+<%= f.submit action_name %></br>
+
+<% end %>
