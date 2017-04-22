@@ -2,28 +2,17 @@ require "test_helper"
 
 describe OrdersController do
   it "should get index" do
-    get orders_index_url
-    value(response).must_be :success?
+    get orders_path
+    must_respond_with :success
   end
 
   it "should get show" do
-    get orders_show_url
-    value(response).must_be :success?
+    get order_path(orders(:one))
+    must_respond_with :success
   end
 
-  it "should get create" do
-    get orders_create_url
-    value(response).must_be :success?
+  it "should show a 404 when order not found" do
+    get order_path(Order.last.id + 1)
+    must_respond_with :missing
   end
-
-  it "should get edit" do
-    get orders_edit_url
-    value(response).must_be :success?
-  end
-
-  it "should get update" do
-    get orders_update_url
-    value(response).must_be :success?
-  end
-
 end
