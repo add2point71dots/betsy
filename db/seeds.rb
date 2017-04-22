@@ -59,7 +59,7 @@ CSV.read("support/orders_seeds.csv", {:headers => true}).each do |data|
             :exp_year => data[10],
             :cvv => data[11],
             :billing_zip_code => data[12],
-            :order_status => data[13]
+            :order_state => data[13]
         }
   Order.create(args)
 end
@@ -70,7 +70,7 @@ CSV.read("support/orderitems_seeds.csv", {:headers => true}).each do |data|
           :product_id => data[2],
           :quantity => data[3]
         }
-  Review.create(args)
+  Orderitem.create(args)
 end
 
 # CSV.read("support/reviews_seeds.csv", {:headers => true}).each do |data|
