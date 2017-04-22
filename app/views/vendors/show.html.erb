@@ -1,0 +1,10 @@
+<h3>Products by <%= @vendor.username %></h3>
+
+
+<% @vendor.products.each do |product| %>
+  <section>
+    <%= image_tag product.photo_url, alt: product.name %>
+    <h4><%= product.name %>: $<%= sprintf('%.2f', product.price) %></h4>
+    <p><%= product.description %></p>
+  </section>
+<% end %>

@@ -1,10 +1,5 @@
-# Read about fixtures at http//api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
 one:
+  order_state: pending
   name: bob smith
   email: bobsmithtesting@gmail.com
   street_address: 123 abc st.
@@ -19,6 +14,37 @@ one:
   cvv: 123
 
 two:
+  order_state: paid
+  name: jane doe
+  email: janedoe@gmail.com
+  street_address: 666 hay st.
+  city: columbus
+  state: ohio
+  zip_code: 54321
+  billing_zip_code: 54321
+  name_on_card: jane doe
+  card_number: 4444555566667777
+  exp_month: 12
+  exp_year: 10
+  cvv: 333
+
+three:
+  order_state: completed
+  name: jane doe
+  email: janedoe@gmail.com
+  street_address: 666 hay st.
+  city: columbus
+  state: ohio
+  zip_code: 54321
+  billing_zip_code: 54321
+  name_on_card: jane doe
+  card_number: 4444555566667777
+  exp_month: 12
+  exp_year: 10
+  cvv: 333
+
+four:
+  order_state: canceled
   name: jane doe
   email: janedoe@gmail.com
   street_address: 666 hay st.

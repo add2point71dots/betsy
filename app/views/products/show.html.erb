@@ -1,0 +1,11 @@
+<h4>Product</h4>
+
+<p><%= image_tag(@product.photo_url, class: "product_img")%></p>
+
+<section></section>
+  <ul>
+      <li>Name : <%= @product.name%></li>
+      <li>Price : <%= @product.price %></li>
+      <li>Description : <%= @product.description %></li>
+  </ul>
+</section>
