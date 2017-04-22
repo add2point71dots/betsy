@@ -73,10 +73,11 @@ CSV.read("support/orderitems_seeds.csv", {:headers => true}).each do |data|
   Orderitem.create(args)
 end
 
-CSV.read("support/reviews_seeds.csv", {:headers => true}).each do |data|
-  args = {
-          :category_id => data[1],
-          :product_id => data[2],
-        }
-  CategoryProduct.create(args)
+CSV.read("support/categories_products_seeds.csv", {:headers => true}).each do |data|
+  time = DateTime.now
+  inserts = [data[1], data[2]].join(", ")
+
+  sql = "INSERT INTO categories_products (category_id, product_id) VALUES (" + inserts + ")"
+
+  ActiveRecord::Base.connection.execute(sql)
 end
