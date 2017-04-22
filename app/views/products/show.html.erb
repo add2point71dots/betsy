@@ -1,0 +1,19 @@
+<h4>Product</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Photo</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= @product.name%></td>
+        <td><%= @product.price %></td>
+        <td><%= image_tag(@product.photo_url, class: "product_img")%></td>
+        <td><%= @product.description %></td>
+      </tr>
+  </tbody>
+</table>
