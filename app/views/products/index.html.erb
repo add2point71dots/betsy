@@ -1,3 +1,29 @@
-<h1>Products#index</h1>
-<p></p>
-<p>Find me in app/views/products/index.html.erb</p>
+<h4>Product</h4>
+ <table>
+   <thead>
+     <tr>
+       <th>Name</th>
+       <th>Price</th>
+       <th>Photo</th>
+       <th>description</th>
+     </tr>
+   </thead>
+   <tbody>
+       <tr>
+         <td><%= @product.name%></td>
+         <td><%= @product.price %></td>
+         <td><%= image_tag(@product.photo_url, class: "product_img")%></td>
+        <td><%= @product.description %></td>
+      </tr>
+  </tbody>
+</table>
+
+ <p><%= image_tag(@product.photo_url, class: "product_img")%></p>
+
+ <section></section>
+   <ul>
+       <li>Name : <%= @product.name%></li>
+       <li>Price : <%= @product.price %></li>
+      <li>Description : <%= @product.description %></li>
+  </ul>
+ </section>
