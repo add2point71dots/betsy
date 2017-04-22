@@ -7,12 +7,15 @@ describe Order do
 
   describe "relations" do
     it "has at least one orderitem" do
-      orders(:one).orderitems.count.must_be :>, 0
+      order = orders(:one)
+      order.must_respond_to :orderitems
+      order.orderitems.count.must_be :>, 0
     end
 
     it "has a list of orderitems" do
-      orders(:one).orderitems[0].must_be_instance_of Orderitem
-      orders(:one).orderitems[-1].must_be_instance_of Orderitem
+      order = orders(:one)
+      order.orderitems[0].must_be_instance_of Orderitem
+      order.orderitems[-1].must_be_instance_of Orderitem
     end
   end
 
@@ -87,20 +90,6 @@ describe Order do
       order.errors.messages.must_include :cvv
     end
 
-    it "allow NIL values for all other fields, given order_state is pending/in-cart" do
-      cart_order = Order.new(order_state: "pending")
-      cart_order.valid?.must_equal true
-
-      cart_order = Order.new(order_state: "paid")
-      cart_order.valid?.must_equal false
-
-      cart_order = Order.new(order_state: "completed")
-      cart_order.valid?.must_equal false
-
-      cart_order = Order.new(order_state: "canceled")
-      cart_order.valid?.must_equal false
-    end
-
     it "allows only predefined order_states" do
       valid_states = ['pending', 'paid', 'completed', 'canceled']
       valid_states.each do |state|
@@ -116,6 +105,24 @@ describe Order do
         order_no_state.valid?.must_equal false
         order_no_state.errors.messages.must_include :order_state
       end
+    end
+  end
+
+  describe "custom methods" do
+    it "allow NIL values for all other fields, given order_state is pending/in-cart" do
+      cart_order = Order.new(order_state: "pending")
+      cart_order.valid?.must_equal true
+    end
+
+    it "won't allow NIL values for any fields, given order_state is not pending" do
+      cart_order = Order.new(order_state: "paid")
+      cart_order.valid?.must_equal false
+
+      cart_order = Order.new(order_state: "completed")
+      cart_order.valid?.must_equal false
+
+      cart_order = Order.new(order_state: "canceled")
+      cart_order.valid?.must_equal false
     end
   end
 end
