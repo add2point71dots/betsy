@@ -33,18 +33,12 @@
                     </section>
                <% end %>
 
+               <% if content_for?(:headline) %>
                     <section class='categories'>
-                         <!-- <%= yield :categories%> -->
-                         <p class='label'> Empire </p>
-                         <p class='label'> Strikes </p>
-                         <p class='label'> Back </p>
-                         <p class='label'> Return </p>
-                         <p class='label'> of </p>
-                         <p class='label'> the </p>
-                         <p class='label'> Jedi </p>
-                         <p class='label'> Star </p>
-                         <p class='label'> Wars </p>
+                         <%= yield :categories%>
                     </section>
+               <% end %>
+
 
                <main>
                     <!-- # <%= yield %> -->
