@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_orderitems, only: [:show]
+  before_action :find_order, only: [:show]
 
   def index
     @orders = Order.includes(:orderitems).where(orderitems: { order: params[:id]})
