@@ -19,9 +19,22 @@ describe Review do
       review2.valid?.must_equal false
       review2.errors.messages.must_include :rating
     end
+
+    it "can create a valid review" do
+      reviews(:one).valid?.must_equal true
+    end
+
+    it "review must belong to a product" do
+      review = Review.new(rating: 4, comment: "pretty good!")
+      review.valid?.must_equal false
+      review.errors.messages.must_include :product
+    end
   end
 
   describe "relationships" do
-    #write relationship tests here
+    it "can access a the product a review belongs to" do
+      review = reviews(:three)
+      review.product.class.must_equal Product
+    end
   end
 end
