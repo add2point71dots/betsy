@@ -4,11 +4,14 @@ describe Vendor do
   describe "validations" do
     let(:new_tobias) { Vendor.new(uid: 89098, provider: "github", email: "tobias2@example.com", username: "mrs_featherbottom") }
     let(:new_maeby) { Vendor.new(uid: 3948, provider: "github", email: "maeby@example.com", username: "babysitme") }
+    let(:no_uid) { Vendor.new(provider: "google", email: "george@example.com", username: "pop-pop") }
+    let(:no_provider) { Vendor.new(uid: 808080, email: "lucille@example.com", username: "lucille1") }
+    let(:no_username) { Vendor.new(uid: 456, provider: "google", email: "buster@example.com") }
+    let(:no_email) { Vendor.new(uid: 90, provider: "google", username: "ivemadeahugemistake") }
 
     it "requires a username" do
-      vendor = vendors(:no_username)
-      vendor.valid?.must_equal false
-      vendor.errors.messages.must_include :username
+      no_username.valid?.must_equal false
+      no_username.errors.messages.must_include :username
     end
 
     it "username must be unique" do
@@ -17,9 +20,8 @@ describe Vendor do
     end
 
     it "requires an email" do
-      vendor = vendors(:no_email)
-      vendor.valid?.must_equal false
-      vendor.errors.messages.must_include :email
+      no_email.valid?.must_equal false
+      no_email.errors.messages.must_include :email
     end
 
     it "email must be unique" do
@@ -28,15 +30,13 @@ describe Vendor do
     end
 
     it "requires a uid" do
-      vendor = vendors(:no_uid)
-      vendor.valid?.must_equal false
-      vendor.errors.messages.must_include :uid
+      no_uid.valid?.must_equal false
+      no_uid.errors.messages.must_include :uid
     end
 
     it "requires a provider" do
-      vendor = vendors(:no_provider)
-      vendor.valid?.must_equal false
-      vendor.errors.messages.must_include :provider
+      no_provider.valid?.must_equal false
+      no_provider.errors.messages.must_include :provider
     end
 
     it "can create a vendor that passes validations" do
