@@ -4,7 +4,7 @@
 <% @vendor.products.each do |product| %>
   <section>
     <%= image_tag product.photo_url, alt: product.name %>
-    <h4><%= product.name %>: $<%= sprintf('%.2f', product.price) %></h4>
+    <h4><%= link_to product.name, product_path(product.id) %>: $<%= sprintf('%.2f', product.price) %></h4>
     <p><%= product.description %></p>
   </section>
 <% end %>
