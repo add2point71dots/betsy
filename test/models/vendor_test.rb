@@ -50,6 +50,20 @@ describe Vendor do
   end
 
   describe "relations" do
-    #add relations tests
+    it "can access products if a vendor has some" do
+      vendor_products = vendors(:one).products
+      vendor_products.first.class.must_equal Product
+      vendor_products.last.class.must_equal Product
+    end
+
+    it "returns correct number of products for a vendor" do
+      vendor_products = vendors(:three).products
+      vendor_products.length.must_equal 2
+    end
+
+    it "a vendor with no products returns an empty array" do
+      vendor_products = vendors(:four).products
+      vendor_products.must_equal []
+    end
   end
 end
