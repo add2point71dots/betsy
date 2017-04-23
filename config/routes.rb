@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-     
-     resources :categories do
-          resources :books, only: [:index]
-     end
 
-     resources :products
+  root to: 'products#index'
 
-     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "/vendors", to: "vendors#index"
+  get "/vendors/:id", to: "vendors#show", as: "vendor"
+
+  resources :orders
+
+  resources :categories do
+    resources :products, only: [:index]
+  end
+
+  resources :products
 end

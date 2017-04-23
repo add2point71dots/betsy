@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421194358) do
+ActiveRecord::Schema.define(version: 20170419220537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,26 +24,21 @@ ActiveRecord::Schema.define(version: 20170421194358) do
   create_table "categories_products", force: :cascade do |t|
     t.integer  "category_id"
     t.integer  "product_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["category_id"], name: "index_categories_products_on_category_id", using: :btree
     t.index ["product_id"], name: "index_categories_products_on_product_id", using: :btree
   end
 
   create_table "orderitems", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "quantity"
-    t.string   "order_state"
     t.integer  "order_id"
     t.integer  "product_id"
-    t.index ["order_id"], name: "index_orderitems_on_order_id", using: :btree
-    t.index ["product_id"], name: "index_orderitems_on_product_id", using: :btree
+    t.integer  "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
     t.string   "name"
     t.string   "email"
     t.string   "street_address"
@@ -56,39 +51,37 @@ ActiveRecord::Schema.define(version: 20170421194358) do
     t.string   "exp_year"
     t.string   "cvv"
     t.string   "billing_zip_code"
+    t.string   "order_state"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "products", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "vendor_id"
     t.string   "name"
     t.text     "description"
     t.string   "photo_url"
     t.float    "price"
     t.integer  "quantity"
-    t.integer  "vendor_id"
-    t.index ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "product_id"
     t.integer  "rating"
     t.text     "comment"
-    t.integer  "product_id"
-    t.index ["product_id"], name: "index_reviews_on_product_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "vendors", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer  "uid"
     t.string   "provider"
     t.string   "email"
     t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "orderitems", "orders"
-  add_foreign_key "orderitems", "products"
-  add_foreign_key "products", "vendors"
 end
