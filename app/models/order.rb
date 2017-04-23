@@ -11,7 +11,15 @@ class Order < ApplicationRecord
   validates :exp_month, :exp_year, presence: true, format: { with: /\A\d{2}\z/ }, unless: :in_cart?
   validates :cvv, presence: true, format: { with: /\A\d{3}\z/ }, unless: :in_cart?
 
-  def in_cart?
-    order_state == "pending"
+def in_cart?
+  order_state == "pending"
+end
+
+  def sub_total
+    orderitems.inject(0, :+)
+  end
+
+  def last_four_digits
+    card_number.split(//).last(4).join
   end
 end
