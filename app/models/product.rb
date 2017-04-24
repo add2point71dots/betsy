@@ -11,6 +11,8 @@ class Product < ApplicationRecord
   validates :price, numericality: { greator_than: 0 }
   validates :quantity, presence: true
   validates :quantity, numericality: true
+  validates :photo_url, presence: true
+
 
 
   def average_review
