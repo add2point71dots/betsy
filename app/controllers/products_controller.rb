@@ -5,8 +5,13 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category_id]
-    @products = Product.includes(:categories).where(categories: { id: params[:category_id]})
+      @title = "Viewing Products by Category"
+      @products = Product.includes(:categories).where(categories: { id: params[:category_id]})
+    elsif params[:vendor_id]
+      @title = "Viewing Products by Vendor"
+      @products = Product.where("vendor_id = ?", params[:vendor_id])
     else
+      @title = "Viewing All Products"
       @products = Product.all
     end
   end
