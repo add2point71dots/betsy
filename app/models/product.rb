@@ -13,4 +13,10 @@ class Product < ApplicationRecord
   validates :quantity, numericality: true
 
 
+  def average_review
+    reviews.average(:rating) || 0
+
+  end
+
+
 end

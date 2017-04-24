@@ -12,5 +12,10 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
+  resources :vendors do
+    resources :products, only: [:index]
+  end
+
   resources :products
+  resources :reviews
 end

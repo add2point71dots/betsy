@@ -5,8 +5,13 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category_id]
-    @products = Product.includes(:categories).where(categories: { id: params[:category_id]})
+      @title = "Viewing Products by Category"
+      @products = Product.includes(:categories).where(categories: { id: params[:category_id]})
+    elsif params[:vendor_id]
+      @title = "Viewing Products by Vendor"
+      @products = Product.where("vendor_id = ?", params[:vendor_id])
     else
+      @title = "Viewing All Products"
       @products = Product.all
     end
   end
@@ -18,6 +23,10 @@ class ProductsController < ApplicationController
       end
   end
 
+  def new
+    @product = Product.new
+  end
+
   def create
       @product = Product.create(product_params)
       if @product.save
@@ -27,6 +36,12 @@ class ProductsController < ApplicationController
         flash.now[:error] = "Failed to add product"
         render "new"
       end
+    end
+
+    def create_review
+      @product
+      review = Review.craete(review_params)
+
     end
 
     def edit; end
@@ -44,6 +59,11 @@ class ProductsController < ApplicationController
 
     def product_params
       params.require(:product).permit( :vendor_id, :name, :quantity, :price, :description, :photo_url )
+    end
+
+    def review_params
+      params.require(:review).permit( :rating, :comment)
+
     end
 
     def find_product
