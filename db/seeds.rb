@@ -74,10 +74,14 @@ CSV.read("support/orderitems_seeds.csv", {:headers => true}).each do |data|
 end
 
 CSV.read("support/categories_products_seeds.csv", {:headers => true}).each do |data|
-  time = DateTime.now
-  inserts = [data[1], data[2]].join(", ")
-
-  sql = "INSERT INTO categories_products (category_id, product_id) VALUES (" + inserts + ")"
-
-  ActiveRecord::Base.connection.execute(sql)
+  Category.find_by(id: data[1]).products << Product.find_by(id: data[2])
 end
+
+# CSV.read("support/categories_products_seeds.csv", {:headers => true}).each do |data|
+#   time = DateTime.now
+#   inserts = [data[1], data[2]].join(", ")
+#
+#   sql = "INSERT INTO categories_products (category_id, product_id) VALUES (" + inserts + ")"
+#
+#   ActiveRecord::Base.connection.execute(sql)
+# end
