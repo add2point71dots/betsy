@@ -2,23 +2,12 @@ require "test_helper"
 
 describe OrderitemsController do
   it "should get show" do
-    get orderitems_show_url
-    value(response).must_be :success?
+    get orderitem_path(orderitems(:one))
+    must_respond_with :success
   end
 
-  it "should get create" do
-    get orderitems_create_url
-    value(response).must_be :success?
+  it "should show a 404 when order not found" do
+    get orderitem_path(Orderitem.last.id + 1)
+    must_respond_with :missing
   end
-
-  it "should get update" do
-    get orderitems_update_url
-    value(response).must_be :success?
-  end
-
-  it "should get destroy" do
-    get orderitems_destroy_url
-    value(response).must_be :success?
-  end
-
 end

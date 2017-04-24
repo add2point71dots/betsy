@@ -1,9 +1,9 @@
 class Orderitem < ApplicationRecord
   belongs_to :order
   belongs_to :product
-  validates :quantity, presence: true, valid_quantity: true, numericality: {  only_integer: true, greater_than: 0 }
-  validates :valid_quantity, on: :create
-  validates :valid_quantity, on: :update
+  validates :quantity, presence: true, numericality: {  only_integer: true, greater_than: 0 }
+  validate :valid_quantity, on: :create
+  validate :valid_quantity, on: :update
 
 
   # checks the availability in the product inventory
