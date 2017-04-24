@@ -1,63 +1,19 @@
 <!DOCTYPE html>
-<html>
-     <head>
-          <title>Blue Yourself</title>
-          <%= csrf_meta_tags %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-          <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-          <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-          <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Prompt' %>
-     </head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-     <body>
-          <div class="frame">
-               <header>
-                    <div class='logo'>
-                         <%= link_to root_path do %>
-                              <%= image_tag 'logo.png' %>
-                         <% end %>
-                    </div>
-                    <nav>
-                      <% if @current_vendor %>
-                         <p> Logged in as <%= link_to @current_vendor.first_name, vendor_path(@current_vendor) %></p>
-                              <%= link_to "Log Out", logout_path, method: :post %>
-                              <% else %>
-                              <%= link_to "Login", '/auth/google' %>
-                      <% end %>
-                    </nav>
-               </header>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-               <% if content_for?(:headline) %>
-                    <section class='headline'>
-                         <%= yield :headline%>
-                    </section>
-               <% end %>
+  <body>
 
-               <% if content_for?(:categories) %>
-                    <section class='categories'>
-                         <%= yield :categories%>
-                    </section>
-               <% end %>
+    <%= yield %>
 
-               <main>
-                    <%= yield %>
-               </main>
-
-               <footer>
-                    <h6> &copy; 2017 Arrested Developers. All rights reserved. </h6>
-
-                    <ul class='social'>
-                         <li class='facebook social-icon'>
-                         <a class='social-link' href='#' target='_blank'></a>
-                         </li>
-                         <li class='instagram social-icon'>
-                         <a class='social-link' href='#' target='_blank'></a>
-                         </li>
-                         <li class='mail social-icon'>
-                         <a class='social-link' href='#'></a>
-                         </li>
-                    </ul>
-               </footer>
-          </div>
-     </body>
+  </body>
 </html>

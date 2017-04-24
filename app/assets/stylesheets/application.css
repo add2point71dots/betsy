@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
 
 html, body, div, span, applet, object, iframe,
@@ -65,7 +67,7 @@ html, body {
      width: 100%;
 
      background-color: #2e7b96;
-     color: #fff;
+     color: black;
      font-family: 'Prompt', serif;
      font-size: 1rem;
 }
@@ -293,7 +295,7 @@ html, body {
  a {
      padding: 1rem;
 
- 	color: #2e7b96;
+ 	color: #000;
      font-family: 'Prompt', serif;
  	font-size: 1.4rem;
  	text-decoration: none;
@@ -301,7 +303,7 @@ html, body {
  }
 
  a:hover {
-      color: #fff;
+      color: darkgrey;
 }
 
  @media screen and (min-width: 992px) {
@@ -353,5 +355,5 @@ html, body {
       .details {
           opacity: 1;
      }
->>>>>>> master
+
  }
