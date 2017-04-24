@@ -1,11 +1,16 @@
 class VendorsController < ApplicationController
-  before_action :find_vendor, only: [:show]
+  before_action :find_vendor, only: [:show, :fulfillment]
 
   def index
     @vendors = Vendor.all
   end
 
   def show; end
+
+  def fulfillment
+     @vendor.orderitems
+     
+  end
 
   private
 

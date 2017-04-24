@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
+  get '/vendors/:id/fulfillment', to: 'vendors#fulfillment', as: 'fulfillment'
   get "/vendors", to: "vendors#index"
   get "/vendors/:id", to: "vendors#show", as: "vendor"
 
