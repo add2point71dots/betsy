@@ -6,7 +6,7 @@
   <ul>
       <li>Name : <%= @product.name%></li>
       <li>Price: $<%= @product.price %></li>
-      <li>Sold by: <%= @product.vendor.name %></li>
+      <!-- <li>Sold by: <%#= @product.vendor.username %></li> -->
       <li>Description : <%= @product.description %></li>
       <ul>Summary : </ul>
         <% @product.reviews.each do |review| %>
