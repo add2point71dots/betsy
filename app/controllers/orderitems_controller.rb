@@ -1,7 +1,4 @@
 class OrderitemsController < ApplicationController
-  before_action :find_orderitem, only: [:show]
-
-  def show;end
 
   def create
     @orderitem = Orderitem.create(orderitem_params)
@@ -21,11 +18,6 @@ class OrderitemsController < ApplicationController
   end
 
   private
-
-  def find_orderitem
-    @orderitem = Orderitem.find_by_id(params[:id])
-    render_404 if !@order
-  end
 
   def orderitem_params
     params.require(:orderitem).permit( :order_id, :product_id, :quantity)
