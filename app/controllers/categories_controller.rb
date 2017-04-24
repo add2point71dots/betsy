@@ -2,10 +2,13 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
      def index
-          @categories = Category.all
+          @categories = Category.order(:label)
      end
 
-     def show; end
+     def show
+          @categories = Category.order(:label)
+          @category = Category.find(params[:id])
+     end
 
      def new
           @category = Category.new
