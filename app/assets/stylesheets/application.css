@@ -115,7 +115,6 @@ html, body {
 
                     nav a:hover {
                         background: #2e7b96;
-                        color: #fff;
                     }
 
           .headline {
@@ -140,21 +139,23 @@ html, body {
           }
 
                .label {
-                    padding: .8rem;
+                    padding: .6rem;
                     margin-bottom: .4rem;
                     margin-right: .4rem;
 
                     background: transparent;
                     border: 2px solid #2e7b96;
                     color: #2e7b96;
-                    font-size: 1rem;
                     text-transform: lowercase;
                }
 
-               .label:hover {
-                    background: #2e7b96;
-                    color: #fff;
-               }
+                    .label a {
+                         font-size: 1rem;
+                    }
+
+                    .label:hover {
+                         background: #2e7b96;
+                    }
 
 
           main {
@@ -302,6 +303,10 @@ html, body {
  	text-decoration: none;
      text-transform: lowercase;
  }
+
+ a:hover {
+      color: #fff;
+}
 
  @media screen and (min-width: 992px) {
       html {

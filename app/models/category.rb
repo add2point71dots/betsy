@@ -8,6 +8,12 @@ class Category < ApplicationRecord
 
      before_validation :downcase_label
 
+     def sample_photo
+          products = self.products
+          product = products.sample
+          return product.photo_url
+     end
+
 private
 
      def downcase_label
