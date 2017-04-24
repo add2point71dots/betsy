@@ -33,83 +33,14 @@
                     </section>
                <% end %>
 
-               <% if content_for?(:headline) %>
+               <% if content_for?(:categories) %>
                     <section class='categories'>
                          <%= yield :categories%>
                     </section>
                <% end %>
 
-
                <main>
-                    <!-- # <%= yield %> -->
-                    <div class='product'>
-                         <%=image_tag "category-54.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-60.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-18.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-17.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-
-                    <div class='product'>
-                         <%=image_tag "category-30.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-09.jpg" %>
-
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-15.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-08.jpg" %>
-
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-07.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-06.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-05.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-38.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
-                    <div class='product'>
-                         <%=image_tag "category-04.jpg" %>
-                         <p class='details price'>$19</p>
-                         <p class='details name'>Stuff</p>
-                    </div>
+                    <%= yield %>
                </main>
 
                <footer>

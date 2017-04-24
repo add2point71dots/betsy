@@ -1,24 +1,26 @@
 <% content_for :headline do %>
-     <h1> I'm feeling bluesy today. </h1>
+     <h1> Categories </h1>
 <% end %>
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% content_for :categories do %>
+     <% @categories.each do | category |%>
+          <p class=label> <%= link_to category.label, category_products_path(category.id) %> </p>
+     <% end %>
+<% end %>
 
-<br>
+<% @categories.each do | category |%>
+     <div class='product'>
+          <% if category.products != [] %>
+               <%= link_to category_products_path(category.id) do %>
+                    <%= image_tag  category.sample_photo %>
+               <% end %>
+          <% else %>
+               <%= link_to category_products_path(category.id) do %>
+                    <%= image_tag 'category-04' %>
+               <% end %>
+           <% end %>
+           <p class='details name'> <%= category.label %> </p>
+     </div>
+<% end %>
 
 <%= link_to 'New Category', new_category_path %>

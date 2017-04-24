@@ -5,7 +5,7 @@ class CreateCategoriesProducts < ActiveRecord::Migration[5.0]
                t.integer :product_id, index: true
                t.datetime :created_at, :null => true
                t.datetime :updated_at, :null => true
-               #t.timestamps
+               t.timestamps
           end
      end
 end
