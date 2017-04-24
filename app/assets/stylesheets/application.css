@@ -13,7 +13,344 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
  .flash {
    color: red;
    font-size: 3rem;
+=======
+html, body, div, span, applet, object, iframe,
+blockquote, pre, h1, h2, h3, h4, h5, h6, p, a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     vertical-align: baseline;
+}
+HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+     display: block;
+}
+body {
+     line-height: 1;
+}
+ol, ul {
+     list-style: none;
+}
+blockquote, q {
+     quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+     content: '';
+     content: none;
+}
+table {
+     border-collapse: collapse;
+     border-spacing: 0;
+}
+
+html, body {
+     display: flex;
+     flex-flow: column nowrap;
+
+     justify-content: flex-start;
+
+     min-height: 100%;
+     width: 100%;
+
+     background-color: #2e7b96;
+     color: #fff;
+     font-family: 'Prompt', serif;
+     font-size: 1rem;
+}
+
+     .frame {
+          display: flex;
+          flex-flow: column nowrap;
+
+          margin: 1.4rem;
+
+          background-color: #f2f2f2
+     }
+
+          header {
+               display: flex;
+               flex-flow: row nowrap;
+               flex: 1 1 100%;
+
+               align-items: center;
+               justify-content: space-between;
+               max-height: 12rem;
+          }
+
+               .logo {
+                    display: flex;
+                    flex: 1 0 auto;
+
+                    margin: 2rem;
+               }
+
+                    .logo img {
+                         max-height: 6rem;
+                    }
+
+               nav {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    flex: 1 0 auto;
+
+                    justify-content: flex-end;
+                    margin: 1.4rem;
+               }
+
+                    nav a:hover {
+                        background: #2e7b96;
+                        color: #fff;
+                    }
+
+          .headline {
+               display: flex;
+               flex-flow: row wrap;
+               flex: 1 1 auto;
+
+               justify-content: center;
+               margin: 1.4rem;
+          }
+
+          .categories {
+               display: flex;
+               flex-flow: row wrap;
+               flex: 1 1 auto;
+
+               align-items: center;
+               align-content: center;
+               justify-content: flex-end;
+               margin: 0 1.4rem;
+               min-height: 8rem;
+          }
+
+               .label {
+                    padding: .8rem;
+                    margin-bottom: .4rem;
+                    margin-right: .4rem;
+
+                    background: transparent;
+                    border: 2px solid #2e7b96;
+                    color: #2e7b96;
+                    font-size: 1rem;
+                    text-transform: lowercase;
+               }
+
+               .label:hover {
+                    background: #2e7b96;
+                    color: #fff;
+               }
+
+
+          main {
+               -moz-column-count: 4;
+               -webkit-column-count: 4;
+               column-count: 4;
+               -webkit-column-gap: 1.4rem;
+               -moz-column-gap: 1.4rem;
+               column-gap: 1.4rem;
+
+               margin: 1.4rem;
+          }
+
+               main:hover .product {
+                    opacity: 0.3;
+               }
+
+               main:hover .price, .name {
+                    opacity: 0;
+               }
+               main:hover .product:hover {
+                    opacity: 1;
+               }
+
+               .product:hover .price, .product:hover .name {
+                    opacity: 1;
+               }
+
+               .product {
+                    display: inline-block;
+
+                    margin-bottom: 1.4rem;
+                    position: relative;
+                    transition: .8s opacity;
+               }
+
+                    .product img {
+                         max-width: 100%
+                    }
+
+                    .details {
+                         opacity: 0;
+                         padding: .4rem;
+                         position: absolute;
+
+                         background-color: #4c97b1;
+                         font-size: 1.2em;
+                         font-weight: 100;
+                    }
+
+                    .name {
+                         left: .5rem;
+                         top: .5rem;
+                    }
+
+                    .price {
+                         right: .5rem;
+                         bottom: .5rem;
+                    }
+
+          footer {
+               display: flex;
+               flex-flow: row nowrap;
+
+               align-items: center;
+               justify-content: space-between;
+               max-height: 6rem;
+               padding: 2rem;
+
+               background-color: #4c97b1;
+          }
+
+               .social {
+                    display: flex;
+                    flex: 1 1 auto;
+
+                    align-items: center;
+                    justify-content: flex-end;
+               }
+
+                    .facebook {
+                         margin-right: 2rem;
+
+                         background-image: url("social-facebook.png");
+                    }
+
+                         .facebook:hover {
+                              background-image: url("social-facebook-hover.png");
+                         }
+
+                    .instagram {
+                         margin-right: 2rem;
+
+                         background-image: url("social-instagram.png");
+                    }
+
+                         .instagram:hover {
+                              background-image: url("social-instagram-hover.png");
+                         }
+
+                    .mail {
+                         background-image: url("social-mail.png");
+                    }
+
+                         .mail:hover {
+                              background-image: url("social-mail-hover.png");
+                         }
+
+                    .social-icon {
+                         height: 3rem;
+                         width: 3rem;
+
+                         background-size: cover;
+                    }
+
+                    .social-link {
+                         height: 3rem;
+                         position: absolute;
+                         width: 3rem;
+
+                         background-color: transparent;
+                    }
+
+ h1 {
+     color: #d2d3d4;
+ 	font-size: 3.6rem;
+     font-weight: 100;
+     letter-spacing: -.02rem;
+ }
+
+
+ h6 {
+ 	font-size: 1rem;
+     font-weight: 300;
+ 	letter-spacing: .06rem;
+ 	text-transform: lowercase;
+ }
+
+ a {
+     padding: 1rem;
+
+ 	color: #2e7b96;
+     font-family: 'Prompt', serif;
+ 	font-size: 1.4rem;
+ 	text-decoration: none;
+     text-transform: lowercase;
+ }
+
+ @media screen and (min-width: 992px) {
+      html {
+          font-size: 1.2rem;
+      }
+ }
+
+ @media screen and (max-width: 991px) {
+      html {
+           font-size: 1rem;
+      }
+
+      main {
+           -moz-column-count: 3;
+           -webkit-column-count: 3;
+           column-count: 3;
+      }
+ }
+
+ @media screen and (max-width: 767px) {
+      html {
+           font-size: .9rem;
+      }
+
+      main {
+           -moz-column-count: 2;
+           -webkit-column-count: 2;
+           column-count: 2;
+      }
+
+      .details {
+          opacity: 1;
+     }
+
+ }
+
+ @media screen and (max-width: 479px) {
+      html {
+           font-size: .8rem;
+      }
+
+      main {
+           -moz-column-count: 1;
+           -webkit-column-count: 1;
+           column-count: 1;
+      }
+
+      .details {
+          opacity: 1;
+     }
+>>>>>>> master
  }
