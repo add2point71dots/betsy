@@ -1,1 +1,5 @@
-<%= @vendor.orderitems %>
+<p>Total Revenue: <%= @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').sum(:price) %> </p>
+<p>Total Revenue (Pending): <%= @order_items.where(status: 'Pending').sum(:price) %> </p>
+<p>Total Revenue (Paid): <%= @order_items.where(status: 'Paid').sum(:price) %> </p>
+<p>Total Revenue (Completed/Shipped): <%= @order_items.where(status: 'Shipped').sum(:price) %> </p>
+<p>Total Revenue (Cancelled): <%= @order_items.where(status: 'Cancelled').sum(:price) %> </p>

@@ -8,8 +8,7 @@ class VendorsController < ApplicationController
   def show; end
 
   def fulfillment
-     @vendor.orderitems
-     
+     @order_items = @vendor.orderitems
   end
 
   private
