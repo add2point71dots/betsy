@@ -1,8 +1,10 @@
 <h4>Product</h4>
+<div class="row ">
+<p class="small-4 large-6 columns">
+<%= image_tag(@product.photo_url, class: "product_img")%>
+</p>
 
-<p><%= image_tag(@product.photo_url, class: "product_img")%></p>
-
-<section>
+<p class="small-4 large-6 columns">
   <ul>
       <li>Name : <%= @product.name%></li>
       <li>Price: $<%= @product.price %></li>
@@ -10,11 +12,44 @@
       <li>Description : <%= @product.description %></li>
       <li>Average Rating : <%= @product.average_review %></li>
 
-      <ul>List of Reviews </ul>
-        <% @product.reviews.each do |review| %>
-          <li> [ <%= review.rating %> ]  <%= review.comment %> </li>
-        <% end %>
   </ul>
+</p>
+</div>
+  <div class="row">
+    <ul>
+    <li>Quantity <li>
+    <li>Add to Cart</li>
+    </ul>
+
+    </div>
+
+      <!-- <h1>Add review</h1> -->
+
+      <p>
+      <%= form_tag reviews_path do%>
+        <%= label_tag "rating"%>
+        <%= text_field_tag "rating"%>
+        <%= label_tag "comments"%>
+        <%= text_field_tag "comments"%>
+        <%= submit_tag "Add" %>
+      <% end %>
+      </p>
+<section>
+    <h1><small>List of Reviews</small></h1>
+    <table>
+      <tr>
+        <th>Rating</th>
+        <th>Comment</th>
+      </tr>
+
+        <% @product.reviews.each do |review| %>
+          <tr>
+          <td> <%= review.rating %> </td>
+          <td> <%= review.comment %> </td>
+          </tr>
+        <% end %>
+
+      </table>
 </section>
 
 <section>
@@ -22,17 +57,4 @@
 
   <p> <%= link_to "Create a product", new_product_path %> </p>
 
-
   </section>
-
-  <!-- <h1>Add review</h1>
-
-  <p>
-  <%#= form_tag login_path do%>
-    <%#= label_tag "rating"%>
-    <%#= text_field_tag "rating"%>
-    <%#= label_tag "comments"%>
-    <%#= text_field_tag "comments"%>
-    <%#= submit_tag "Add" %>
-  <%# end %>
-  </p> -->
