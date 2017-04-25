@@ -12,6 +12,17 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <% if current_vendor %>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Login", "/auth/google_oauth2" %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
 
     <%= yield %>
 
