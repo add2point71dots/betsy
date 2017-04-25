@@ -39,20 +39,13 @@ class ProductsController < ApplicationController
     end
 
     def create_review
-      @product
-      review = Review.craete(review_params)
-
+      @product.reviews << Review.create(review_params)
     end
 
     def edit; end
 
     def update
       @product.update(product_params)
-    end
-
-    def destroy
-      Product.destroy(params[:id])
-      redirect_to products_path
     end
 
     private
