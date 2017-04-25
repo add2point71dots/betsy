@@ -1,44 +1,21 @@
-<div class="dropdown">
-  <button class="dropbtn">Browse Products by Category</button>
-  <div class="dropdown-content">
-    <% Category.all.each do |category| %>
-      <%= link_to category.label, category_products_path(category.id) %>
-    <% end %>
-  </div>
-</div>
-
-<div class="dropdown">
-  <button class="dropbtn">Browse Products by Vendor</button>
-  <div class="dropdown-content">
-    <% Vendor.all.each do |vendor| %>
-      <%= link_to vendor.username, vendor_products_path(vendor.id) %>
-    <% end %>
-  </div>
-</div>
 
 <div>
   <%= link_to "View All Products", products_path %>
 </div>
 
-<h4><%= @title %></h4>
+<div>
+     <% Category.all.each do |category| %>
+         <%= link_to category.label, category_products_path(category.id) %>
+       <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-       <th>Name</th>
-       <th>Price</th>
-       <th>Photo</th>
-       <th>description</th>
-    </tr>
-  </thead>
-  <tbody>
+
+<!-- <h4><%#= @title %></h4> -->
+
+  <section>
     <% @products.each do |product| %>
-      <tr>
-         <td><%= link_to product.name, product_path(product.id)%></td>
-         <td><%= product.price %></td>
-         <td><%= image_tag(product.photo_url, class: "product_img")%></td>
-        <td><%= product.description %></td>
-      </tr>
+        <%= link_to product.name, product_path(product.id)%>
+ <%= link_to image_tag(product.photo_url,  class: "product_img"), product_path(product.id) %>
     <% end %>
-  </tbody>
-</table>
+
+  </section>

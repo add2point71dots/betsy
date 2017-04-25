@@ -1,20 +1,55 @@
 <h4>Product</h4>
+<div class="row">
+<div class="large-6 small-12 columns">
+<%= image_tag(@product.photo_url, class: "product_img")%>
+</div>
 
-<p><%= image_tag(@product.photo_url, class: "product_img")%></p>
-
-<section>
+<div class="large-6 small-12 columns">
   <ul>
       <li>Name : <%= @product.name%></li>
       <li>Price: $<%= @product.price %></li>
       <li>Sold by: <%= link_to @product.vendor.username, vendor_path(@product.vendor_id) %></li>
       <li>Description : <%= @product.description %></li>
-      <ul>Summary : </ul>
-        <% @product.reviews.each do |review| %>
-          <li> <%= review.comment %> </li>
-        <% end %>
-
+      <li>Average Rating : <%= @product.average_review %></li>
 
   </ul>
+</div>
+</div>
+  <div class="row">
+    <ul>
+    <li>Quantity <li>
+    <li>Add to Cart</li>
+    </ul>
+
+    </div>
+
+      <!-- <h1>Add review</h1> -->
+
+      <form>
+      <%= form_tag reviews_path do%>
+        <%= label_tag "rating"%>
+        <%= text_field_tag "rating"%>
+        <%= label_tag "comments"%>
+        <%= text_field_tag "comments"%>
+        <%= submit_tag "Add" %>
+      <% end %>
+    </form>
+<section>
+    <h1><small>List of Reviews</small></h1>
+    <table>
+      <tr>
+        <th>Rating</th>
+        <th>Comment</th>
+      </tr>
+
+        <% @product.reviews.each do |review| %>
+          <tr>
+          <td> <%= review.rating %> </td>
+          <td> <%= review.comment %> </td>
+          </tr>
+        <% end %>
+
+      </table>
 </section>
 
 <section>
@@ -22,19 +57,4 @@
 
   <p> <%= link_to "Create a product", new_product_path %> </p>
 
-
-  <p> <%= link_to "Delete", product_path(@product.id), method: :delete, data: {confirm: "Are you sure you want to delete this"} %> </p>
   </section>
-
-
-  <!-- <h1>Add review</h1>
-
-  <p>
-  <%#= form_tag login_path do%>
-    <%#= label_tag "rating"%>
-    <%#= text_field_tag "rating"%>
-    <%#= label_tag "comments"%>
-    <%#= text_field_tag "comments"%>
-    <%#= submit_tag "Add" %>
-  <%# end %>
-  </p> -->

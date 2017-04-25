@@ -1,0 +1,17 @@
+<div class="dropdown">
+  <button class="dropbtn">Browse Products by Category</button>
+  <div class="dropdown-content">
+    <% Category.all.each do |category| %>
+      <%= link_to category.label, category_products_path(category.id) %>
+    <% end %>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Browse Products by Vendor</button>
+  <div class="dropdown-content">
+    <% Vendor.all.each do |vendor| %>
+      <%= link_to vendor.username, vendor_products_path(vendor.id) %>
+    <% end %>
+  </div>
+</div>
