@@ -38,9 +38,6 @@ class ProductsController < ApplicationController
       end
     end
 
-    def create_review
-      @product.reviews << Review.create(review_params)
-    end
 
     def edit; end
 

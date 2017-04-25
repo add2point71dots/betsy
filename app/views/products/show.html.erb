@@ -8,12 +8,12 @@
       <li>Price: $<%= @product.price %></li>
       <li>Sold by: <%= link_to @product.vendor.username, vendor_path(@product.vendor_id) %></li>
       <li>Description : <%= @product.description %></li>
-      <ul>Summary : </ul>
+      <li>Average Rating : <%= @product.average_review %></li>
+
+      <ul>List of Reviews </ul>
         <% @product.reviews.each do |review| %>
-          <li> <%= review.comment %> </li>
+          <li> [ <%= review.rating %> ]  <%= review.comment %> </li>
         <% end %>
-
-
   </ul>
 </section>
 
@@ -23,9 +23,7 @@
   <p> <%= link_to "Create a product", new_product_path %> </p>
 
 
-  <p> <%= link_to "Delete", product_path(@product.id), method: :delete, data: {confirm: "Are you sure you want to delete this"} %> </p>
   </section>
-
 
   <!-- <h1>Add review</h1>
 
