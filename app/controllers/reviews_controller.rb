@@ -1,14 +1,32 @@
 class ReviewsController < ApplicationController
   def create
+    @product = Product.find_by(id: params[:review][:product_id])
 
+    if current_vendor && owner?
+      flash[:error] = "You cannot review your own product."
+      redirect_to product_path(@product.id)
+    end
+
+    @review = Review.create(review_params)
+
+    unless @review.id == nil
+      flash[:success] = "Review added!"
+      redirect_to product_path(@product.id)
+    else
+      # flash.now[:error] = "A problem occurred: Could not create review."
+      # render "products#show"
+      flash[:error] = "A problem occurred: Could not create review."
+      redirect_to product_path(@product.id)
+    end
   end
 
   private
 
-  def not_owner?
-    if session[:vendor_id]
-      errors[:product] << "You cannot rate a product you own."
-      return false
-    end
+  def owner?
+    return session[:vendor_id] == @product.vendor.id ? true : false
+  end
+
+  def review_params
+    params.require(:review).permit(:rating, :comment, :product_id)
   end
 end
