@@ -18,4 +18,9 @@
 
 # Ignore coverage
 /coverage/
+
+# Ignore .env file
+.env
+
+# Ignore .DS Store
 .DS_Store
