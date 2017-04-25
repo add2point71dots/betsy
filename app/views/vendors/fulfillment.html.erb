@@ -1,61 +1,34 @@
+<%= link_to "All", fulfillment_path %>
+<%= link_to "Pending", fulfillment_pending_path %>
+<%= link_to "Paid", fulfillment_paid_path %>
+<%= link_to "Shipped", fulfillment_shipped_path %>
+<%= link_to "Cancelled", fulfillment_cancelled_path %>
+
 <h1>Revenues</h1>
-<p>Total: <%= @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').sum(:price) %> </p>
-<p> Pending: <%= @order_items.where(status: 'Pending').sum(:price) %> </p>
-<p>Paid: <%= @order_items.where(status: 'Paid').sum(:price) %> </p>
-<p>Shipped: <%= @order_items.where(status: 'Shipped').sum(:price) %> </p>
-<p>Cancelled: <%= @order_items.where(status: 'Cancelled').sum(:price) %> </p>
+<p>Total: <%= @total_earnings %> </p>
+<p>Pending: <%= @pending_earnings %> </p>
+<p>Paid: <%= @paid_earnings %> </p>
+<p>Shipped: <%= @shipped_earnings %> </p>
+<p>Cancelled: <%= @cancelled_earnings %> </p>
 
-<h1>Quantities</h1>
-<p>Total: <%= @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').count %> </p>
-<p> Pending: <%= @order_items.where(status: 'Pending').sum(:price) %> </p>
-<p>Paid: <%= @order_items.where(status: 'Paid').count %> </p>
-<p>Shipped: <%= @order_items.where(status: 'Shipped').count %> </p>
-<p>Cancelled: <%= @order_items.where(status: 'Cancelled').count %> </p>
+<h1>Quanities</h1>
+<p>Total: <%= @total_count %> </p>
+<p>Pending: <%= @pending_count %> </p>
+<p>Paid: <%= @paid_count %> </p>
+<p>Shipped: <%= @shipped_count %> </p>
+<p>Cancelled: <%= @cancelled_count %> </p>
 
-<h1> Pending </h1>
-<% @order_items.where(status: 'Pending').each do | order_item | %>
-     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
-          <li> Quantity: <%= order_item.quantity %> </li>
-          <li> Price: <%= order_item.product.price %> </li>
-          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
-          <li> Last Updated: <%= order_item.updated_at %> </li>
-          <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch, :data => {:confirm => 'Are you certain you want to scrap this item?'} %>
-     </ul>
-<% end %>
-
-<h1> Paid </h1>
-<% @order_items.where(status: 'Paid').each do | order_item | %>
-     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
-          <li> Quantity: <%= order_item.quantity %> </li>
-          <li> Price: <%= order_item.product.price %> </li>
-          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
-          <li> Last Updated: <%= order_item.updated_at %> </li>
-     </ul>
-     <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch, :data => {:confirm => 'Are you certain you want to scrap this item?'} %>
-
-     <%= link_to 'Ship', ship_path(order_item.id), action: 'ship', method: :patch, :data => {:confirm => 'Are you certain you want to ship this item?'} %>
-
-     <%= link_to 'Customer Details', order_path(order_item.order.id) %>
-<% end %>
-
-<h1> Shipped </h1>
-<% @order_items.where(status: 'Shipped').each do | order_item | %>
-     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
-          <li> Quantity: <%= order_item.quantity %> </li>
-          <li> Price: <%= order_item.product.price %> </li>
-          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
-          <li> Last Updated: <%= order_item.updated_at %> </li>
-     </ul>
-     <%= link_to 'Customer Details', order_path(order_item.order.id) %>
-<% end %>
-
-<h1> Cancelled </h1>
-<% @order_items.where(status: 'Cancelled').each do | order_item | %>
-     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
-          <li> Quantity: <%= order_item.quantity %> </li>
-          <li> Price: <%= order_item.product.price %> </li>
-          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
-          <li> Last Updated: <%= order_item.updated_at %> </li>
-     </ul>
-     <%= link_to 'Customer Details', order_path(order_item.order.id) %>
+<% if current_page?(action: 'fulfillment_pending') %>
+     <%= render 'orderitems', filter: 'Pending' %>
+<% elsif current_page?(action: 'fulfillment_paid') %>
+     <%= render 'orderitems', filter: 'Paid' %>
+<% elsif current_page?(action: 'fulfillment_shipped') %>
+     <%= render 'orderitems', filter: 'Shipped' %>
+<% elsif current_page?(action: 'fulfillment_cancelled') %>
+     <%= render 'orderitems', filter: 'Cancelled' %>
+<% else  %>
+     <%= render 'orderitems', filter: 'Pending' %>
+     <%= render 'orderitems', filter: 'Paid' %>
+     <%= render 'orderitems', filter: 'Shipped' %>
+     <%= render 'orderitems', filter: 'Cancelled' %>
 <% end %>

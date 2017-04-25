@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   get '/vendors/:id/fulfillment', to: 'vendors#fulfillment', as: 'fulfillment'
+  get '/vendors/:id/fulfillment/pending', to: 'vendors#fulfillment_pending', as: 'fulfillment_pending'
+  get '/vendors/:id/fulfillment/paid', to: 'vendors#fulfillment_paid', as: 'fulfillment_paid'
+  get '/vendors/:id/fulfillment/shipped', to: 'vendors#fulfillment_shipped', as: 'fulfillment_shipped'
+  get '/vendors/:id/fulfillment/cancelled', to: 'vendors#fulfillment_cancelled', as: 'fulfillment_cancelled'
 
   get "/vendors", to: "vendors#index"
   get "/vendors/:id", to: "vendors#show", as: "vendor"
