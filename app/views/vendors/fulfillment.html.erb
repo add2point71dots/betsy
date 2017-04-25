@@ -12,7 +12,7 @@
 <p>Shipped: <%= @order_items.where(status: 'Shipped').count %> </p>
 <p>Cancelled: <%= @order_items.where(status: 'Cancelled').count %> </p>
 
-<h1>Pending</h1>
+<h1> Pending </h1>
 <% @order_items.where(status: 'Pending').each do | order_item | %>
      <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
           <li> Quantity: <%= order_item.quantity %> </li>
@@ -23,7 +23,7 @@
      </ul>
 <% end %>
 
-<h1> Paid  </h1>
+<h1> Paid </h1>
 <% @order_items.where(status: 'Paid').each do | order_item | %>
      <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
           <li> Quantity: <%= order_item.quantity %> </li>
@@ -38,7 +38,7 @@
      <%= link_to 'Customer Details', order_path(order_item.order.id) %>
 <% end %>
 
-<h1>Shipped</h1>
+<h1> Shipped </h1>
 <% @order_items.where(status: 'Shipped').each do | order_item | %>
      <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
           <li> Quantity: <%= order_item.quantity %> </li>
@@ -49,7 +49,7 @@
      <%= link_to 'Customer Details', order_path(order_item.order.id) %>
 <% end %>
 
-<h1>Cancelled</h1>
+<h1> Cancelled </h1>
 <% @order_items.where(status: 'Cancelled').each do | order_item | %>
      <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
           <li> Quantity: <%= order_item.quantity %> </li>
