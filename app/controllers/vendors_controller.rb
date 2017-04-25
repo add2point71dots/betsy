@@ -24,11 +24,25 @@ class VendorsController < ApplicationController
   private
 
   def tally_earnings
-     @total_earnings = @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').sum(:price)
-     @pending_earnings = @order_items.where(status: 'Pending').sum(:price)
-     @paid_earnings = @order_items.where(status: 'Paid').sum(:price)
-     @shipped_earnings = @order_items.where(status: 'Shipped').sum(:price)
-     @cancelled_earnings = @order_items.where(status: 'Cancelled').sum(:price)
+     price = @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').sum('price')
+     quantity = @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').sum('quantity')
+     @total_earnings = price * quantity
+
+     price = @order_items.where('status = ?', 'Pending').sum('price')
+     quantity = @order_items.where('status = ?', 'Pending').sum('quantity')
+     @pending_earnings = price * quantity
+
+     price = @order_items.where('status = ?', 'Paid').sum('price')
+     quantity = @order_items.where('status = ?', 'Paid').sum('quantity')
+     @paid_earnings = price * quantity
+
+     price = @order_items.where('status = ?', 'Shipped').sum('price')
+     quantity = @order_items.where('status = ?', 'Shipped').sum('quantity')
+     @shipped_earnings = price * quantity
+
+     price = @order_items.where('status = ?', 'Cancelled').sum('price')
+     quantity = @order_items.where('status = ?', 'Cancelled').sum('quantity')
+     @cancelled_earnings = price * quantity
   end
 
   def tally_count
