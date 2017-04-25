@@ -40,10 +40,22 @@ class ProductsController < ApplicationController
   end
 
 
-    def edit; end
+    def edit
+      if !current_vendor || !owner?
+        flash[:error] = "You don't have access to other vendor's products"
+        redirect_to root_path
+      end
+    end
 
     def update
-      @product.update(product_params)
+      if !current_vendor || !owner?
+        flash[:error] = "You don't have access to other vendor's products"
+        redirect_to root_path
+      else
+        @product.update(product_params)
+        redirect_to product_path(@product.id)
+      end
+
     end
 
     private
@@ -52,10 +64,12 @@ class ProductsController < ApplicationController
       params.require(:product).permit( :vendor_id, :name, :quantity, :price, :description, :photo_url )
     end
 
-
     def find_product
       @product = Product.find_by_id(params[:id])
     end
 
+    def owner?
+      return session[:vendor_id] == @product.vendor.id ? true : false
+    end
 
 end
