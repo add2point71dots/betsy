@@ -28,7 +28,10 @@
         </ul>
       </nav>
     </header>
-
+    <% flash.each do |name, message| %>
+      <h3 class="row status <%= name %>"><%= message %></h3>
+    <% end %>
+    
     <%= yield %>
 
   </body>

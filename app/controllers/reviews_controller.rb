@@ -5,18 +5,18 @@ class ReviewsController < ApplicationController
     if current_vendor && owner?
       flash[:error] = "You cannot review your own product."
       redirect_to product_path(@product.id)
-    end
-
-    @review = Review.create(review_params)
-
-    unless @review.id == nil
-      flash[:success] = "Review added!"
-      redirect_to product_path(@product.id)
     else
-      # flash.now[:error] = "A problem occurred: Could not create review."
-      # render "products#show"
-      flash[:error] = "A problem occurred: Could not create review."
-      redirect_to product_path(@product.id)
+      @review = Review.create(review_params)
+
+      unless @review.id == nil
+        flash[:success] = "Review added!"
+        redirect_to product_path(@product.id)
+      else
+        # flash.now[:error] = "A problem occurred: Could not create review."
+        # render "products#show"
+        flash[:error] = "A problem occurred: Could not create review."
+        redirect_to product_path(@product.id)
+      end
     end
   end
 
