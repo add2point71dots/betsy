@@ -2,7 +2,6 @@ require "test_helper"
 # require "simplecov"
 
 describe Product do
-  # let(:product) { Product.new }
 
   describe "validations" do
 
@@ -87,6 +86,20 @@ describe Product do
       three.reviews.each do |review|
         review.must_be_kind_of Review
       end
+    end
+
+    # it "has and belongs to many categories" do
+    #   product = products(:two)
+    #   product.categories.first.must_equal "kitchen"
+    # end
+
+  end
+
+  describe "custom method" do
+
+    it "returns average rating for a specific product" do
+      product = products(:one)
+      product.average_review.must_equal 4.5
     end
   end
 
