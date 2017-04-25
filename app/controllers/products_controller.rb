@@ -52,10 +52,6 @@ class ProductsController < ApplicationController
       params.require(:product).permit( :vendor_id, :name, :quantity, :price, :description, :photo_url )
     end
 
-    def review_params
-      params.require(:review).permit( :rating, :comment)
-
-    end
 
     def find_product
       @product = Product.find_by_id(params[:id])

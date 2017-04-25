@@ -7,7 +7,6 @@ describe Product do
 
     it "can create a product with valid name, price and quantity" do
 
-      # product = Product.new(name: "blender", price: 99.9, quantity: 2)
       product = products(:one)
       product.valid?.must_equal true
 
