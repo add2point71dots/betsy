@@ -12,12 +12,14 @@ class OrderitemsController < ApplicationController
     end
   end
 
+  # only updates quantity
   def update
     @orderitem.update(orderitem_params)
   end
 
   def destroy
-    Orderitem.destroy(params[:id])
+    orderitem = Orderitem.find_by_id(params[:id])
+    orderitem.destroy
     redirect_to cart_path
   end
 
