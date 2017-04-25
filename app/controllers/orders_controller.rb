@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:show,]
+  before_action :find_order, only: [:show, :update]
   before_action :current_cart, except: [:show]
 
   # order details: we may not need this action/view, which will show shipping/billing info
@@ -15,11 +15,13 @@ class OrdersController < ApplicationController
   def update
     @cart.update(order_params)
     @cart.update(order_state: "paid")
+    @cart.update_orderitem_status
     redirect_to confirm_path
   end
 
   # shows order summary and confirmation page, then resets session[:order_id] to nil
   def confirm
+    last_four_digits
     session[:order_id] = nil
   end
 

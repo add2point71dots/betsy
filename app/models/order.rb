@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   end
 
   def last_four_digits
-    card_number.split(//).last(4).join
+    card_number.split('').last(4).join
   end
 
   def add_to_cart(product_params)
