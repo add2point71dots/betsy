@@ -12,6 +12,7 @@ class Vendor < ApplicationRecord
     vendor.uid = auth_hash["uid"]
     vendor.provider = auth_hash["provider"]
     vendor.email = auth_hash["info"]["email"]
+    vendor.name = auth_hash["info"]["name"]
     vendor.username = auth_hash["info"]["email"]
 
     vendor.save ? vendor : nil
