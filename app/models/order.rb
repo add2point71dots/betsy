@@ -11,9 +11,9 @@ class Order < ApplicationRecord
   validates :exp_month, :exp_year, presence: true, format: { with: /\A\d{2}\z/ }, unless: :in_cart?
   validates :cvv, presence: true, format: { with: /\A\d{3}\z/ }, unless: :in_cart?
 
-def in_cart?
-  order_state == "pending"
-end
+  def in_cart?
+    order_state == "pending"
+  end
 
   def sub_total
     orderitems.inject(0, :+)
@@ -21,5 +21,18 @@ end
 
   def last_four_digits
     card_number.split(//).last(4).join
+  end
+
+  def add_to_cart(product_params)
+    current_orderitem = orderitems.find_by(product_id: product_params[:product][:product_id])
+
+    if current_orderitem
+      current_orderitem.quantity += product_params[:product][:quantity]
+      current_orderitem.save
+    else
+      new_orderitem = Orderitem.create(product_id: product_params[:product][:product_id], quantity: product_params[:product][:quantity], order_id: self.id)
+    end
+
+    return new_orderitem
   end
 end
