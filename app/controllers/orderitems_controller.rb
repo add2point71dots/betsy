@@ -1,5 +1,9 @@
 class OrderitemsController < ApplicationController
+  before_action :find_orderitem, only: [:show, :cancel, :ship]
   before_action :current_cart, only: [:create, :destroy]
+
+  def show;end
+
 
   def create
     @cart.add_to_cart(params)
@@ -17,6 +21,20 @@ class OrderitemsController < ApplicationController
     @orderitem.update(orderitem_params)
   end
 
+  def cancel
+     @orderitem.status = "Cancelled"
+     @orderitem.save
+     flash[:success] = "You have successfully scrapped this item."
+     redirect_to fulfillment_path(@orderitem.product.vendor_id)
+  end
+
+  def ship
+     @orderitem.status = "Shipped"
+     @orderitem.save
+     flash[:success] = "You have successfully shipped this item."
+     redirect_to fulfillment_path(@orderitem.product.vendor_id)
+  end
+
   def destroy
     orderitem = Orderitem.find_by_id(params[:id])
     orderitem.destroy
@@ -25,6 +43,12 @@ class OrderitemsController < ApplicationController
 
   private
 
+
+  def find_orderitem
+    @orderitem = Orderitem.find_by_id(params[:id])
+    render_404 if !@orderitem
+  end
+  
   def orderitem_params
     params.require(:orderitem).permit( :order_id, :product_id, :quantity, :status)
   end

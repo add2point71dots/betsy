@@ -1,0 +1,18 @@
+<h1> <%= filter %> </h1>
+<% @order_items.where(status: filter).each do | order_item | %>
+     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
+          <li> Quantity: <%= order_item.quantity %> </li>
+          <li> Price: <%= order_item.product.price %> </li>
+          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
+          <li> Last Updated: <%= order_item.updated_at %> </li>
+          <% if filter == 'Pending' || filter == 'Paid' %>
+               <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch, :data => {:confirm => 'Are you certain you want to scrap this item?'} %>
+          <%end %>
+          <% if filter == 'Paid' %>
+               <%= link_to 'Ship', ship_path(order_item.id), action: 'ship', method: :patch, :data => {:confirm => 'Are you certain you want to ship this item?'} %>
+          <%end %>
+          <% if filter == 'Paid' || filter == 'Shipped' || filter == 'Cancelled'%>
+               <%= link_to 'Customer Details', order_path(order_item.order.id) %>
+          <%end %>
+     </ul>
+<% end %>

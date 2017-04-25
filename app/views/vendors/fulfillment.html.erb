@@ -1,0 +1,34 @@
+<%= link_to "All", fulfillment_path %>
+<%= link_to "Pending", fulfillment_pending_path %>
+<%= link_to "Paid", fulfillment_paid_path %>
+<%= link_to "Shipped", fulfillment_shipped_path %>
+<%= link_to "Cancelled", fulfillment_cancelled_path %>
+
+<h1>Revenues</h1>
+<p>Total: <%= @total_earnings %> </p>
+<p>Pending: <%= @pending_earnings %> </p>
+<p>Paid: <%= @paid_earnings %> </p>
+<p>Shipped: <%= @shipped_earnings %> </p>
+<p>Cancelled: <%= @cancelled_earnings %> </p>
+
+<h1>Quanities</h1>
+<p>Total: <%= @total_count %> </p>
+<p>Pending: <%= @pending_count %> </p>
+<p>Paid: <%= @paid_count %> </p>
+<p>Shipped: <%= @shipped_count %> </p>
+<p>Cancelled: <%= @cancelled_count %> </p>
+
+<% if current_page?(action: 'fulfillment_pending') %>
+     <%= render 'orderitems', filter: 'Pending' %>
+<% elsif current_page?(action: 'fulfillment_paid') %>
+     <%= render 'orderitems', filter: 'Paid' %>
+<% elsif current_page?(action: 'fulfillment_shipped') %>
+     <%= render 'orderitems', filter: 'Shipped' %>
+<% elsif current_page?(action: 'fulfillment_cancelled') %>
+     <%= render 'orderitems', filter: 'Cancelled' %>
+<% else  %>
+     <%= render 'orderitems', filter: 'Pending' %>
+     <%= render 'orderitems', filter: 'Paid' %>
+     <%= render 'orderitems', filter: 'Shipped' %>
+     <%= render 'orderitems', filter: 'Cancelled' %>
+<% end %>
