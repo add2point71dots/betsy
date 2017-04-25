@@ -1,2 +1,23 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="row">
+  <h1>Order Details</h1>
+
+  <div class="small-12 medium-6 columns">
+    <h5>Shipping Information</h5>
+    <p>Name: <%= @order.name %></p>
+    <p>Email: <%= @order.email %></p>
+    <p>Street Address: <%= @order.street_address %></p>
+    <p>City: <%= @order.city %></p>
+    <p>State: <%= @order.state %></p>
+    <p>Zip Code: <%= @order.zip_code %></p>
+  </div>
+
+  <div class="small-12 medium-6 columns">
+    <h5>Billing Information</h5>
+    <p>Name on Card: <%= @order.name_on_card %></p>
+    <p>Card Number: <%= @order.card_number.split('').last(4).join %></p>
+    <p>Expiration Month: <%= @order.exp_month %></p>
+    <p>Expiration Year: <%= @order.exp_year %></p>
+    <p>CVV: <%= @order.cvv %></p>
+    <p>Billing Zip Code: <%= @order.billing_zip_code %></p>
+  </div>
+</div>
