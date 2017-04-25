@@ -69,3 +69,4 @@ end
 gem 'awesome_print'
 gem 'omniauth'
 gem 'omniauth-github'
+gem "omniauth-google-oauth2"
