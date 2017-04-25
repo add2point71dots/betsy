@@ -7,9 +7,3 @@ class Vendor < ApplicationRecord
   validates :uid, presence: true
   validates :email, uniqueness: true, presence: true
 end
-
-def revenues
-     order_items = vendor.orderitems.map { | orderitem | orderitem.product}
-
-     earnings = order_items.price.inject(0) { | sum, price | sum + price }
-end

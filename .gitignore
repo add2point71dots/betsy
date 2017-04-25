@@ -18,3 +18,4 @@
 
 # Ignore coverage
 /coverage/
+.DS_Store

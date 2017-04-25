@@ -12,28 +12,28 @@
 <p>Shipped: <%= @order_items.where(status: 'Shipped').count %> </p>
 <p>Total Revenue (Cancelled): <%= @order_items.where(status: 'Cancelled').count %> </p>
 
-<br><br>
 <h1>Pending</h1>
-     <% @order_items.where(status: 'Pending').each do | order_item | %>
-          <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
-               <li> Quantity: <%= order_item.quantity %> </li>
-               <li> Price: <%= order_item.product.price %> </li>
-               <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
-               <li> Last Updated: <%= order_item.updated_at %> </li>
-          </ul>
-          <%= button_to 'Cancel' %>
-     <% end %>
+<% @order_items.where(status: 'Pending').each do | order_item | %>
+     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
+          <li> Quantity: <%= order_item.quantity %> </li>
+          <li> Price: <%= order_item.product.price %> </li>
+          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
+          <li> Last Updated: <%= order_item.updated_at %> </li>
+     </ul>
+<% end %>
 
-<h1>Paid</h1>
-     <% @order_items.where(status: 'Paid').each do | order_item | %>
-          <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
-               <li> Quantity: <%= order_item.quantity %> </li>
-               <li> Price: <%= order_item.product.price %> </li>
-               <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
-               <li> Last Updated: <%= order_item.updated_at %> </li>
-          </ul>
-          <%= button_to 'Cancel' %> <%= button_to 'Ship' %> <%= button_to 'Customer Details' %>
-     <% end %>
+<h1> Paid  </h1>
+<% @order_items.where(status: 'Paid').each do | order_item | %>
+     <ul> <h3> <%= link_to order_item.product.name, product_path(order_item.product.id) %> </h3>
+          <li> Quantity: <%= order_item.quantity %> </li>
+          <li> Price: <%= order_item.product.price %> </li>
+          <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
+          <li> Last Updated: <%= order_item.updated_at %> </li>
+     </ul>
+     <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch %>
+
+ <%= button_to 'Ship' %> <%= button_to 'Customer Details' %>
+<% end %>
 
 <h1>Shipped</h1>
 <% @order_items.where(status: 'Shipped').each do | order_item | %>

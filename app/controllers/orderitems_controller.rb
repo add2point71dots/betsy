@@ -1,5 +1,5 @@
 class OrderitemsController < ApplicationController
-  before_action :find_orderitem, only: [:show]
+  before_action :find_orderitem, only: [:show, :cancel]
 
   def show;end
 
@@ -14,6 +14,12 @@ class OrderitemsController < ApplicationController
 
   def update
     @orderitem.update(orderitem_params)
+  end
+
+  def cancel
+     @orderitem.status = "Cancel"
+     Raise
+     redirect_to fulfillment_path(@orderitem.product.vendor_id)
   end
 
   def destroy
