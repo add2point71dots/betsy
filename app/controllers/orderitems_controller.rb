@@ -1,12 +1,7 @@
 class OrderitemsController < ApplicationController
+  before_action :current_cart
 
   def create
-    @orderitem = Orderitem.create(orderitem_params)
-    if @orderitem.save
-      flash[:success] = "Item: #{@orderitem.product.name} Qt: #{@orderitem.quantity} has been added to your cart"
-    else
-      flash.now[:error] = "Failed to add item(s) to cart"
-    end
   end
 
   def update
@@ -15,11 +10,12 @@ class OrderitemsController < ApplicationController
 
   def destroy
     Orderitem.destroy(params[:id])
+    redirect_to cart_path
   end
 
   private
 
   def orderitem_params
-    params.require(:orderitem).permit( :order_id, :product_id, :quantity)
+    params.require(:orderitem).permit( :order_id, :product_id, :quantity, :status)
   end
 end
