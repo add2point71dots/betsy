@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get "/vendors", to: "vendors#index"
   get "/vendors/:id", to: "vendors#show", as: "vendor"
 
-  resources :orders, except:[:index, :new, :delete]
-  resources :orderitems, except:[:index, :new, :edit]
+  resources :orders, only:[:show, :edit, :update]
+  get "/cart", to: "orders#show_cart", as: "cart"
+  get "/confirmation", to: "orders#confirm", as: "confirm"
+  resources :orderitems, only:[:create, :update, :destroy]
 
   resources :categories do
     resources :products, only: [:index]
