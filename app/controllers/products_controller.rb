@@ -16,7 +16,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
   def show
       if !@product
         render_404
@@ -38,7 +37,7 @@ class ProductsController < ApplicationController
         flash.now[:error] = "Failed to add product"
         render "new"
       end
-    end
+  end
 
 
     def edit; end
