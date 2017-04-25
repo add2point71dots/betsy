@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/vendors/:id", to: "vendors#show", as: "vendor"
 
   get "/auth/google_oauth2/callback", to: "sessions#create"
+  delete "/logout", to: "sessions#logout", as: "logout"
 
   resources :orders, except:[:index, :new, :delete]
   resources :orderitems, except:[:index, :new, :edit]

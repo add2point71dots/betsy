@@ -15,4 +15,10 @@ class SessionsController < ApplicationController
     flash[:success] = "Logged in successfully!"
     redirect_to root_path
   end
+
+  def logout
+    session[:vendor_id] = nil
+    flash[:success] = "You are now logged out."
+    redirect_to root_path
+  end
 end
