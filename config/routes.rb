@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "/vendors", to: "vendors#index"
   get "/vendors/:id", to: "vendors#show", as: "vendor"
 
+  get "/auth/google_oauth2/callback", to: "sessions#create"
+
   resources :orders, except:[:index, :new, :delete]
   resources :orderitems, except:[:index, :new, :edit]
 
