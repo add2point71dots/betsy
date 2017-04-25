@@ -42,14 +42,14 @@ class ProductsController < ApplicationController
 
     def edit
       if !current_vendor || !owner?
-        flash[:error] "You don't have access to other vendor's products"
+        flash[:error] = "You don't have access to other vendor's products"
         redirect_to root_path
       end
-     end
+    end
 
     def update
       if !current_vendor || !owner?
-        flash[:error] "You don't have access to other vendor's products"
+        flash[:error] = "You don't have access to other vendor's products"
         redirect_to root_path
       else
         @product.update(product_params)
