@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
    render file: "#{ Rails.root }/public/404.html", status: 404
   end
 
+  def require_login
+    if !current_vendor
+      flash[:error] = "You must be logged in to view this page."
+      redirect_to root_path
+    end
+  end
+
   def current_cart
     @cart = Order.find_by_id(session[:order_id])
   rescue ActiveRecord::RecordNotFound
