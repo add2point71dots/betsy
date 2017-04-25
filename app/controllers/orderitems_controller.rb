@@ -1,5 +1,5 @@
 class OrderitemsController < ApplicationController
-  before_action :find_orderitem, only: [:show, :cancel]
+  before_action :find_orderitem, only: [:show, :cancel, :ship]
 
   def show;end
 
@@ -17,8 +17,16 @@ class OrderitemsController < ApplicationController
   end
 
   def cancel
-     @orderitem.status = "Cancel"
-     Raise
+     @orderitem.status = "Cancelled"
+     @orderitem.save
+     flash[:success] = "You have successfully scrapped this item."
+     redirect_to fulfillment_path(@orderitem.product.vendor_id)
+  end
+
+  def ship
+     @orderitem.status = "Shipped"
+     @orderitem.save
+     flash[:success] = "You have successfully shipped this item."
      redirect_to fulfillment_path(@orderitem.product.vendor_id)
   end
 
@@ -30,7 +38,7 @@ class OrderitemsController < ApplicationController
 
   def find_orderitem
     @orderitem = Orderitem.find_by_id(params[:id])
-    render_404 if !@order
+    render_404 if !@orderitem
   end
 
   def orderitem_params

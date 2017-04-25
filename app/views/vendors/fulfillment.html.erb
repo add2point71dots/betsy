@@ -3,14 +3,14 @@
 <p> Pending: <%= @order_items.where(status: 'Pending').sum(:price) %> </p>
 <p>Paid: <%= @order_items.where(status: 'Paid').sum(:price) %> </p>
 <p>Shipped: <%= @order_items.where(status: 'Shipped').sum(:price) %> </p>
-<p>Total Revenue (Cancelled): <%= @order_items.where(status: 'Cancelled').sum(:price) %> </p>
+<p>Cancelled: <%= @order_items.where(status: 'Cancelled').sum(:price) %> </p>
 
 <h1>Quantities</h1>
 <p>Total: <%= @order_items.where('status = ? OR status = ?', 'Paid', 'Shipped').count %> </p>
 <p> Pending: <%= @order_items.where(status: 'Pending').sum(:price) %> </p>
 <p>Paid: <%= @order_items.where(status: 'Paid').count %> </p>
 <p>Shipped: <%= @order_items.where(status: 'Shipped').count %> </p>
-<p>Total Revenue (Cancelled): <%= @order_items.where(status: 'Cancelled').count %> </p>
+<p>Cancelled: <%= @order_items.where(status: 'Cancelled').count %> </p>
 
 <h1>Pending</h1>
 <% @order_items.where(status: 'Pending').each do | order_item | %>
@@ -19,6 +19,7 @@
           <li> Price: <%= order_item.product.price %> </li>
           <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
           <li> Last Updated: <%= order_item.updated_at %> </li>
+          <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch, :data => {:confirm => 'Are you certain you want to scrap this item?'} %>
      </ul>
 <% end %>
 
@@ -30,9 +31,11 @@
           <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
           <li> Last Updated: <%= order_item.updated_at %> </li>
      </ul>
-     <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch %>
+     <%= link_to 'Cancel', cancel_path(order_item.id), action: 'cancel', method: :patch, :data => {:confirm => 'Are you certain you want to scrap this item?'} %>
 
- <%= button_to 'Ship' %> <%= button_to 'Customer Details' %>
+     <%= link_to 'Ship', ship_path(order_item.id), action: 'ship', method: :patch, :data => {:confirm => 'Are you certain you want to ship this item?'} %>
+
+     <%= link_to 'Customer Details', order_path(order_item.order.id) %>
 <% end %>
 
 <h1>Shipped</h1>
@@ -43,7 +46,7 @@
           <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
           <li> Last Updated: <%= order_item.updated_at %> </li>
      </ul>
-     <%= button_to 'Customer Details' %>
+     <%= link_to 'Customer Details', order_path(order_item.order.id) %>
 <% end %>
 
 <h1>Cancelled</h1>
@@ -54,5 +57,5 @@
           <li> Subtotal: <%= order_item.product.price * order_item.quantity %> </li>
           <li> Last Updated: <%= order_item.updated_at %> </li>
      </ul>
-     <%= button_to 'Customer Details' %>
+     <%= link_to 'Customer Details', order_path(order_item.order.id) %>
 <% end %>

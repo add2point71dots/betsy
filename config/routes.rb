@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :orders, except:[:index, :new, :delete]
 
   patch 'orderitems/:id/cancel', to: 'orderitems#cancel', as: 'cancel'
+  patch 'orderitems/:id/ship', to: 'orderitems#ship', as: 'ship'
   resources :orderitems, except:[:index, :new, :edit]
 
   resources :categories do
