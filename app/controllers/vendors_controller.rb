@@ -11,15 +11,25 @@ class VendorsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    if !current_vendor || !login_match?
+      flash[:error] = "You cannot access this page."
+      redirect_to root_path
+    end
+  end
 
   def update
-    if @vendor.update(vendor_params)
-      flash[:success] = "Successfully updated profile."
-      redirect_to vendor_path(@vendor.id)
+    if !current_vendor || !login_match?
+      flash[:error] = "You cannot access this page."
+      redirect_to root_path
     else
-      flash.now[:error] = "Error: Profile not updated."
-      render "edit"
+      if @vendor.update(vendor_params)
+        flash[:success] = "Successfully updated profile."
+        redirect_to vendor_path(@vendor.id)
+      else
+        flash.now[:error] = "Error: Profile not updated."
+        render "edit"
+      end
     end
   end
 
@@ -83,7 +93,7 @@ class VendorsController < ApplicationController
     params.require(:vendor).permit(:name, :username, :photo_url, :description)
   end
 
-  # def owner?
-  #   return session[:vendor_id] == @product.vendor.id ? true : false
-  # end
+  def login_match?
+    return session[:vendor_id] == @vendor.id ? true : false
+  end
 end
