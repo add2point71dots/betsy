@@ -1,0 +1,35 @@
+<div class="row">
+  <h1>Order Confirmation</h1>
+
+  <div class="small-6 medium-6 columns">
+    <h2>Order Information</h2>
+    <% @cart.orderitems.each_with_index do |orderitem, index| %>
+    <h6>Item <%= index + 1 %></h6>
+    <p>Item: <%= orderitem.product.name %></p>
+    <p>Quantity: <%= orderitem.quantity %></p>
+    <p>Seller: <%= orderitem.product.vendor.username %></p>
+    <p>Cost: $ <%= sprintf('%.2f', ((orderitem.product.price) * orderitem.quantity)) %></p>
+    <p>Status: <%= orderitem.status %></p>
+    <% end %>
+  </div>
+
+  <div class="small-6 medium-6 columns">
+    <h5>Shipping Information</h5>
+    <p>Name: <%= @cart.name %></p>
+    <p>Email: <%= @cart.email %></p>
+    <p>Street Address: <%= @cart.street_address %></p>
+    <p>City: <%= @cart.city %></p>
+    <p>State: <%= @cart.state %></p>
+    <p>Zip Code: <%= @cart.zip_code %></p>
+  </div>
+
+  <div class="small-6 medium-6 columns">
+    <h5>Billing Information</h5>
+    <p>Name on Card: <%= @cart.name_on_card %></p>
+    <p>Card Number: <%= @cart.card_number%></p>
+    <p>Expiration Month: <%= @cart.exp_month %></p>
+    <p>Expiration Year: <%= @cart.exp_year %></p>
+    <p>CVV: <%= @cart.cvv %></p>
+    <p>Billing Zip Code: <%= @cart.billing_zip_code %></p>
+  </div>
+</div>

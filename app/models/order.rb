@@ -15,10 +15,6 @@ class Order < ApplicationRecord
     order_state == "pending"
   end
 
-  def sub_total
-    orderitems.inject(0, :+)
-  end
-
   def last_four_digits
     card_number.split('').last(4).join
   end
@@ -37,6 +33,12 @@ class Order < ApplicationRecord
   def update_orderitem_status
     orderitems.each do | orderitem |
       orderitem.status = "paid"
+    end
+  end
+
+  def update_product_stock
+    orderitems.each do |orderitem|
+      orderitem.product.quantity -= orderitem.quantity
     end
   end
 end

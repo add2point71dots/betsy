@@ -22,7 +22,11 @@
       <% end %>
     </tbody>
   </table>
+  <% if @cart.orderitems.count > 0 %>
   <%= link_to "Checkout", edit_order_path(@cart.id), class:"button" %>
+  <% else %>
+  <%= link_to "See More Products", products_path, class:"button" %>
+  <% end %>
 </section>
 
 </div>
