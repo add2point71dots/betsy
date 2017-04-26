@@ -25,5 +25,25 @@ Minitest::Reporters.use!(
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-  # Add more helper methods to be used by all tests here...
+
+  def setup
+    OmniAuth.config.test_mode = true
+  end
+
+  def mock_auth_hash(vendor)
+    return {
+      provider: vendor.provider,
+      uid: vendor.uid,
+      info: {
+        email: vendor.email,
+        name: vendor.name,
+        username: vendor.username
+      }
+    }
+  end
+
+  def login_vendor(vendor)
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(mock_auth_hash(vendor))
+    get auth_google_oauth2_callback_path
+  end
 end
