@@ -1,9 +1,11 @@
-<h3>Vendors</h3>
-
-<ul>
-  <% @vendors.each do |vendor| %>
-    <li>
-      <%= link_to vendor.username, vendor_path(vendor.id) %>
-    </li>
-  <% end %>
-</ul>
+<section>
+  <h3>Vendors</h3>
+  <section class="small-up-1 medium-up-3 large-up-4">
+    <% @vendors.each do |vendor| %>
+      <section class="column">
+        <%= link_to image_tag(vendor.photo_url, alt: vendor.username), vendor_path(vendor.id) %>
+        <%= link_to vendor.username, vendor_path(vendor.id) %>
+      </section>
+    <% end %>
+  </section>
+</section>

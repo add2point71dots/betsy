@@ -12,7 +12,10 @@ CSV.read("support/vendors_seeds.csv", {:headers => true}).each do |data|
           :uid => data[1],
           :provider => data[2],
           :email => data[3],
-          :username => data[4]
+          :username => data[4],
+          :name => data[5],
+          :photo_url => data[6],
+          :description => data[7]
         }
   Vendor.create(args)
 end
@@ -68,7 +71,8 @@ CSV.read("support/orderitems_seeds.csv", {:headers => true}).each do |data|
   args = {
           :order_id => data[1],
           :product_id => data[2],
-          :quantity => data[3]
+          :quantity => data[3],
+          :status => data[4]
         }
   Orderitem.create(args)
 end

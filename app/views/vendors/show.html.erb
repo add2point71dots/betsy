@@ -1,10 +1,32 @@
-<h3>Products by <%= @vendor.username %></h3>
-
-
-<% @vendor.products.each do |product| %>
-  <section>
-    <%= image_tag product.photo_url, alt: product.name %>
-    <h4><%= link_to product.name, product_path(product.id) %>: $<%= sprintf('%.2f', product.price) %></h4>
-    <p><%= product.description %></p>
+<section>
+  <section class="row">
+    <h3 class="small-12 columns"><%= @vendor.username %>'s shop</h3>
+    <section class="small-12 medium-4 columns">
+      <%= image_tag @vendor.photo_url, alt: @vendor.username %>
+    </section>
+    <section class="small-12 medium-8 columns">
+      <% if @vendor.name && @vendor.name != "" %>
+        <p><strong>Name: </strong><%= @vendor.name %></p>
+      <% end %>
+      <% if @vendor.description && @vendor.description != "" %>
+        <p><strong>About Me: </strong><%= @vendor.description %></p>
+      <% end %>
+    </section>
   </section>
-<% end %>
+  
+  <% if @vendor.products.length > 0 %>
+    <h4><%= @vendor.username %>'s products</h4>
+  <% else %>
+    <h4>This user currently has no products.</h4>
+  <% end %>
+  <section class="small-up-1 medium-up-3 large-up-4">
+    <% @vendor.products.each do |product| %>
+      <section class="column">
+        <%= link_to image_tag(product.photo_url, alt: product.name), product_path(product.id) %>
+        <h4><%= link_to product.name, product_path(product.id) %></h4>
+        <p>$<%= sprintf('%.2f', product.price) %></p>
+      </section>
+    <% end %>
+  </section>
+
+</section>

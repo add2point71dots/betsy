@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   get '/vendors/:id/fulfillment/shipped', to: 'vendors#fulfillment_shipped', as: 'fulfillment_shipped'
   get '/vendors/:id/fulfillment/cancelled', to: 'vendors#fulfillment_cancelled', as: 'fulfillment_cancelled'
 
-  get "/vendors", to: "vendors#index"
-  get "/vendors/:id", to: "vendors#show", as: "vendor"
+  resources :vendors, only:[:index, :show, :edit, :update]
 
   post "/reviews", to: "reviews#create"
 

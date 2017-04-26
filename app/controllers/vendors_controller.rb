@@ -1,15 +1,37 @@
 class VendorsController < ApplicationController
   before_action :find_vendor, except: [:index]
-  before_action :find_orderitems, except: [:index, :show]
-  before_action :tally_earnings, except: [:index, :show]
-  before_action :tally_count, except: [:index, :show]
-  before_action :render_orderitems, except: [:index, :show, :fulfillment]
+  before_action :find_orderitems, except: [:index, :show, :edit, :update]
+  before_action :tally_earnings, except: [:index, :show, :edit, :update]
+  before_action :tally_count, except: [:index, :show, :edit, :update]
+  before_action :render_orderitems, except: [:index, :show, :fulfillment, :edit, :update]
 
   def index
     @vendors = Vendor.all
   end
 
   def show; end
+
+  def edit
+    if !current_vendor || !login_match?
+      flash[:error] = "You cannot access this page."
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if !current_vendor || !login_match?
+      flash[:error] = "You cannot access this page."
+      redirect_to root_path
+    else
+      if @vendor.update(vendor_params)
+        flash[:success] = "Successfully updated profile."
+        redirect_to vendor_path(@vendor.id)
+      else
+        flash.now[:error] = "Error: Profile not updated."
+        render "edit"
+      end
+    end
+  end
 
   def fulfillment; end
 
@@ -65,5 +87,13 @@ class VendorsController < ApplicationController
   def find_vendor
     @vendor = Vendor.find_by_id(params[:id])
     render_404 if !@vendor
+  end
+
+  def vendor_params
+    params.require(:vendor).permit(:name, :username, :photo_url, :description)
+  end
+
+  def login_match?
+    return session[:vendor_id] == @vendor.id ? true : false
   end
 end
