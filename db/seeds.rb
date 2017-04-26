@@ -71,7 +71,8 @@ CSV.read("support/orderitems_seeds.csv", {:headers => true}).each do |data|
   args = {
           :order_id => data[1],
           :product_id => data[2],
-          :quantity => data[3]
+          :quantity => data[3],
+          :status => data[4]
         }
   Orderitem.create(args)
 end
