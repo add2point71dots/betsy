@@ -14,7 +14,13 @@ class VendorsController < ApplicationController
   def edit; end
 
   def update
-
+    if @vendor.update(vendor_params)
+      flash[:success] = "Successfully updated profile."
+      redirect_to vendor_path(@vendor.id)
+    else
+      flash.now[:error] = "Error: Profile not updated."
+      render "edit"
+    end
   end
 
   def fulfillment; end
@@ -72,4 +78,12 @@ class VendorsController < ApplicationController
     @vendor = Vendor.find_by_id(params[:id])
     render_404 if !@vendor
   end
+
+  def vendor_params
+    params.require(:vendor).permit(:name, :username, :photo_url, :description)
+  end
+
+  # def owner?
+  #   return session[:vendor_id] == @product.vendor.id ? true : false
+  # end
 end

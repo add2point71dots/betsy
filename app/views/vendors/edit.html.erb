@@ -1,5 +1,12 @@
 <section>
   <h3>Edit Profile</h3>
+  <ul class="error">
+    <% @vendor.errors.each do |field, msg| %>
+      <li>
+        <%= field %>: <%= msg %>
+      </li>
+    <% end %>
+  </ul>
   <%= form_for @vendor do |f| %>
 
     <%= f.label :name %>
