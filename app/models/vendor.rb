@@ -5,6 +5,7 @@ class Vendor < ApplicationRecord
   validates :username, uniqueness: true, presence: true
   validates :provider, presence: true
   validates :uid, presence: true
+  validates :photo_url, presence: true
   validates :email, uniqueness: true, presence: true
 
   def self.create_from_google(auth_hash)
