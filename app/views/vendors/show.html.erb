@@ -5,16 +5,20 @@
       <%= image_tag @vendor.photo_url, alt: @vendor.username %>
     </section>
     <section class="small-12 medium-8 columns">
-      <% if @vendor.name %>
+      <% if @vendor.name && @vendor.name != "" %>
         <p><strong>Name: </strong><%= @vendor.name %></p>
       <% end %>
-      <% if @vendor.description %>
+      <% if @vendor.description && @vendor.description != "" %>
         <p><strong>About Me: </strong><%= @vendor.description %></p>
       <% end %>
     </section>
   </section>
-  <h3>Products by <%= @vendor.username %></h3>
-
+  
+  <% if @vendor.products.length > 0 %>
+    <h4><%= @vendor.username %>'s products</h4>
+  <% else %>
+    <h4>This user currently has no products.</h4>
+  <% end %>
   <section class="small-up-1 medium-up-3 large-up-4">
     <% @vendor.products.each do |product| %>
       <section class="column">
