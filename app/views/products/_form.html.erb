@@ -1,10 +1,10 @@
-<ul>
+<!-- <ul>
   <% @product.errors.each do |field, message| %>
   <li>
-    <%= field %> <%= message %>
+    <%#= field %> <%= message %>
   </li>
   <% end %>
-</ul>
+</ul> -->
 
 <%= form_for @product do |f| %>
 
@@ -22,6 +22,9 @@
 
 <%= f.label :description %></br>
 <%= f.text_field :description %></br>
+
+<%= f.label :hidden %></br>
+<%= f.check_box :hidden, {}, true, false %></br>
 
 <%= f.hidden_field :vendor_id, value: session[:vendor_id] %></br>
 

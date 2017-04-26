@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
       @title = "Viewing All Products"
       @products = Product.all
     end
+    @products = @products.where("hidden = ?", false)
   end
 
   def show
