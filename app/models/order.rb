@@ -28,12 +28,10 @@ class Order < ApplicationRecord
 
     if current_orderitem
       current_orderitem.quantity += product_params[:orderitem][:quantity].to_i
-      current_orderitem.save
+      current_orderitem.save!
     else
-      new_orderitem = Orderitem.create(product_id: product_params[:orderitem][:product_id], quantity: product_params[:orderitem][:quantity], order_id: self.id, status: "pending")
+      Orderitem.create!(product_id: product_params[:orderitem][:product_id], quantity: product_params[:orderitem][:quantity].to_i, order_id: self.id, status: "pending")
     end
-
-    return new_orderitem
   end
 
   def update_orderitem_status

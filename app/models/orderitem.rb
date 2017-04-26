@@ -4,7 +4,7 @@ class Orderitem < ApplicationRecord
   validates :quantity, presence: true, numericality: {  only_integer: true, greater_than: 0 }
   validate :valid_quantity, on: :create
   validate :valid_quantity, on: :update
-  validates_inclusion_of :status, :in => ['Pending', 'Paid', 'Shipped', 'Cancelled'], :allow_nil => true
+  validates_inclusion_of :status, :in => ['pending', 'paid', 'shipped', 'cancelled'], :allow_nil => true
 
 
   # checks the availability in the product inventory
