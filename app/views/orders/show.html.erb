@@ -14,7 +14,7 @@
   <div class="small-12 medium-6 columns">
     <h5>Billing Information</h5>
     <p>Name on Card: <%= @order.name_on_card %></p>
-    <p>Card Number: <%= @order.card_number.split('').last(4).join %></p>
+    <p>Card Number: <%= @order.card_number %></p>
     <p>Expiration Month: <%= @order.exp_month %></p>
     <p>Expiration Year: <%= @order.exp_year %></p>
     <p>CVV: <%= @order.cvv %></p>

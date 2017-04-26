@@ -16,13 +16,17 @@
         <td><%= link_to orderitem.product.name, product_path(orderitem.product_id) %></td>
         <td><%= orderitem.quantity %></td>
         <td><%= link_to orderitem.product.vendor.username, vendor_path(orderitem.product.vendor_id) %></td>
-        <td>$ <%= orderitem.product.price %></td>
+        <td>$ <%= sprintf('%.2f', ((orderitem.product.price) * orderitem.quantity)) %></td>
         <td><%= link_to "Delete", orderitem_path(orderitem.id), method: :delete, class:"button" %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
+  <% if @cart.orderitems.count > 0 %>
   <%= link_to "Checkout", edit_order_path(@cart.id), class:"button" %>
+  <% else %>
+  <%= link_to "See More Products", products_path, class:"button" %>
+  <% end %>
 </section>
 
 </div>

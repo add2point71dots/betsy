@@ -1,27 +1,35 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:show, :update]
+  before_action :find_order, only: [:show]
   before_action :current_cart, except: [:show]
 
-  # order details: we may not need this action/view, which will show shipping/billing info
-  def show;end
-
-  # shows current cart with all the orderitem belonging to session[:order_id]
+  # shows current cart detail belonging to session[:order_id]
   def show_cart;end
 
-  # show form for checkout page
+  # shows shipping/billing info for the order
+  def show;end
+
+  # show form for checkout page where shopper puts in shipping/billing info
   def edit;end
 
-  # update order state from pening to paid with required shipping/billing info
+  # completes checkout and order state is changed to paid
   def update
-    @cart.update(order_params)
-    @cart.update(order_state: "paid")
-    @cart.update_orderitem_status
-    redirect_to confirm_path
+    @cart.order_state = "paid"
+
+    if @cart.update(order_params)
+      flash[:success] = "Your order has been placed successfully"
+
+      @cart.update_orderitem_status
+      @cart.update_product_stock
+      @cart.last_four_digits
+      redirect_to confirm_path
+    else
+      flash.now[:failure] = "A problem occurred: Could not place order"
+      render :edit
+    end
   end
 
-  # shows order summary and confirmation page, then resets session[:order_id] to nil
   def confirm
-    last_four_digits
+    # resets sessions
     session[:order_id] = nil
   end
 
