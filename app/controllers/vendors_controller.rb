@@ -1,15 +1,21 @@
 class VendorsController < ApplicationController
   before_action :find_vendor, except: [:index]
-  before_action :find_orderitems, except: [:index, :show]
-  before_action :tally_earnings, except: [:index, :show]
-  before_action :tally_count, except: [:index, :show]
-  before_action :render_orderitems, except: [:index, :show, :fulfillment]
+  before_action :find_orderitems, except: [:index, :show, :edit, :update]
+  before_action :tally_earnings, except: [:index, :show, :edit, :update]
+  before_action :tally_count, except: [:index, :show, :edit, :update]
+  before_action :render_orderitems, except: [:index, :show, :fulfillment, :edit, :update]
 
   def index
     @vendors = Vendor.all
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+
+  end
 
   def fulfillment; end
 
