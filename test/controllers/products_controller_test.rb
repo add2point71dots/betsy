@@ -17,24 +17,83 @@ describe ProductsController do
     must_respond_with :missing
   end
 
-  it "shoud redirect to full list after adding a product" do
-    post products_path params: { product: {name: "unique_name_2", photo_url: 'http://www.dionwired.co.za/media/catalog/product/cache/1/thumbnail/14f6260e656af55ad0e5dd0aab46f1ea/5/9/599475.jpg', price: 5.0, quantity: 4,description: "nice product" ,vendor_id: vendors(:two).id }
-  }
-  must_redirect_to products_path
+
+  describe "Logged in users" do
+    before do
+      login_vendor(vendors(:one))
+    end
+
+    it "shoud redirect to full list after adding a product" do
+
+      post products_path params: { product: {name: "unique_name_2", photo_url: 'http://www.dionwir.jpg', price: 5.0, quantity: 4,description: "nice product" ,vendor_id: vendors(:one).id}
+    }
+      must_redirect_to root_path
+      flash[:success].must_equal "New product added"
+
+    end
+
+    it "should show the new product form" do
+      get new_product_path
+      must_respond_with :success
+    end
+
+
+    it "shoud affect the model when creating a product " do
+
+      proc {
+        post products_path, params: { product: {name: "unique_name", photo_url: 'http://www.dionwired.jpg', price: 5.0, quantity: 4,description: "nice product" ,vendor_id: vendors(:one).id }
+        }
+      }.must_change 'Product.count', 1
+    end
+
+    it "should show flash when new product was not added " do
+      product = Product.new(name: "", price: 99.9, quantity: 2, vendor_id: vendors(:one).id)
+      product.save
+
+      flash[:error].must_equal "Failed to add product"
+    end
+
+
+    it "should be able to edit a product" do
+      get edit_product_path(products(:one))
+      must_respond_with :success
+    end
+
+    it "should not be able to edit other vendor's product" do
+    # product.vendor(vendors(:two).id
+    vendor = Vendor.new(name: "Rana", uid: "999", provider: "google", email: "rana@hotmail")
+
+    get edit_product_path(products(:two))
+    must_respond_with :redirect
+    must_redirect_to root_path
+    flash[:error] = "You don't have access to other vendor's products"
+
+    end
+
+    # it "should be able to update the hidden field " do
+    #   (products(:one)).hidden.must_be_kind_of Boolean
+    # end
+  end
+
+  describe "not logged in user" do
+     it "can not edit a product" do
+
+       get edit_product_path(products(:two).id)
+       must_respond_with :redirect
+       must_redirect_to root_path
+       flash[:error].must_equal "You must be logged in to view this page."
+     end
+
+     it "can not create a product" do
+
+       get new_product_path(products(:two).id)
+       must_respond_with :redirect
+       must_redirect_to root_path
+       flash[:error].must_equal "You must be logged in to view this page."
+     end
 
   end
 
-  it "shoud affect the model when creating a product (not logged in)" do
 
-    proc {
-      post products_path, params: { product: {name: "unique_name", photo_url: 'http://www.dionwired.co.za/media/catalog/product/cache/1/thumbnail/14f6260e656af55ad0e5dd0aab46f1ea/5/9/599475.jpg', price: 5.0, quantity: 4,description: "nice product" ,vendor_id: vendors(:two).id }
-      }
-    }.must_change 'Product.count', 1
-
-  end
-
-  it "Check the new form"do
-
-  end
 
 end
