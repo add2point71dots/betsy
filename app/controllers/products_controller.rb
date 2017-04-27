@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, except: [:index, :show]
   before_action :find_product, only: [:show, :edit, :update]
 
   def index
@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
       @product = Product.create(product_params)
       if @product.save
         flash[:success] = "New product added"
-        redirect_to products_path
+        redirect_to root_path
       else
         flash.now[:error] = "Failed to add product"
         render "new"
@@ -48,14 +48,23 @@ class ProductsController < ApplicationController
     end
 
     def update
-      if !current_vendor || !owner?
+      # if !current_vendor || !owner?
+      #   flash[:error] = "You don't have access to other vendor's products"
+      #   redirect_to root_path
+      # else
+      #   @product.update(product_params)
+      #   redirect_to product_path(@product.id)
+      # end
+
+      if !current_vendor
+        flash[:error] = "You must be logged in to view this page."
+      elsif !owner?
         flash[:error] = "You don't have access to other vendor's products"
         redirect_to root_path
       else
         @product.update(product_params)
         redirect_to product_path(@product.id)
       end
-
     end
 
     private
