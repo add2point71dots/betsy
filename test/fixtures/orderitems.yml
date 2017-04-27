@@ -2,28 +2,47 @@ one:
   order: one
   product: one
   quantity: 2
+  status: Pending
 
 two:
   order: one
   product: two
   quantity: 1
+  status: Pending
 
 three:
   order: one
   product: two
   quantity: 1
+  status: Pending
+
 
 four:
   order: two
   product: four
   quantity: 1
+  status: Paid
 
 five:
   order: two
   product: five
   quantity: 2
+  status: Paid
 
 six:
   order: two
   product: one
   quantity: 2
+  status: Paid
+
+seven:
+  order: three
+  product: five
+  quantity: 1
+  status: Shipped
+
+eight:
+  order: four
+  product: one
+  quantity: 1
+  status: Canceled
