@@ -1,5 +1,6 @@
 class VendorsController < ApplicationController
   before_action :find_vendor, except: [:index]
+  before_action :require_login_match, except: [:index, :show]
   before_action :find_orderitems, except: [:index, :show, :edit, :update]
   before_action :tally_earnings, except: [:index, :show, :edit, :update]
   before_action :tally_count, except: [:index, :show, :edit, :update]
@@ -12,17 +13,17 @@ class VendorsController < ApplicationController
   def show; end
 
   def edit
-    if !current_vendor || !login_match?
-      flash[:error] = "You cannot access this page."
-      redirect_to root_path
-    end
+    # if !current_vendor || !login_match?
+    #   flash[:error] = "You cannot access this page."
+    #   redirect_to root_path
+    # end
   end
 
   def update
-    if !current_vendor || !login_match?
-      flash[:error] = "You cannot access this page."
-      redirect_to root_path
-    else
+    # if !current_vendor || !login_match?
+    #   flash[:error] = "You cannot access this page."
+    #   redirect_to root_path
+    # else
       if @vendor.update(vendor_params)
         flash[:success] = "Successfully updated profile."
         redirect_to vendor_path(@vendor.id)
@@ -30,7 +31,7 @@ class VendorsController < ApplicationController
         flash.now[:error] = "Error: Profile not updated."
         render "edit"
       end
-    end
+    # end
   end
 
   def fulfillment; end
@@ -95,5 +96,12 @@ class VendorsController < ApplicationController
 
   def login_match?
     return session[:vendor_id] == @vendor.id ? true : false
+  end
+
+  def require_login_match
+    if !current_vendor || !login_match?
+      flash[:error] = "You cannot access this page."
+      redirect_to root_path
+    end
   end
 end
