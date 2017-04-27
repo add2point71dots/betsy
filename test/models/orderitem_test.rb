@@ -1,6 +1,8 @@
 require "test_helper"
 
 describe Orderitem do
+  let(:orderitem_no_status) { Orderitem.new(order_id: orders(:one).id, product_id: products(:one).id, quantity: 2)}
+
   describe "relations" do
     it "has an order" do
       orderitem = orderitems(:one)
@@ -16,23 +18,36 @@ describe Orderitem do
   end
 
   describe "validations" do
-    it "requires a quantity of 1 or more" do
+    it "can create an order item of quantity of 1 or more" do
       orderitem = Orderitem.new(order: orders(:one), product: products(:one), quantity: 2)
       orderitem.valid?.must_equal true
+    end
+
+    it "can't create an order item of quantity less than 1" do
 
       orderitem = Orderitem.new(order: orders(:one), product: products(:one), quantity: 0)
       orderitem.valid?.must_equal false
       orderitem.errors.messages.must_include :quantity
     end
-  end
 
-  describe "custom methods" do
-    it "returns true if there's enough products to fulfill the quantity entered" do
+    it "can create orderitems of status ['Pending', 'Paid', 'Shipped', 'Cancelled'] " do
 
+      valid_status = ['Pending', 'Paid', 'Shipped', 'Cancelled']
+      valid_status.each do |status|
+        orderitem_no_status.status = status
+        orderitem_no_status.valid?.must_equal true
+      end
     end
 
-    it "returns false if there aren't enough products to fulfill the quantity entered" do
-
-    end
   end
+
+  # describe "custom methods" do
+  #   it "returns true if there's enough products to fulfill the quantity entered" do
+  #
+  #   end
+  #
+  #   it "returns false if there aren't enough products to fulfill the quantity entered" do
+  #
+  #   end
+  # end
 end

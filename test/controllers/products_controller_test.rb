@@ -43,8 +43,6 @@ describe ProductsController do
   end
 
 
-
-
   it "should show a 404 when product is not found" do
     get product_path(0)
     must_respond_with :missing
@@ -93,9 +91,6 @@ describe ProductsController do
       get edit_product_path(products(:one))
       must_respond_with :success
     end
-
-
-
 
 
     it "should not be able to edit other vendor's product" do

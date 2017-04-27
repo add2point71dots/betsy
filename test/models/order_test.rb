@@ -90,10 +90,10 @@ describe Order do
       order.errors.messages.must_include :cvv
     end
 
-    it "allows only predefined order_states" do
-      valid_states = ['pending', 'paid']
-      valid_states.each do |state|
-        order_no_state.order_state = state
+    it "allows only predefined orderitem_status" do
+      valid_status = ['lost', 'shipped', 'backordered', 'banana']
+      valid_status.each do |status|
+        orderitem_no_status.order_state = state
         order_no_state.valid?.must_equal true
       end
     end
