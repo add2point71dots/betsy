@@ -31,10 +31,10 @@ class OrderitemsController < ApplicationController
       item_quantity = 0
     end
 
-    # order model 'add_to_cart' is excecuted using @cart and the params passed in -- 'add_to_cart' will prevent creating a duplicate orderitems in the cart for the same product, instead it updated the quantity of that item.
+    # order model method 'add_to_cart' is excecuted using @cart and the params passed in -- 'add_to_cart' will prevent creating a duplicate orderitems in the cart for the same product, instead it updated the quantity of that item.
     @cart.add_to_cart(params)
 
-    # if cart can be saved and the item quantity is less than the
+    # because the logic that does -- 1) the secondary validation on quantity( which checks against quantity of the product currently in cart) and 2) create or update orderitem -- is inside the order model method 'add_to_cart', we do a
     if product.quantity >= item_quantity + params[:orderitem][:quantity].to_i
       flash[:success] = "Item has been added to your cart"
       redirect_to cart_path
@@ -45,9 +45,9 @@ class OrderitemsController < ApplicationController
     end
   end
 
-  # only updates quantity
+  # NOT DONE YET
+  # Change the quantity of an existing product in my cart by adding update quantity button  in the cart view: set a cap on the max value to the product inventory, to prevent overselling: right now the logic that prevents overselling only works for adding from the product details page
   def update
-
     @orderitem.update(orderitem_params)
   end
 
@@ -72,11 +72,6 @@ class OrderitemsController < ApplicationController
   end
 
   private
-
-  # checks the availability in the product inventory
-  def valid_quantity
-
-  end
 
   def find_orderitem
     @orderitem = Orderitem.find_by_id(params[:id])
