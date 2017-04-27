@@ -12,15 +12,15 @@ Rails.application.routes.draw do
 
   post "/reviews", to: "reviews#create"
 
-  resources :orders, only:[:show, :edit, :update]
+  patch '/orders/:id/reset', to: 'orders#reset', as: 'reset'
+  resources :orders
   get "/cart", to: "orders#show_cart", as: "cart"
   get "/confirmation", to: "orders#confirm", as: "confirm"
 
   resources :orderitems, only:[:create, :update, :destroy]
 
-
-  resources :orders, except:[:index, :new, :delete]
-
+  patch '/orderitems/:id/increase', to: 'orderitems#increase', as: 'increase'
+  patch '/orderitems/:id/decrease', to: 'orderitems#decrease', as: 'decrease'
   patch 'orderitems/:id/cancel', to: 'orderitems#cancel', as: 'cancel'
   patch 'orderitems/:id/ship', to: 'orderitems#ship', as: 'ship'
   resources :orderitems, except:[:index, :new, :edit]

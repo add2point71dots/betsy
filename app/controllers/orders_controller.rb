@@ -1,14 +1,18 @@
 class OrdersController < ApplicationController
   before_action :find_order, only: [:show]
   before_action :current_cart, except: [:show]
+  before_action :total_quantity, only: [:show_cart]
+  before_action :total_price, only: [:show_cart]
+  before_action :sort_items, only: [:show_cart]
+
 
   # shows shipping/billing info for the order
   # orders controller method 'find_order' is excecuted prior to entering action
-  def show;end
+  def show; end
 
   # shows current cart detail belonging to session[:order_id]
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
-  def show_cart;end
+  def show_cart; end
 
   # show order edit form for the checkout page where shoppers fill in shipping/billing info for the order
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
@@ -45,6 +49,24 @@ class OrdersController < ApplicationController
     session[:order_id] = nil
   end
 
+ def total_quantity
+     quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
+     @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
+ end
+
+ def total_price
+     prices = @cart.orderitems.map { | orderitem | orderitem.product.price * orderitem.quantity }
+     @total_price = prices.inject { | sum, price | sum + price }
+ end
+
+ def reset
+     @cart.orderitems.each do | orderitem |
+          orderitem.destroy
+     end
+     flash[:success] = "Your cart has been emptied!"
+     redirect_to root_path
+ end
+
   private
 
   def order_params
@@ -54,5 +76,9 @@ class OrdersController < ApplicationController
   def find_order
     @order = Order.find_by_id(params[:id])
     render_404 if !@order
+  end
+
+  def sort_items
+     @sorted_items = @cart.orderitems.sort_by(&:created_at)
   end
 end
