@@ -2,37 +2,40 @@ class OrderitemsController < ApplicationController
   before_action :find_orderitem, only: [:show, :cancel, :ship]
   before_action :current_cart, only: [:create, :destroy]
 
-  # might not need show action
-  def show;end
-
-
+  # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
   def create
-
+    # the item quanity entered by shopper is validated first
     quantity = params[:orderitem][:quantity].to_i
     product = Product.find_by_id(params[:orderitem][:product_id].to_i)
+    # product is out of stock
     if product.quantity == 0
       flash[:failure] =  "This item is sold out"
       redirect_to product_path(product.id)
       return
+    # the quantity specified by the shopper is greater than the current inventory
     elsif quantity - product.quantity > 0
       flash[:failure] =  "Quantity too large: only #{product.quantity} left in stock!"
       redirect_to product_path(product.id)
       return
+    # shopper attemps to add a new item to a cart without specifying quantity
     elsif quantity == 0
       flash[:failure] =  "You must add at least 1 item to the cart"
       redirect_to product_path(product.id)
       return
     end
 
-    if current_orderitem = @cart.orderitems.find_by(product_id: params[:orderitem][:product_id])
-     item_quantity = @cart.orderitems.find_by(product_id: params[:orderitem][:product_id]).quantity
-   else
-     item_quantity = 0
+    # if the prduct has already been added to the cart, then store the current inventory of that product into item_quantity
+    if  @cart.orderitems.find_by(product_id: params[:orderitem][:product_id])
+      item_quantity = @cart.orderitems.find_by(product_id: params[:orderitem][:product_id]).quantity
+    else
+      item_quantity = 0
     end
 
+    # order model method 'add_to_cart' is excecuted using @cart and the params passed in -- 'add_to_cart' will prevent creating a duplicate orderitems in the cart for the same product, instead it updated the quantity of that item.
     @cart.add_to_cart(params)
 
-    if @cart.save && item_quantity < @cart.orderitems.find_by(product_id: params[:orderitem][:product_id]).quantity
+    # because the logic that does -- 1) the secondary validation on quantity( which checks against quantity of the product currently in cart) and 2) create or update orderitem -- is inside the order model method 'add_to_cart', we do a
+    if product.quantity >= item_quantity + params[:orderitem][:quantity].to_i
       flash[:success] = "Item has been added to your cart"
       redirect_to cart_path
       return
@@ -42,24 +45,24 @@ class OrderitemsController < ApplicationController
     end
   end
 
-  # only updates quantity
+  # NOT DONE YET
+  # Change the quantity of an existing product in my cart by adding update quantity button  in the cart view: set a cap on the max value to the product inventory, to prevent overselling: right now the logic that prevents overselling only works for adding from the product details page
   def update
-
     @orderitem.update(orderitem_params)
   end
 
   def cancel
-     @orderitem.status = "Cancelled"
-     @orderitem.save
-     flash[:success] = "You have successfully scrapped this item."
-     redirect_to fulfillment_path(@orderitem.product.vendor_id)
+    @orderitem.status = "Cancelled"
+    @orderitem.save
+    flash[:success] = "You have successfully scrapped this item."
+    redirect_to fulfillment_path(@orderitem.product.vendor_id)
   end
 
   def ship
-     @orderitem.status = "Shipped"
-     @orderitem.save
-     flash[:success] = "You have successfully shipped this item."
-     redirect_to fulfillment_path(@orderitem.product.vendor_id)
+    @orderitem.status = "Shipped"
+    @orderitem.save
+    flash[:success] = "You have successfully shipped this item."
+    redirect_to fulfillment_path(@orderitem.product.vendor_id)
   end
 
   def destroy
@@ -69,11 +72,6 @@ class OrderitemsController < ApplicationController
   end
 
   private
-
-  # checks the availability in the product inventory
-  def valid_quantity
-
-  end
 
   def find_orderitem
     @orderitem = Orderitem.find_by_id(params[:id])
