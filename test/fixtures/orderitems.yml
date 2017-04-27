@@ -26,13 +26,13 @@ four:
 five:
   order: two
   product: five
-  quantity: 1
+  quantity: 2
   status: Paid
 
 six:
   order: two
-  product: five
-  quantity: 1
+  product: one
+  quantity: 2
   status: Paid
 
 seven:
@@ -45,4 +45,4 @@ eight:
   order: four
   product: one
   quantity: 1
-  status: Canceled
+  status: Cancelled
