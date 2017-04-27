@@ -12,18 +12,10 @@ class VendorsController < ApplicationController
 
   def show; end
 
-  def edit
-    # if !current_vendor || !login_match?
-    #   flash[:error] = "You cannot access this page."
-    #   redirect_to root_path
-    # end
-  end
+  def edit; end
 
   def update
-    # if !current_vendor || !login_match?
-    #   flash[:error] = "You cannot access this page."
-    #   redirect_to root_path
-    # else
+    if login_match?
       if @vendor.update(vendor_params)
         flash[:success] = "Successfully updated profile."
         redirect_to vendor_path(@vendor.id)
@@ -31,7 +23,7 @@ class VendorsController < ApplicationController
         flash.now[:error] = "Error: Profile not updated."
         render "edit"
       end
-    # end
+    end
   end
 
   def fulfillment; end
