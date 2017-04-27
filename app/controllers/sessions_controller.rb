@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
     end
 
     session[:vendor_id] = vendor.id
-    flash[:success] = "Logged in successfully!"
+    flash[:success] = "Logged in successfully!" # as #{session[:vendor_id]}"
+
     redirect_to root_path
   end
 
