@@ -91,7 +91,7 @@ describe Order do
     end
 
     it "allows only predefined order_states" do
-      valid_states = ['pending', 'paid', 'completed', 'canceled']
+      valid_states = ['pending', 'paid']
       valid_states.each do |state|
         order_no_state.order_state = state
         order_no_state.valid?.must_equal true
@@ -109,20 +109,69 @@ describe Order do
   end
 
   describe "custom methods" do
-    it "allow NIL values for all other fields, given order_state is pending/in-cart" do
-      cart_order = Order.new(order_state: "pending")
-      cart_order.valid?.must_equal true
+    describe "in_cart?" do
+      it "allow NIL values for all other fields, given order_state is pending/in-cart" do
+        cart_order = Order.new(order_state: "pending")
+        cart_order.valid?.must_equal true
+      end
+
+      it "won't allow NIL values for any fields, given order_state is not pending" do
+        cart_order = Order.new(order_state: "paid")
+        cart_order.valid?.must_equal false
+      end
     end
 
-    it "won't allow NIL values for any fields, given order_state is not pending" do
-      cart_order = Order.new(order_state: "paid")
-      cart_order.valid?.must_equal false
 
-      cart_order = Order.new(order_state: "completed")
-      cart_order.valid?.must_equal false
+    describe "add_to_cart" do
+        before do
+          @cart = Order.create(order_state: "pending")
+        end
 
-      cart_order = Order.new(order_state: "canceled")
-      cart_order.valid?.must_equal false
+      it "creates a new orderitem instance if the product doesn't exist in the cart yet" do
+        before = @cart.orderitems.count
+        @cart.add_to_cart({ :orderitem => { product_id: products(:five).id, quantity: 1 } })
+        @cart.orderitems.count.must_be :>, before
+      end
+
+      it "won't create a new orderitem instance if product already exists in the cart" do
+        @cart.add_to_cart({ :orderitem => { product_id: products(:five).id, quantity: 1 } })
+        before = @cart.orderitems.count
+        @cart.add_to_cart({ :orderitem => { product_id: products(:five).id, quantity: 1 } })
+        @cart.orderitems.count.must_equal before
+      end
+
+      it "won't update the quantity of the existing orderitem products in the cart if the quantity specified by the shopper will result in insufficient stock" do
+        @cart.add_to_cart({ :orderitem => { product_id: products(:two).id, quantity: 1 } })
+        before_quantity = @cart.orderitems.find_by(product_id: products(:two).id).quantity
+        @cart.add_to_cart({ :orderitem => { product_id: products(:two).id, quantity: 4 } })
+        @cart.orderitems.find_by(product_id: products(:two).id).quantity.must_equal before_quantity
+      end
+    end
+
+    describe "update_orderitem_status" do
+      it "updates the status of all the orderitems belonging to the order that has just been placed" do
+        @cart = Order.create(order_state: "pending")
+        @cart.add_to_cart({ :orderitem => { product_id: products(:two).id, quantity: 1 } })
+        @cart.orderitems.last.status.must_equal "Pending"
+        @cart.update_orderitem_status
+        @cart.orderitems.last.status.must_equal "Paid"
+      end
+    end
+
+    describe "update_product_stock" do
+      it "updates all the inventory count of the products once the order has been placed" do
+        @cart = Order.create(order_state: "pending")
+        @cart.add_to_cart({ :orderitem => { product_id: products(:two).id, quantity: 1 } })
+        before = Product.find_by(id: products(:two).id).quantity
+        @cart.update_product_stock
+        before.must_be :>, Product.find_by(id: products(:two).id).quantity
+      end
+    end
+
+    describe "total" do
+      it "return the total price of the order" do
+        orders(:three).total.must_equal products(:five).price
+      end
     end
   end
 end

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   has_many :orderitems
-  validates :order_state, presence: true, inclusion: { in: %w(pending paid completed canceled) }
+  validates :order_state, presence: true, inclusion: { in: %w(pending paid) }
   validates :name, presence: true, length: { minimum: 2, maximum: 70 }, unless: :in_cart?
   validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, unless: :in_cart?
   validates :street_address, :city, presence: true, unless: :in_cart?

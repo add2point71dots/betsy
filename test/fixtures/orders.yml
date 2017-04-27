@@ -29,7 +29,7 @@ two:
   cvv: 333
 
 three:
-  order_state: completed
+  order_state: paid
   name: jane doe
   email: janedoe@gmail.com
   street_address: 666 hay st.
@@ -44,7 +44,7 @@ three:
   cvv: 333
 
 four:
-  order_state: canceled
+  order_state: paid
   name: jane doe
   email: janedoe@gmail.com
   street_address: 666 hay st.
@@ -56,4 +56,4 @@ four:
   card_number: 4444555566667777
   exp_month: 12
   exp_year: 10
-  cvv: 333
+  cvv: 444
