@@ -96,4 +96,105 @@ describe VendorsController do
       flash[:error].must_equal "You cannot access this page."
     end
   end
+
+  describe "vendor fulfillment pages" do
+    describe "correct log in" do
+      before do
+        login_vendor(vendors(:one))
+      end
+
+      it "vendor can access their own fulfillment page" do
+        get fulfillment_path(vendors(:one).id)
+        must_respond_with :success
+      end
+
+      it "vendor can access their own fulfillment pending page" do
+        get fulfillment_pending_path(vendors(:one).id)
+        must_respond_with :success
+      end
+
+      it "vendor can access their own fulfillment paid page" do
+        get fulfillment_paid_path(vendors(:one).id)
+        must_respond_with :success
+      end
+
+      it "vendor can access their own fulfillment shipped page" do
+        get fulfillment_shipped_path(vendors(:one).id)
+        must_respond_with :success
+      end
+
+      it "vendor can access their own fulfillment cancelled page" do
+        get fulfillment_cancelled_path(vendors(:one).id)
+        must_respond_with :success
+      end
+    end
+
+    describe "wrong log in" do
+      before do
+        login_vendor(vendors(:two))
+      end
+
+      it "vendor cannot access someone else's fulfillment page" do
+        get fulfillment_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "vendor cannot access someone else's fulfillment pending page" do
+        get fulfillment_pending_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "vendor cannot access someone else's fulfillment paid page" do
+        get fulfillment_paid_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "vendor cannot access someone else's fulfillment shipped page" do
+        get fulfillment_shipped_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "vendor cannot access someone else's fulfillment cancelled page" do
+        get fulfillment_cancelled_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+    end
+
+    describe "not logged in" do
+      it "guest cannot acces a fulfillment page" do
+        get fulfillment_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "guest cannot acces a fulfillment pending page" do
+        get fulfillment_pending_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "guest cannot acces a fulfillment paid page" do
+        get fulfillment_paid_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "guest cannot acces a fulfillment shipped page" do
+        get fulfillment_shipped_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+
+      it "guest cannot acces a fulfillment cancelled page" do
+        get fulfillment_cancelled_path(vendors(:one).id)
+        flash[:error] = "You cannot access this page."
+        must_redirect_to root_path
+      end
+    end
+  end
 end
