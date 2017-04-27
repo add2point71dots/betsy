@@ -1,20 +1,23 @@
 <div class="row">
   <h1>Order Confirmation</h1>
 
-  <div class="small-6 medium-6 columns">
+  <div class="small-12 medium-4 columns">
     <h2>Order Information</h2>
+    <h6>Total price:$ <%= sprintf('%.2f', @cart.total) %></h6>
+    <h6>Order created at: <%= @cart.created_at %></h6>
+    <h6>Order Status: <%= @cart.order_state %></h6>
+
     <% @cart.orderitems.each_with_index do |orderitem, index| %>
-    <h6>Item <%= index + 1 %></h6>
-    <p>Item: <%= orderitem.product.name %></p>
-    <p>Quantity: <%= orderitem.quantity %></p>
-    <p>Seller: <%= orderitem.product.vendor.username %></p>
-    <p>Cost: $ <%= sprintf('%.2f', ((orderitem.product.price) * orderitem.quantity)) %></p>
-    <p>Status: <%= orderitem.status %></p>
+      <h6>Item #<%= index + 1 %></h6>
+      <p>Product: <%= link_to orderitem.product.name, product_path(orderitem.product_id) %></p>
+      <p>Quantity: <%= orderitem.quantity %></p>
+      <p>Seller: <%= link_to orderitem.product.vendor.username, vendor_path(orderitem.product.vendor_id) %></p>
+      <p>Cost: $ <%= sprintf('%.2f', (orderitem.product.price) * orderitem.quantity) %></p>
     <% end %>
   </div>
 
-  <div class="small-6 medium-6 columns">
-    <h5>Shipping Information</h5>
+  <div class="small-12 medium-4 columns">
+    <h2>Shipping Information</h2>
     <p>Name: <%= @cart.name %></p>
     <p>Email: <%= @cart.email %></p>
     <p>Street Address: <%= @cart.street_address %></p>
@@ -23,13 +26,18 @@
     <p>Zip Code: <%= @cart.zip_code %></p>
   </div>
 
-  <div class="small-6 medium-6 columns">
-    <h5>Billing Information</h5>
+  <div class="small-12 medium-4 columns">
+    <h2>Billing Information</h2>
     <p>Name on Card: <%= @cart.name_on_card %></p>
     <p>Card Number: <%= @cart.card_number%></p>
     <p>Expiration Month: <%= @cart.exp_month %></p>
     <p>Expiration Year: <%= @cart.exp_year %></p>
     <p>CVV: <%= @cart.cvv %></p>
     <p>Billing Zip Code: <%= @cart.billing_zip_code %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="button small-centered-4">
+   <%= link_to "Browse Products", products_path%>
   </div>
 </div>
