@@ -13,6 +13,11 @@
 
   <body>
     <header>
+
+         <div class='row'>
+              <div class='red shrink columns'>this will take the width this will take the width</div>
+              <div class='blue columns'>take the rest</div>
+         </div>
       <nav>
          <ul>
            <li> <%= link_to 'Products', root_path%> </li>
@@ -31,7 +36,7 @@
     <% flash.each do |name, message| %>
       <h3 class="row status <%= name %>"><%= message %></h3>
     <% end %>
-    
+
     <%= yield %>
 
   </body>
