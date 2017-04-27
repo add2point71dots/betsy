@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+          <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
+          <%= stylesheet_link_tag    "application" %>
+          <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+          <%= csrf_meta_tags %>
+     </head>
 
-  <body>
-    <header>
+     <body class='column'>
+          <div class='frame column'>
+               <header class='row'>
+                    <div class='row'> </div>
+                    <div class='red shrink columns'>this will take the width this will take the width </div>
+                    <div class='blue columns'>take the rest </div>
 
-         <div class='row'>
-              <div class='red shrink columns'>this will take the width this will take the width</div>
-              <div class='blue columns'>take the rest</div>
-         </div>
-      <nav>
-         <ul>
-           <li> <%= link_to 'Products', root_path%> </li>
-           <li> <%= link_to 'Vendors', vendors_path%> </li>
-           <li> <%= link_to 'Categories', categories_path%> </li>
-        </ul>
-        <ul>
-          <% if current_vendor %>
-            <li><%= link_to "Log out", logout_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "Login", "/auth/google_oauth2" %></li>
-          <% end %>
-        </ul>
-      </nav>
-    </header>
-    <% flash.each do |name, message| %>
-      <h3 class="row status <%= name %>"><%= message %></h3>
-    <% end %>
+                    <nav>
+                         <ul>
+                              <li> <%= link_to 'Products', root_path%> </li>
+                              <li> <%= link_to 'Vendors', vendors_path%> </li>
+                              <li> <%= link_to 'Categories', categories_path%> </li>
+                         </ul>
+                         <ul>
+                              <% if current_vendor %>
+                              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+                              <% else %>
+                              <li><%= link_to "Login", "/auth/google_oauth2" %></li>
+                              <% end %>
+                         </ul>
+                    </nav>
+               </header>
 
-    <%= yield %>
+          <section class=' row'>
+          </section>
 
-  </body>
+          <main>
+               <% flash.each do |name, message| %>
+                    <h3 class="row status <%= name %>"><%= message %></h3>
+               <% end %>
+
+               <%= yield %>
+          </main>
+
+          <footer class='row'>
+          </footer>
+
+     </div>
+     </body>
 </html>
