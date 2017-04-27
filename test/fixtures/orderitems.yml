@@ -26,13 +26,13 @@ four:
 five:
   order: two
   product: five
-  quantity: 2
+  quantity: 1
   status: Paid
 
 six:
   order: two
-  product: one
-  quantity: 2
+  product: five
+  quantity: 1
   status: Paid
 
 seven:
