@@ -1,6 +1,7 @@
 class OrderitemsController < ApplicationController
   before_action :find_orderitem, only: [:show, :cancel, :ship, :increase, :decrease]
-  before_action :current_cart, only: [:create, :destroy]
+  before_action :current_cart, only: [:create]
+  before_filter :last_page, only: [:create]
 
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
   def create
@@ -101,4 +102,8 @@ class OrderitemsController < ApplicationController
   def orderitem_params
     params.require(:orderitem).permit( :order_id, :product_id, :quantity, :status)
   end
+
+  def last_page
+   session[:last_page] = request.env['HTTP_REFERER']
+ end
 end

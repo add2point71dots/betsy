@@ -35,6 +35,9 @@
   <% if @cart.orderitems.count > 0 %>
   <%= link_to "Checkout", edit_order_path(@cart.id), class:"button" %>
   <%= link_to "Empty Cart", reset_path(@cart.id), method: :patch, class:"button" %>
+  <% if session[:last_page] %>
+       <%= link_to "Continue Shopping", session[:last_page], class: "button" %>
+<% end %>
   <% else %>
   <%= link_to "See More Products", products_path, class:"button" %>
   <% end %>
