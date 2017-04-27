@@ -10,12 +10,12 @@
 // We include everything by default.  To slim your CSS, remove components you don't use.
 
 @include foundation-global-styles;
-@include foundation-grid;
+// @include foundation-grid;
 @include foundation-typography;
 @include foundation-button;
 @include foundation-forms;
 @include foundation-visibility-classes;
-@include foundation-float-classes;
+// @include foundation-float-classes;
 @include foundation-accordion;
 @include foundation-accordion-menu;
 @include foundation-badge;
@@ -27,6 +27,8 @@
 @include foundation-drilldown-menu;
 @include foundation-dropdown;
 @include foundation-dropdown-menu;
+@include foundation-flex-grid;
+@include foundation-flex-classes;
 @include foundation-responsive-embed;
 @include foundation-label;
 @include foundation-media-object;
@@ -51,3 +53,18 @@
 //
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
+
+html, body {
+     justify-content: flex-start;
+
+     min-height: 100%;
+     width: 100%;
+     color: black;
+     font-family: 'Prompt', serif;
+     font-size: 1rem;
+}
+
+.frame {
+     margin: 1rem;
+     background-color: #f2f2f2
+}
