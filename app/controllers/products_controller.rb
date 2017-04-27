@@ -40,7 +40,6 @@ class ProductsController < ApplicationController
       end
   end
 
-
     def edit
       if !current_vendor || !owner?
         flash[:error] = "You don't have access to other vendor's products"
