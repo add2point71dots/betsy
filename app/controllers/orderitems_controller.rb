@@ -1,6 +1,7 @@
 class OrderitemsController < ApplicationController
-  before_action :find_orderitem, only: [:show, :cancel, :ship]
-  before_action :current_cart, only: [:create, :destroy]
+  before_action :find_orderitem, only: [:show, :cancel, :ship, :increase, :decrease]
+  before_action :current_cart, only: [:create]
+  before_filter :last_page, only: [:create]
 
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
   def create
@@ -45,10 +46,30 @@ class OrderitemsController < ApplicationController
     end
   end
 
-  # NOT DONE YET
-  # Change the quantity of an existing product in my cart by adding update quantity button  in the cart view: set a cap on the max value to the product inventory, to prevent overselling: right now the logic that prevents overselling only works for adding from the product details page
-  def update
-    @orderitem.update(orderitem_params)
+  def increase
+     increased_quantity = @orderitem.quantity + 1
+
+     if  increased_quantity <= @orderitem.product.quantity
+          @orderitem.quantity += 1
+          flash[:success] = "Added! Only #{@orderitem.product.quantity - @orderitem.quantity} remaining."
+     else
+          flash[:error] = "Oops. Don't be greedy."
+     end
+     @orderitem.save
+     redirect_to cart_path
+  end
+
+  def decrease
+     decreased_quantity = @orderitem.quantity - 1
+
+     if  decreased_quantity <= 0
+          flash[:error] = "You would be better off hitting the delete button."
+     else
+          @orderitem.quantity -= 1
+          flash[:success] = "Removed! #{@orderitem.product.quantity - @orderitem.quantity} remaining."
+     end
+     @orderitem.save
+     redirect_to cart_path
   end
 
   def cancel
@@ -81,4 +102,8 @@ class OrderitemsController < ApplicationController
   def orderitem_params
     params.require(:orderitem).permit( :order_id, :product_id, :quantity, :status)
   end
+
+  def last_page
+   session[:last_page] = request.env['HTTP_REFERER']
+ end
 end
