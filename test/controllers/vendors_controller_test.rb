@@ -64,6 +64,17 @@ describe VendorsController do
       must_redirect_to vendor_path(first_vendor.id)
     end
 
+    it "doesn't update if invalid data given" do
+      first_vendor = Vendor.first
+      login_vendor(first_vendor)
+      new_data = { vendor: { username: "", name: "New Name" } }
+      patch vendor_path(first_vendor.id), params: new_data
+
+      Vendor.first.username.must_equal "besthair"
+      flash.now[:error].must_equal "Error: Profile not updated."
+    end
+
+
     it "doesn't update if vendor not logged in & redirects to root" do
       first_vendor = Vendor.first
       new_data = { vendor: { username: "new_username", name: "New Name" } }
@@ -84,6 +95,5 @@ describe VendorsController do
       Vendor.first.username.must_equal "besthair"
       flash[:error].must_equal "You cannot access this page."
     end
-
   end
 end
