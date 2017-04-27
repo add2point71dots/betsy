@@ -86,3 +86,14 @@
   <p> <%= link_to "Create a product", new_product_path %> </p>
 
 </section>
+
+<section>
+  Categories:
+  <% @product.categories.each do |category| %>
+
+     <%= link_to category.label, category_products_path(category.id) %>
+
+  <% end %>
+
+
+</section>
