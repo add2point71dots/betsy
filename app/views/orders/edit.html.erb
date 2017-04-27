@@ -8,113 +8,112 @@
 
 <div class="row">
   <h1>Order Form</h1>
+  <div class="medium-12">
+    <%= form_for @cart do |f| %>
+      <div class="medium-12 large-6 columns">
+        <h2>Shipping Information</h2>
+        <%= f.hidden_field :order_state, value: "paid" %>
+        <%= f.label :name %><%= f.text_field :name %>
+        <%= f.label :email %><%= f.text_field :email%>
+        <%= f.label :street_address %><%= f.text_area :street_address%>
+        <%= f.label :city %><%= f.text_field :city %>
+        <%= f.label :state %><%= f.select :state, [
+        ['Alabama', 'AL'],
+        ['Alaska', 'AK'],
+        ['Arizona', 'AZ'],
+        ['Arkansas', 'AR'],
+        ['California', 'CA'],
+        ['Colorado', 'CO'],
+        ['Connecticut', 'CT'],
+        ['Delaware', 'DE'],
+        ['District of Columbia', 'DC'],
+        ['Florida', 'FL'],
+        ['Georgia', 'GA'],
+        ['Hawaii', 'HI'],
+        ['Idaho', 'ID'],
+        ['Illinois', 'IL'],
+        ['Indiana', 'IN'],
+        ['Iowa', 'IA'],
+        ['Kansas', 'KS'],
+        ['Kentucky', 'KY'],
+        ['Louisiana', 'LA'],
+        ['Maine', 'ME'],
+        ['Maryland', 'MD'],
+        ['Massachusetts', 'MA'],
+        ['Michigan', 'MI'],
+        ['Minnesota', 'MN'],
+        ['Mississippi', 'MS'],
+        ['Missouri', 'MO'],
+        ['Montana', 'MT'],
+        ['Nebraska', 'NE'],
+        ['Nevada', 'NV'],
+        ['New Hampshire', 'NH'],
+        ['New Jersey', 'NJ'],
+        ['New Mexico', 'NM'],
+        ['New York', 'NY'],
+        ['North Carolina', 'NC'],
+        ['North Dakota', 'ND'],
+        ['Ohio', 'OH'],
+        ['Oklahoma', 'OK'],
+        ['Oregon', 'OR'],
+        ['Pennsylvania', 'PA'],
+        ['Puerto Rico', 'PR'],
+        ['Rhode Island', 'RI'],
+        ['South Carolina', 'SC'],
+        ['South Dakota', 'SD'],
+        ['Tennessee', 'TN'],
+        ['Texas', 'TX'],
+        ['Utah', 'UT'],
+        ['Vermont', 'VT'],
+        ['Virginia', 'VA'],
+        ['Washington', 'WA'],
+        ['West Virginia', 'WV'],
+        ['Wisconsin', 'WI'],
+        ['Wyoming', 'WY']
+        ], {}, {class: "form-control"} %>
+        <%= f.label :zip_code %><%= f.text_field :zip_code %>
+      </div>
 
-  <div class="row">
-    <div class="medium-12 large-6 columns">
-      <h2>Shipping Information</h2>
-      <%= form_for @cart do |f| %>
-      <%= f.label :name %><%= f.text_field :name %>
-      <%= f.label :email %><%= f.text_field :email%>
-      <%= f.label :street_address %><%= f.text_area :street_address%>
-      <%= f.label :city %><%= f.text_field :city %>
-      <%= f.label :state %><%= f.select :state, [
-      ['Alabama', 'AL'],
-      ['Alaska', 'AK'],
-      ['Arizona', 'AZ'],
-      ['Arkansas', 'AR'],
-      ['California', 'CA'],
-      ['Colorado', 'CO'],
-      ['Connecticut', 'CT'],
-      ['Delaware', 'DE'],
-      ['District of Columbia', 'DC'],
-      ['Florida', 'FL'],
-      ['Georgia', 'GA'],
-      ['Hawaii', 'HI'],
-      ['Idaho', 'ID'],
-      ['Illinois', 'IL'],
-      ['Indiana', 'IN'],
-      ['Iowa', 'IA'],
-      ['Kansas', 'KS'],
-      ['Kentucky', 'KY'],
-      ['Louisiana', 'LA'],
-      ['Maine', 'ME'],
-      ['Maryland', 'MD'],
-      ['Massachusetts', 'MA'],
-      ['Michigan', 'MI'],
-      ['Minnesota', 'MN'],
-      ['Mississippi', 'MS'],
-      ['Missouri', 'MO'],
-      ['Montana', 'MT'],
-      ['Nebraska', 'NE'],
-      ['Nevada', 'NV'],
-      ['New Hampshire', 'NH'],
-      ['New Jersey', 'NJ'],
-      ['New Mexico', 'NM'],
-      ['New York', 'NY'],
-      ['North Carolina', 'NC'],
-      ['North Dakota', 'ND'],
-      ['Ohio', 'OH'],
-      ['Oklahoma', 'OK'],
-      ['Oregon', 'OR'],
-      ['Pennsylvania', 'PA'],
-      ['Puerto Rico', 'PR'],
-      ['Rhode Island', 'RI'],
-      ['South Carolina', 'SC'],
-      ['South Dakota', 'SD'],
-      ['Tennessee', 'TN'],
-      ['Texas', 'TX'],
-      ['Utah', 'UT'],
-      ['Vermont', 'VT'],
-      ['Virginia', 'VA'],
-      ['Washington', 'WA'],
-      ['West Virginia', 'WV'],
-      ['Wisconsin', 'WI'],
-      ['Wyoming', 'WY']
-      ], {}, {class: "form-control"} %>
-      <%= f.label :zip_code %><%= f.text_field :zip_code %>
-    </div>
+      <div class="medium-12 large-6 columns">
+        <h2>Billing Information</h2>
+        <%= f.label :name_on_card %><%= f.text_field :name_on_card %>
+        <%= f.label :card_number %><%= f.text_field :card_number %>
+        <%= f.label :exp_month %>
+        <%= f.select :exp_month, [
+        ['01', '01'],
+        ['02', '02'],
+        ['03', '03'],
+        ['04', '04'],
+        ['05', '05'],
+        ['06', '06'],
+        ['07', '07'],
+        ['08', '08'],
+        ['09', '09'],
+        ['10', '10'],
+        ['11', '11'],
+        ['12', '12'],
+        ], {}, {class: "form-control"} %>
+        <%= f.label :exp_year %><%= f.select :exp_year, [
+        ['17', '17'],
+        ['18', '18'],
+        ['19', '19'],
+        ['20', '20'],
+        ['21', '21'],
+        ['22', '22'],
+        ['23', '23'],
+        ['24', '24'],
+        ['25', '25'],
+        ['26', '26'],
+        ['27', '27'],
+        ], {}, {class: "form-control"} %>
+        <%= f.label :cvv %><%= f.text_field :cvv %>
+        <%= f.label :billing_zip_code %><%= f.text_field :billing_zip_code %>
+      </div>
 
-    <div class="medium-12 large-6 columns">
-      <h2>Billing Information</h2>
-      <%= f.label :name_on_card %><%= f.text_field :name_on_card %>
-      <%= f.label :card_number %><%= f.text_field :card_number %>
-      <%= f.label :exp_month %>
-      <%= f.select :exp_month, [
-      ['01', '01'],
-      ['02', '02'],
-      ['03', '03'],
-      ['04', '04'],
-      ['05', '05'],
-      ['06', '06'],
-      ['07', '07'],
-      ['08', '08'],
-      ['09', '09'],
-      ['10', '10'],
-      ['11', '11'],
-      ['12', '12'],
-      ], {}, {class: "form-control"} %>
-      <%= f.label :exp_year %><%= f.select :exp_year, [
-      ['17', '17'],
-      ['18', '18'],
-      ['19', '19'],
-      ['20', '20'],
-      ['21', '21'],
-      ['22', '22'],
-      ['23', '23'],
-      ['24', '24'],
-      ['25', '25'],
-      ['26', '26'],
-      ['27', '27'],
-      ], {}, {class: "form-control"} %>
-      <%= f.label :cvv %><%= f.text_field :cvv %>
-      <%= f.label :billing_zip_code %><%= f.text_field :billing_zip_code %>
-    </div>
-
-    <div class="small-12 columns">
-      <%= f.submit "Place Order", class: "button" %>
+      <div class="small-12 columns">
+        <%= f.submit "Place Order", class: "button" %>
+        <%= link_to "Back to Cart", cart_path, class:"button" %>
+      </div>
       <% end %>
-      <%= link_to "Back to Cart", cart_path, class:"button" %>
-    </div>
-
   </div>
 </div>
