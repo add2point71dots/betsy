@@ -20,12 +20,15 @@ class Order < ApplicationRecord
   end
 
   def add_to_cart(product_params)
-    current_orderitem = orderitems.find_by(product_id: product_params[:orderitem][:product_id])
+    current_orderitem = orderitems.find_by(product_id: product_params[:orderitem][:product_id].to_i)
 
-    if current_orderitem
+    # already existing orderitem
+    if current_orderitem && current_orderitem.quantity + (product_params[:orderitem][:quantity].to_i) <= Product.find_by_id(product_params[:orderitem][:product_id].to_i).quantity
       current_orderitem.quantity += product_params[:orderitem][:quantity].to_i
       current_orderitem.save!
-    else
+
+    # non existing orderitem
+    elsif !current_orderitem
       Orderitem.create!(product_id: product_params[:orderitem][:product_id], quantity: product_params[:orderitem][:quantity].to_i, order_id: self.id, status: "Pending")
     end
   end
