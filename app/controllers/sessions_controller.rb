@@ -7,12 +7,15 @@ class SessionsController < ApplicationController
       vendor = Vendor.create_from_google(auth_hash)
       if vendor.nil?
         flash[:error] = "Could not log in."
-        redirect_to root_path
+      else
+        session[:vendor_id] = vendor.id
+        flash[:success] = "Logged in successfully!"
       end
+    else
+      session[:vendor_id] = vendor.id
+      flash[:success] = "Logged in successfully!"
     end
-
-    session[:vendor_id] = vendor.id
-    flash[:success] = "Logged in successfully!"
+    
     redirect_to root_path
   end
 
