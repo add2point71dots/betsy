@@ -1,5 +1,11 @@
-<% content_for :headline do %>
-         <h1> Products </h1>
+<% if params[:category_id] %>
+  <% content_for :headline do %>
+    <%= Category.find(params[:category_id]).label  %>
+  <% end %>
+<% else %>
+  <% content_for :headline do %>
+    Products
+  <% end %>
 <% end %>
 
 <% content_for :categories do %>
