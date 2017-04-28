@@ -14,7 +14,7 @@ class OrderitemsController < ApplicationController
       redirect_to product_path(product.id)
       return
     # the quantity specified by the shopper is greater than the current inventory
-    elsif quantity - product.quantity > 0
+    elsif quantity > product.quantity
       flash[:failure] =  "Quantity too large: only #{product.quantity} left in stock!"
       redirect_to product_path(product.id)
       return
