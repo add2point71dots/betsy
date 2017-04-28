@@ -11,24 +11,24 @@
       </tr>
     </thead>
     <tbody>
-           <% @sorted_items.each do |orderitem| %>
-           <tr>
-             <td><%= link_to orderitem.product.name, product_path(orderitem.product_id) %></td>
-             <td><%= orderitem.quantity %></td>
-             <td><%= link_to "+", increase_path(orderitem.id), method: :patch, action: 'increase'%></td>
-             <td><%= link_to "-", decrease_path(orderitem.id), method: :patch, action: 'decrease'%></td>
-             <td><%= link_to orderitem.product.vendor.username, vendor_path(orderitem.product.vendor_id) %></td>
-             <td> $<%= sprintf('%.2f', ((orderitem.product.price) * orderitem.quantity)) %></td>
-             <td><%= link_to "Delete", orderitem_path(orderitem.id), method: :delete, class:"button" %></td>
-           </tr>
-           <% end %>
+      <% @sorted_items.each do |orderitem| %>
       <tr>
-          <td><h3> Total </h3></td>
-          <td><h3> <%= @total_quantity %> </h3></td>
-          <td><h3> <%= "" %> </td>
-          <td><h3> <%= "" %> </td>
-          <td><h3> <%= "" %> </td>
-          <td><h3> $<%= sprintf('%.2f', @total_price) %> </h3></td>
+        <td><%= link_to orderitem.product.name, product_path(orderitem.product_id) %></td>
+        <td><%= orderitem.quantity %></td>
+        <td><%= link_to "+", increase_path(orderitem.id), method: :patch, action: 'increase'%></td>
+        <td><%= link_to "-", decrease_path(orderitem.id), method: :patch, action: 'decrease'%></td>
+        <td><%= link_to orderitem.product.vendor.username, vendor_path(orderitem.product.vendor_id) %></td>
+        <td> $<%= sprintf('%.2f', ((orderitem.product.price) * orderitem.quantity)) %></td>
+        <td><%= link_to "Delete", orderitem_path(orderitem.id), method: :delete, class:"button" %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td><h3> Total </h3></td>
+        <td><h3> <%= @total_quantity %> </h3></td>
+        <!-- <td><h3> <%= "" %> </td>
+        <td><h3> <%= "" %> </td>
+        <td><h3> <%= "" %> </td> -->
+        <td><h3> $<% if @total_price %><%= sprintf('%.2f', @total_price) %><% else %>0.00<% end %> </h3></td>
       </tr>
     </tbody>
   </table>
@@ -36,8 +36,8 @@
   <%= link_to "Checkout", edit_order_path(@cart.id), class:"button" %>
   <%= link_to "Empty Cart", reset_path(@cart.id), method: :patch, class:"button" %>
   <% if session[:last_page] %>
-       <%= link_to "Continue Shopping", session[:last_page], class: "button" %>
-<% end %>
+  <%= link_to "Continue Shopping", session[:last_page], class: "button" %>
+  <% end %>
   <% else %>
   <%= link_to "See More Products", products_path, class:"button" %>
   <% end %>

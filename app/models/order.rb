@@ -25,19 +25,22 @@ class Order < ApplicationRecord
 
       # non existing orderitem
     elsif !current_orderitem
-      Orderitem.create!(product_id: product_params[:orderitem][:product_id], quantity: product_params[:orderitem][:quantity].to_i, order_id: self.id, status: "Pending")
+      new_orderitem = Orderitem.create!(product_id: product_params[:orderitem][:product_id], quantity: product_params[:orderitem][:quantity].to_i, order_id: self.id, status: "Pending")
+      new_orderitem.save!
     end
   end
 
   def update_orderitem_status
     orderitems.each do | orderitem |
       orderitem.update(status: "Paid")
+      orderitem.save!
     end
   end
 
   def update_product_stock
     orderitems.each do |orderitem|
       orderitem.product.update(quantity: orderitem.product.quantity - orderitem.quantity)
+      orderitem.save!
     end
   end
 
