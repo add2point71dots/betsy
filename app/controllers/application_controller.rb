@@ -23,16 +23,13 @@ class ApplicationController < ActionController::Base
       session[:order_id] = order.id
     end
     @cart = Order.find_by(id: session[:order_id])
-    end
-  #   @cart = Order.find_by_id(session[:order_id])
-  # rescue ActiveRecord::RecordNotFound
-  #   @cart = Order.create(order_state: "pending")
-  #   session[:order_id] = @cart.id
+  end
 
-       def cart_count
-          if @cart != nil
-               quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
-               @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
-          end
-       end
+  def cart_count
+    if @cart != nil
+         quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
+         @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
+    end
+  end
+
 end

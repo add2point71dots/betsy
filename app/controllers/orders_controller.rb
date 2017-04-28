@@ -49,23 +49,23 @@ class OrdersController < ApplicationController
     session[:order_id] = nil
   end
 
- def total_quantity
-     quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
-     @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
- end
+  def total_quantity
+    quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
+    @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
+  end
 
- def total_price
-     prices = @cart.orderitems.map { | orderitem | orderitem.product.price * orderitem.quantity }
-     @total_price = prices.inject { | sum, price | sum + price }
- end
+  def total_price
+    prices = @cart.orderitems.map { | orderitem | orderitem.product.price * orderitem.quantity }
+    @total_price = prices.inject { | sum, price | sum + price }
+  end
 
- def reset
-     @cart.orderitems.each do | orderitem |
-          orderitem.destroy
-     end
-     flash[:success] = "Your cart has been emptied!"
-     redirect_to root_path
- end
+  def reset
+    @cart.orderitems.each do | orderitem |
+      orderitem.destroy
+    end
+    flash[:success] = "Your cart has been emptied!"
+    redirect_to root_path
+  end
 
   private
 
@@ -79,6 +79,6 @@ class OrdersController < ApplicationController
   end
 
   def sort_items
-     @sorted_items = @cart.orderitems.sort_by(&:created_at)
+    @sorted_items = @cart.orderitems.sort_by(&:created_at)
   end
 end
