@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_vendor
+  helper_method :cart_count
 
   def current_vendor
     @logged_in_vendor ||= Vendor.find_by(id: session[:vendor_id])
@@ -27,9 +28,11 @@ class ApplicationController < ActionController::Base
   end
 
   def cart_count
-    if @cart != nil
-         quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
-         @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
+    if current_cart && @cart.orderitems.count > 0
+       quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
+       @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
+    else
+      @total_quantitiy = 0
     end
   end
 end
