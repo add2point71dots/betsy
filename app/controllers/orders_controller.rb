@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
     if @cart.orderitems.count == 0
       flash[:failure] = "You are trying to checkout with an empty cart"
       redirect_to root_path
+      return
     end
     render layout: 'two-columns'
   end
