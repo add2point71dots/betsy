@@ -41,8 +41,7 @@
                     <% end %>
                </nav>
 
-               <div class='divider'>
-               </div>
+               <div class='divider'> </div>
 
                <nav class='cart'>
                     <%= link_to cart_path do %>
@@ -84,13 +83,23 @@
                                    <%= yield :tags%>
                               </section>
                          <% end %>
-                    </section>     
+                    </section>
                </main>
 
                <aside>
+                    <div class='horizontal'> </div>
+
                     <% if content_for?(:reviews) %>
                          <section class='reviews'>
                               <%= yield :reviews%>
+                         </section>
+                    <% end %>
+
+                    <div class='table'> </div>
+
+                    <% if content_for?(:table) %>
+                         <section class='table'>
+                              <%= yield :table%>
                          </section>
                     <% end %>
                </aside>

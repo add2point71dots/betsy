@@ -204,28 +204,28 @@ html, body {
                flex: 1 1 100%;
 
                justify-content: center;
-               margin: 1.4rem;
-               min-height: 60vh;
+               margin: 1.4rem 1.4rem 0;
+               min-height: 40vh;
           }
 
           .focus-image {
-               display: flex;
-               flex: 1 1 50%;
+               display: inline;
+               flex: 1 1 auto;
           }
 
                .focus-image img {
-                    width: auto;
-                    max-height: 50vh;
+                    width: 100%
                }
 
           .focus-content {
                display: flex;
                flex-flow: column wrap;
-               flex: 1 2 auto;
+               flex: 1 1 auto;
 
                align-items: center;
                align-content: center;
                justify-content: center;
+               padding-left: 1rem;
           }
 
                .cost {
@@ -245,7 +245,7 @@ html, body {
 
                .add-to-cart {
                     flex: 1 2 auto;
-                    align-self: : center;
+                    align-self: center;
                }
 
                .submit {
@@ -265,12 +265,23 @@ html, body {
 
           aside {
                display: flex;
-               flex-flow: row nowrap;
+               flex-flow: column nowrap;
                flex: 1 1 100%;
 
-               justify-content: center;
+               align-items: center;
                margin: 1.4rem;
                min-height: 60vh;
+          }
+
+          .horizontal {
+               flex: 0 1 auto;
+               justify-content: center;
+               align-items: center;
+
+               width: 50vw;
+               height: 1px;
+
+               background-color: black;
           }
 
                .reviews {
@@ -280,10 +291,15 @@ html, body {
 
                     align-items: center;
                     align-content: center;
-                    justify-content: flex-end;
-                    margin: 1.4rem;
+                    justify-content: center;
+                    margin: 1.4rem 1.4rem 0;
                     min-height: 8rem;
                }
+
+                    table {
+                         margin: 0 1.4rem 1.4rem;
+                    }
+
 
           footer {
                display: flex;
@@ -463,6 +479,32 @@ input:not([type=submit]):not([type=file]):hover, textarea:hover, select:hover {
 
 	color: #2e7b96;
 }
+
+.button {
+     padding: 1rem 3rem;
+     margin-bottom: 1rem;
+
+     background-color: #2e7b96;
+     border: none;
+     color: white;
+     display: inline-block;
+     font-family: 'Poppins', serif;
+     font-size: 1.4em;
+     font-weight: 400;
+     letter-spacing: .04rem;
+     text-align: center;
+     text-decoration: none;
+     text-transform: uppercase;
+}
+
+.button:hover {
+     background-color: #4c97b1;
+}
+
+.small {
+     font-size: .8rem;
+}
+
 
 ::-webkit-input-placeholder {
 	color: white;
