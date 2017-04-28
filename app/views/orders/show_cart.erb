@@ -1,14 +1,16 @@
+<% content_for :headline do %>
+         <h1> Your Cart </h1>
+<% end %>
+
 <div class="row">
-  <h1>Cart View</h1>
   <table>
     <thead>
       <tr>
-        <th>Product</th>
-        <th colspan='3'>Quantity</th>
-        <th>Seller</th>
-        <th>Price</th>
-        <th>Update</th>
-      </tr>
+        <th><h2> PRODUCT </h2></th>
+        <th colspan='3'><h2> &nbsp; QUANTITY </h2></th>
+        <th><h2> SELLER </h2></th>
+        <th><h2> PRICE </h2></th>
+        <th><h2> UPDATE </h2></th>
     </thead>
     <tbody>
       <% @sorted_items.each do |orderitem| %>
@@ -19,7 +21,7 @@
         <td><%= link_to "-", decrease_path(orderitem.id), method: :patch, action: 'decrease'%></td>
         <td><%= link_to orderitem.product.vendor.username, vendor_path(orderitem.product.vendor_id) %></td>
         <td> $<%= sprintf('%.2f', ((orderitem.product.price) * orderitem.quantity)) %></td>
-        <td><%= link_to "Delete", orderitem_path(orderitem.id), method: :delete, class:"button" %></td>
+        <td><%= link_to "Delete", orderitem_path(orderitem.id), method: :delete, class:"button small" %></td>
       </tr>
       <% end %>
      <tr>
@@ -32,13 +34,16 @@
       </tr>
     </tbody>
   </table>
-  <% if @cart.orderitems.count > 0 %>
-  <%= link_to "Checkout", edit_order_path(@cart.id), class:"button" %>
-  <%= link_to "Empty Cart", reset_path(@cart.id), method: :patch, class:"button" %>
-  <% if session[:last_page] %>
-  <%= link_to "Continue Shopping", session[:last_page], class: "button" %>
-  <% end %>
-  <% else %>
-  <%= link_to "See More Products", products_path, class:"button" %>
-  <% end %>
 </div>
+
+<div class="row">
+<% if @cart.orderitems.count > 0 %>
+<%= link_to "Checkout", edit_order_path(@cart.id), class:"button small" %>
+<%= link_to "Empty Cart", reset_path(@cart.id), method: :patch, class:"button small" %>
+<% if session[:last_page] %>
+<%= link_to "Continue Shopping", session[:last_page], class: "button small" %>
+<% end %>
+<% else %>
+<%= link_to "See More Products", products_path, class:"button" %>
+<% end %>
+<!-- </div> -->
