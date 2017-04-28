@@ -13,8 +13,8 @@ class OrderitemsController < ApplicationController
       flash[:failure] =  "This item is sold out"
       redirect_to product_path(product.id)
       return
-      # the quantity specified by the shopper is greater than the current inventory
-    elsif quantity - product.quantity > 0
+    # the quantity specified by the shopper is greater than the current inventory
+    elsif quantity > product.quantity
       flash[:failure] =  "Quantity too large: only #{product.quantity} left in stock!"
       redirect_to product_path(product.id)
       return
@@ -58,15 +58,15 @@ class OrderitemsController < ApplicationController
     @orderitem.save
     redirect_to cart_path
   end
-
+  
   def decrease
     decreased_quantity = @orderitem.quantity - 1
-
+    
     if  decreased_quantity <= 0
-      flash[:error] = "You would be better off hitting the delete button."
+     flash[:error] = "You would be better off hitting the delete button."
     else
-      @orderitem.quantity -= 1
-      flash[:success] = "Removed! #{@orderitem.product.quantity - @orderitem.quantity} remaining."
+     @orderitem.quantity -= 1
+     flash[:success] = "Removed! #{@orderitem.product.quantity - @orderitem.quantity} remaining."
     end
     @orderitem.save
     redirect_to cart_path
@@ -78,32 +78,32 @@ class OrderitemsController < ApplicationController
     flash[:success] = "You have successfully scrapped this item."
     redirect_to fulfillment_path(@orderitem.product.vendor_id)
   end
-
+  
   def ship
     @orderitem.status = "Shipped"
     @orderitem.save
     flash[:success] = "You have successfully shipped this item."
     redirect_to fulfillment_path(@orderitem.product.vendor_id)
   end
-
+  
   def destroy
     orderitem = Orderitem.find_by_id(params[:id])
     orderitem.destroy
     redirect_to cart_path
   end
-
+  
   private
-
+  
   def find_orderitem
     @orderitem = Orderitem.find_by_id(params[:id])
     render_404 if !@orderitem
   end
-
+  
   def orderitem_params
     params.require(:orderitem).permit( :order_id, :product_id, :quantity, :status)
   end
-
+  
   def last_page
     session[:last_page] = request.env['HTTP_REFERER']
-  end
+  end  
 end

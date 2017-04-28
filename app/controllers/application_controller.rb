@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
     end
     @cart = Order.find_by(id: session[:order_id])
   end
+
+  def cart_count
+    if @cart != nil
+         quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
+         @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
+    end
+  end
+
 end

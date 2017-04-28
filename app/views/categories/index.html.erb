@@ -3,9 +3,9 @@
 <% end %>
 
 <% content_for :categories do %>
-     <% @categories.each do | category |%>
-          <p class=label> <%= link_to category.label, category_products_path(category.id) %> </p>
-     <% end %>
+     <% Category.all.each do |category| %>
+         <%= link_to category.label, category_products_path(category.id), class: 'label' %>
+       <% end %>
 <% end %>
 
 <% @categories.each do | category |%>
@@ -19,8 +19,6 @@
                     <%= image_tag 'category-04' %>
                <% end %>
            <% end %>
-           <p class='details name'> <%= category.label %> </p>
+           <h4 class=' name'> <%= category.label %> </h4>
      </div>
 <% end %>
-
-<%= link_to 'New Category', new_category_path %>

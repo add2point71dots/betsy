@@ -22,12 +22,12 @@
         <td><%= link_to "Delete", orderitem_path(orderitem.id), method: :delete, class:"button" %></td>
       </tr>
       <% end %>
-      <tr>
+     <tr>
         <td><h3> Total </h3></td>
         <td><h3> <%= @total_quantity %> </h3></td>
-        <!-- <td><h3> <%= "" %> </td>
         <td><h3> <%= "" %> </td>
-        <td><h3> <%= "" %> </td> -->
+        <td><h3> <%= "" %> </td>
+        <td><h3> <%= "" %> </td>
         <td><h3> $<% if @total_price %><%= sprintf('%.2f', @total_price) %><% else %>0.00<% end %> </h3></td>
       </tr>
     </tbody>
@@ -41,6 +41,4 @@
   <% else %>
   <%= link_to "See More Products", products_path, class:"button" %>
   <% end %>
-</section>
-
 </div>
