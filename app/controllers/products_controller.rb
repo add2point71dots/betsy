@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
   def show
     if !@product
       render_404
+      return
     end
     @orderitem = Orderitem.new
     @review = Review.new
