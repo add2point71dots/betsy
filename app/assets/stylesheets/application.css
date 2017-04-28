@@ -51,7 +51,7 @@ html, body {
                }
 
           .divider {
-               flex: 0 0 auto
+               flex: 0 0 auto;
                justify-content: flex-end;
 
 
@@ -245,7 +245,7 @@ html, body {
 
                .add-to-cart {
                     flex: 1 2 auto;
-                    align-self: : center;
+                    align-self: center;
                }
 
                .submit {
