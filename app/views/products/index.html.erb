@@ -1,21 +1,17 @@
+<% content_for :headline do %>
+         <h1> Products </h1>
+<% end %>
 
-<div>
-  <%= link_to "View All Products", products_path %>
-</div>
-
-<div>
+<% content_for :categories do %>
      <% Category.all.each do |category| %>
-         <%= link_to category.label, category_products_path(category.id) %>
+         <%= link_to category.label, category_products_path(category.id), class: 'label' %>
        <% end %>
-</div>
+<% end %>
 
-
-<!-- <h4><%#= @title %></h4> -->
-
-  <section>
-    <% @products.each do |product| %>
-        <%= link_to product.name, product_path(product.id)%>
- <%= link_to image_tag(product.photo_url,  class: "product_img"), product_path(product.id) %>
-    <% end %>
-
-  </section>
+<% @products.each do |product| %>
+     <div class='product'>
+          <h4 class='name'> <%= product.name %></h4>
+          <h4 class='price'> <%= product.price %></h4>
+          <%= link_to image_tag(product.photo_url), product_path(product.id) %>
+     </div>
+<% end %>

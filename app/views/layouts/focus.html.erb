@@ -63,19 +63,38 @@
           <% end %>
 
           <div class='frame'>
-               <% if content_for?(:categories) %>
-                    <article class='categories'>
-                         <%= yield :categories%>
-                    </article>
-               <% end %>
 
                <% flash.each do |name, message| %>
                     <h3 class="row status <%= name %>"><%= message %></h3>
                <% end %>
 
-               <main class="index">
-                    <%= yield %>
+               <main class='focus'>
+
+               <% if content_for?(:focus_image) %>
+                    <section class='focus-image'>
+                         <%= yield :focus_image%>
+                    </section>
+               <% end %>
+
+                    <section class='focus-content'>
+                         <%= yield %>
+
+                         <% if content_for?(:tags) %>
+                              <section class='tags'>
+                                   <%= yield :tags%>
+                              </section>
+                         <% end %>
+                    </section>     
                </main>
+
+               <aside>
+                    <% if content_for?(:reviews) %>
+                         <section class='reviews'>
+                              <%= yield :reviews%>
+                         </section>
+                    <% end %>
+               </aside>
+
 
                <footer>
                     <h6 class="copyright"> &copy; 2017 Arrested Developers. All rights reserved. </h6>
@@ -92,6 +111,5 @@
                          </li>
                     </ul>
                </footer>
-          </div>
      </body>
 </html>

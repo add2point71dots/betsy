@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
     end
     @orderitem = Orderitem.new
     @review = Review.new
+    render layout: 'focus'
   end
 
   def new

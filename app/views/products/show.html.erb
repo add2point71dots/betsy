@@ -1,99 +1,65 @@
-<h4>Product</h4>
-<div class="row">
-  <div class="large-6 small-12 columns">
-    <%= image_tag(@product.photo_url, class: "product_img")%>
-  </div>
-
-  <div class="large-6 small-12 columns">
-    <ul>
-      <li>Name : <%= @product.name%></li>
-      <li>Price: $<%= @product.price %></li>
-      <li>Sold by: <%= link_to @product.vendor.username, vendor_path(@product.vendor_id) %></li>
-      <li>Description : <%= @product.description %></li>
-      <li>Average Rating : <%= @product.average_review %></li>
-
-    </ul>
-  </div>
-</div>
-
-<h4><small>Add to Cart</small></h4>
-<%= form_for @orderitem do |f| %>
-<%= f.hidden_field :product_id, :value => @product.id %>
-<div class="row">
-  <div class="medium-2 columns">
-    <%= f.label :quantity %>
-    <%= f.select :quantity, (0..@product.quantity)  %>
-  </div>
-  <div class="medium-2 columns">
-    <%= f.submit "Add to Cart", class: "button" %>
-  </div>
-  <div class="medium-8 columns">
-
-  </div>
-
-
-</div>
+<% content_for :headline do %>
+       <h1> <%= @product.name  %> </h1>
 <% end %>
 
-
-<h4><small>Add a Review</small></h4>
-<%= form_for @review do |f| %>
-<%= f.hidden_field :product_id, :value => @product.id %>
-<div class="row">
-  <div class="medium-2 columns">
-    <%= f.label :rating %>
-    <%= f.select :rating, (1..5)  %>
-  </div>
-  <div class="medium-4 columns">
-    <%= f.label :comment %>
-    <%= f.text_field :comment %>
-  </div>
-
-  <div class="medium-2 columns">
-    <%= f.submit "Add a Review", class: "button" %>
-  </div>
-  <div class="medium-4 columns">
-
-  </div>
-
-
-</div>
+<% content_for :focus_image do %>
+     <%= image_tag(@product.photo_url, class: "product_img")%>
 <% end %>
 
+<h2 class="cost"> $<%= @product.price %></h2>
+<p class="rating"> <strong> Average Rating: </strong> <%= @product.average_review %> </p>
+<p class="sold-by"> <strong> Sold by: </strong> <%= link_to @product.vendor.username, vendor_path(@product.vendor_id) %></p>
 
+<section class="add-to-cart">
+     <h3> Add to Cart </h3>
+     <%= form_for @orderitem do |f| %>
+          <%= f.hidden_field :product_id, :value => @product.id %>
 
+          <%= f.label :quantity%>
+          <%= f.select :quantity, (0..@product.quantity)  %>
 
-<h1><small>List of Reviews</small></h1>
-<table>
-  <tr>
-    <th>Rating</th>
-    <th>Comment</th>
-  </tr>
-
-  <% @product.reviews.each do |review| %>
-  <tr>
-    <td> <%= review.rating %> </td>
-    <td> <%= review.comment %> </td>
-  </tr>
-  <% end %>
-
-</table>
+          <%= f.submit "Add to Cart", class: "button submit large" %>
+     <% end %>
 </section>
 
-<section>
-  <p> <%= link_to "Edit", edit_product_path(@product.id) %> </p>
 
-  <p> <%= link_to "Create a product", new_product_path %> </p>
+<p class="description"> <strong> Description: </strong> <%= @product.description %> </p>
 
-</section>
+<% content_for :tags do %>
+     Categories:
+     <% @product.categories.each do |category| %>
+          <%= link_to category.label, category_products_path(category.id), class: 'label' %>
+     <% end %>
+<% end %>
 
-<section>
-  Categories:
-  <% @product.categories.each do |category| %>
+<% content_for :reviews do %>
+     <h2>Add a Review</h2>
+     <%= form_for @review do |f| %>
+          <%= f.hidden_field :product_id, :value => @product.id %>
+          <%= f.label :rating %>
+          <%= f.select :rating, (1..5) %>
+          <%= f.label :comment %>
+          <%= f.text_field :comment %>
+          <%= f.submit "Add a Review", class: "button" %>
+     <% end %>
 
-     <%= link_to category.label, category_products_path(category.id) %>
 
-  <% end %>
+ <h2>List of Reviews</h2>
+     <table>
+          <tr>
+               <th>Rating</th>
+               <th>Comment</th>
+          </tr>
+          <tr>
+               <% @product.reviews.each do |review| %>
+                    <td> <%= review.rating %> </td>
+                    <td> <%= review.comment %> </td>
+               <% end %>
+          </tr>
+     </table>
 
-
-</section>
+     <section>
+          <p> <%= link_to "Edit", edit_product_path(@product.id) %> </p>
+          <p> <%= link_to "Create a product", new_product_path %> </p>
+     </section>
+<% end %>
