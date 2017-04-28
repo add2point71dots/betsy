@@ -41,7 +41,8 @@
                     <% end %>
                </nav>
 
-               <div class='divider'> </div>
+               <div class='divider'>
+               </div>
 
                <nav class='cart'>
                     <%= link_to cart_path do %>
@@ -62,48 +63,13 @@
           <% end %>
 
           <div class='frame'>
-
                <% flash.each do |name, message| %>
                     <h3 class="row status <%= name %>"><%= message %></h3>
                <% end %>
 
-               <main class='focus'>
-
-               <% if content_for?(:focus_image) %>
-                    <section class='focus-image'>
-                         <%= yield :focus_image%>
-                    </section>
-               <% end %>
-
-                    <section class='focus-content'>
-                         <%= yield %>
-
-                         <% if content_for?(:tags) %>
-                              <section class='tags'>
-                                   <%= yield :tags%>
-                              </section>
-                         <% end %>
-                    </section>
+               <main>
+                    <%= yield %>
                </main>
-
-               <aside>
-                    <div class='horizontal'> </div>
-
-                    <% if content_for?(:reviews) %>
-                         <section class='reviews'>
-                              <%= yield :reviews%>
-                         </section>
-                    <% end %>
-
-                    <div class='table'> </div>
-
-                    <% if content_for?(:table) %>
-                         <section class='table'>
-                              <%= yield :table%>
-                         </section>
-                    <% end %>
-               </aside>
-
 
                <footer>
                     <h6 class="copyright"> &copy; 2017 Arrested Developers. All rights reserved. </h6>
@@ -120,5 +86,6 @@
                          </li>
                     </ul>
                </footer>
+          </div>
      </body>
 </html>

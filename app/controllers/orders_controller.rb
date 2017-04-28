@@ -12,7 +12,9 @@ class OrdersController < ApplicationController
 
   # shows current cart detail belonging to session[:order_id]
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
-  def show_cart; end
+  def show_cart;
+       render layout: 'cart'
+  end
 
   # show order edit form for the checkout page where shoppers fill in shipping/billing info for the order
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
