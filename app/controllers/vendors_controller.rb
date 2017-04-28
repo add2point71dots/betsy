@@ -1,6 +1,6 @@
 class VendorsController < ApplicationController
   before_action :find_vendor, except: [:index]
-  before_action :require_login_match, except: [:index, :show]
+  # before_action :require_login_match, except: [:index, :show]
   before_action :find_orderitems, except: [:index, :show, :edit, :update]
   before_action :tally_earnings, except: [:index, :show, :edit, :update]
   before_action :tally_count, except: [:index, :show, :edit, :update]
@@ -28,15 +28,25 @@ class VendorsController < ApplicationController
     end
   end
 
-  def fulfillment; end
+def fulfillment
+     render layout: 'fulfillment-template'
+end
 
-  def fulfillment_pending; end
+def fulfillment_pending
+     render 'fulfillment', layout: 'fulfillment-template'
+end
 
-  def fulfillment_paid; end
+def fulfillment_paid
+     render 'fulfillment', layout: 'fulfillment-template'
+end
 
-  def fulfillment_shipped; end
+def fulfillment_shipped
+     render 'fulfillment', layout: 'fulfillment-template'
+end
 
-  def fulfillment_cancelled; end
+def fulfillment_cancelled
+     render 'fulfillment', layout: 'fulfillment-template'
+end
 
   private
 
@@ -72,7 +82,6 @@ class VendorsController < ApplicationController
 
   def render_orderitems
      @order_items = @vendor.orderitems
-     render "fulfillment"
   end
 
   def find_orderitems

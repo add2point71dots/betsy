@@ -169,6 +169,19 @@ html, body {
                margin: 1.4rem;
 
           }
+
+          .single {
+               -moz-column-count: 1;
+               -webkit-column-count: 1;
+               column-count: 1;
+               -webkit-column-gap: .8rem;
+               -moz-column-gap: .8rem;
+               column-gap: .8rem;
+
+               margin: 1.4rem;
+
+          }
+
                main:hover .product {
                     opacity: 0.3;
                }
