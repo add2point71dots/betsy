@@ -39,6 +39,18 @@ describe ProductsController do
     flash[:error].must_equal "You must be logged in to view this page."
   end
 
+  it "logged in vendor can't update other vendor's product" do
+    first_vendor = Vendor.first
+    last_product = Product.last
+    login_vendor(first_vendor)
+    new_data = { product: { quantity: 2000}}
+    patch product_path(last_product.id), params: new_data
+
+    Product.last.quantity.must_equal 10
+    flash[:error].must_equal "You don't have access to other vendor's products"
+    must_redirect_to root_path
+  end
+
   it "should show a 404 when product is not found" do
     get product_path(0)
     must_respond_with :missing
