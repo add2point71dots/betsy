@@ -43,19 +43,22 @@
      <% end %>
 
 
-     <h2>Reviews</h2>
-     <table>
+     <h2> Reviews </h2>
+     <table class="unstriped" >
+       <thead>
           <tr>
-               <th>Rating</th>
-               <th>Comment</th>
+             <th width="30">Rating</th>
+             <th width="130">Comment</th>
           </tr>
-          <tr>
-               <% @product.reviews.each do |review| %>
-                    <td> <%= review.rating %> </td>
-                    <td> <%= review.comment %> </td>
-               <% end %>
-          </tr>
+        </thead>
+             <% @product.reviews.each do |review| %>
+               <tr>
+                  <td> <%= review.rating %> </td>
+                  <td> <%= review.comment %> </td>
+              </tr>
+             <% end %>
      </table>
+
 
           <p> <%= link_to "Edit", edit_product_path(@product.id), class: 'button small' %> </p>
           <p> <%= link_to "Create a product", new_product_path, class: 'button small'%> </p>

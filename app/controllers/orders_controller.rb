@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
   # application controller method 'current_cart' is excecuted prior to entering action to retreive @cart
   def edit
     if @cart.orderitems.count == 0
+      render layout: 'cart'
       flash[:failure] = "You are trying to checkout with an empty cart"
       redirect_to root_path
     end

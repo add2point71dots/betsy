@@ -432,7 +432,7 @@ input[type=submit]:hover {
 }
 
 input[type=submit].small {
-     font-size: 1.4rem;
+     font-size: .8rem;
 }
 
 input:not([type=submit]):not([type=file]), textarea, select {
