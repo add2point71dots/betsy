@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
       flash[:failure] = "You are trying to checkout with an empty cart"
       redirect_to root_path
     end
+    render layout: 'two-columns'
   end
 
   # completes checkout process -- happens right after clicking the 'place order' button

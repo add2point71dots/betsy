@@ -179,8 +179,32 @@ html, body {
                column-gap: .8rem;
 
                margin: 1.4rem;
-
           }
+
+          .double {
+               display: flex;
+               flex-flow: row nowrap;
+               flex: 1 1 100%;
+
+               margin: 1.4rem;
+          }
+
+          .first-column {
+               display: flex;
+               flex-flow: column wrap;
+               flex: 0 1 40%;
+
+               margin: 1.4rem;
+          }
+
+          .second-column {
+               display: flex;
+               flex-flow: column wrap;
+               flex: 0 1 40%;
+
+               margin: 1.4rem;
+          }
+
 
                main:hover .product {
                     opacity: 0.3;
@@ -552,6 +576,14 @@ input:not([type=submit]):not([type=file]):hover, textarea:hover, select:hover {
 :-moz-placeholder {
 	color: white;
 	opacity: 0.3;
+}
+
+.status.failure, .status.error, .status.warning {
+  color: #C70039 ;
+  text-align: center;
+}
+.status.success {
+  color: #359b18 ;
 }
 
  @media screen and (min-width: 992px) {
