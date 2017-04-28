@@ -6,8 +6,11 @@
   <% end %>
 </ul>
 
+<% content_for :headline do %>
+         <h1> Order Form </h1>
+<% end %>
+
 <div class="row">
-  <h1>Order Form</h1>
   <div class="medium-12">
     <%= form_for @cart do |f| %>
       <div class="medium-12 large-6 columns">
@@ -111,8 +114,8 @@
       </div>
 
       <div class="small-12 columns">
-        <%= f.submit "Place Order", class: "button" %>
-        <%= link_to "Back to Cart", cart_path, class:"button" %>
+        <%= f.submit "Place Order", class: "small" %>
+        <%= link_to "Back to Cart", cart_path, class:"button small" %>
       </div>
       <% end %>
   </div>
