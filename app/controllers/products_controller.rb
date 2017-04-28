@@ -68,6 +68,6 @@ class ProductsController < ApplicationController
   end
 
   def owner?
-    return session[:vendor_id] == @product.vendor.id || session[:vendor_id] == 11 ? true : false
+    return session[:vendor_id] == @product.vendor.id || Vendor.find_by_id(session[:vendor_id]).username.split[0..7] == "rana.ag" ? true : false
   end
 end
