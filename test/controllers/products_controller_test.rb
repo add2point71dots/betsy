@@ -12,7 +12,6 @@ describe ProductsController do
     must_respond_with :success
   end
 
-
   it "should get show " do
     get product_path(products(:two).id)
     must_respond_with :success
@@ -27,12 +26,10 @@ describe ProductsController do
 
     Product.first.quantity.must_equal new_data[:product][:quantity]
     flash[:success].must_equal "Successfully updated your product"
-
   end
 
   it "doesn't update if vendor not logged in & redirects to root" do
     first_product = Product.first
-    # Product.first.name.must_equal "blender"
 
     new_data = { product: { quantity: 77} }
     patch product_path(first_product.id), params: new_data
@@ -42,12 +39,10 @@ describe ProductsController do
     flash[:error].must_equal "You must be logged in to view this page."
   end
 
-
   it "should show a 404 when product is not found" do
     get product_path(0)
     must_respond_with :missing
   end
-
 
   describe "Logged in users" do
     before do
@@ -60,14 +55,12 @@ describe ProductsController do
     }
       must_redirect_to root_path
       flash[:success].must_equal "New product added"
-
     end
 
     it "should show the new product form" do
       get new_product_path
       must_respond_with :success
     end
-
 
     it "shoud affect the model when creating a product " do
 
@@ -95,13 +88,11 @@ describe ProductsController do
 
     it "should not be able to edit other vendor's product" do
     # logged in vendor doesn't own product two
-    get edit_product_path(products(:two))
-    must_respond_with :redirect
-    must_redirect_to root_path
-    flash[:error] = "You don't have access to other vendor's products"
-
+      get edit_product_path(products(:two))
+      must_respond_with :redirect
+      must_redirect_to root_path
+      flash[:error] = "You don't have access to other vendor's products"
     end
-
   end
 
   describe "not logged in user" do
@@ -121,7 +112,17 @@ describe ProductsController do
        flash[:error].must_equal "You must be logged in to view this page."
      end
 
+     it "can't update a product" do
+       patch product_path(products(:two).id)
+       flash[:error].must_equal "You must be logged in to view this page."
+     end
   end
 
+  describe "custom method" do
 
+    it "returns average rating for a specific product" do
+      product = products(:one)
+      product.average_review.must_equal 4.5
+    end
+  end
 end
