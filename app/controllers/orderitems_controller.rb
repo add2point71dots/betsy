@@ -43,6 +43,7 @@ class OrderitemsController < ApplicationController
     end
   end
 
+
      def increase
           increased_quantity = @orderitem.quantity + 1
           if  increased_quantity <= @orderitem.product.quantity
@@ -101,4 +102,5 @@ private
      def last_page
           session[:last_page] = request.env['HTTP_REFERER']
      end
+
 end

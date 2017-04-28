@@ -91,10 +91,10 @@ describe Order do
     end
 
     it "allows only predefined orderitem_status" do
-      valid_status = ['lost', 'shipped', 'backordered', 'banana']
+      valid_status = ['pending', 'paid']
       valid_status.each do |status|
-        orderitem_no_status.order_state = state
-        order_no_state.valid?.must_equal true
+        order.order_state = status
+        order.valid?.must_equal true
       end
     end
 
