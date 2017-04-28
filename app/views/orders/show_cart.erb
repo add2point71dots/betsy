@@ -28,7 +28,7 @@
           <td><h3> <%= "" %> </td>
           <td><h3> <%= "" %> </td>
           <td><h3> <%= "" %> </td>
-          <td><h3> $<%= sprintf('%.2f', @total_price) %> </h3></td>
+          <td><h3> $<% if @total_price %><%= sprintf('%.2f', @total_price) %><% else %>0.00<% end %> </h3></td>
       </tr>
     </tbody>
   </table>

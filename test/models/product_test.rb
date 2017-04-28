@@ -9,7 +9,6 @@ describe Product do
 
       product = products(:one)
       product.valid?.must_equal true
-
     end
 
     it "can't create a product without a valid name" do
@@ -19,7 +18,6 @@ describe Product do
     end
 
     it "product name should be unique" do
-      product_1= products(:three)
       product_2 = Product.new(name: "scarf", price: 99.9, quantity: 2)
       product_2.valid?.must_equal false
     end
@@ -57,7 +55,6 @@ describe Product do
     it "belongs to vendor" do
       product = products(:one)
       product.vendor.must_be_kind_of Vendor
-      # product.vendor.must_equal 'one'
     end
 
     it "has a list of orderitems " do
@@ -86,12 +83,6 @@ describe Product do
         review.must_be_kind_of Review
       end
     end
-
-    # it "has and belongs to many categories" do
-    #   product = products(:two)
-    #   product.categories.first.must_equal "kitchen"
-    # end
-
   end
 
   describe "custom method" do
@@ -101,5 +92,4 @@ describe Product do
       product.average_review.must_equal 4.5
     end
   end
-
 end
