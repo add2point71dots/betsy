@@ -1,4 +1,16 @@
-<section>
+<% content_for :headline do %>
+  Vendors
+<% end %>
+
+
+<% @vendors.each do |vendor| %>
+     <div class="product">
+          <h4 class='name'> <%= vendor.username %></h4>
+          <%= link_to image_tag(vendor.photo_url, alt: vendor.username), vendor_path(vendor.id) %>
+     </div>
+<% end %>
+
+<!-- <section>
   <h3>Vendors</h3>
   <section class="small-up-1 medium-up-3 large-up-4">
     <% @vendors.each do |vendor| %>
@@ -8,4 +20,4 @@
       </section>
     <% end %>
   </section>
-</section>
+</section> -->
