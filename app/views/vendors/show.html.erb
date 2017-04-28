@@ -13,7 +13,7 @@
              <h5><strong>About Me: </strong><%= @vendor.description %></h5>
            <% end %>
            <% if current_vendor && current_vendor.id == @vendor.id %>
-             <h5><%= link_to "Edit Profile", edit_vendor_path(@vendor.id) %></h5>
+             <p><%= link_to "Edit Profile", edit_vendor_path(@vendor.id), class: 'button small' %></p>
            <% end %>
          </section>
          <%= image_tag @vendor.photo_url, alt: @vendor.username %>
