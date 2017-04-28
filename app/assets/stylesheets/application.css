@@ -143,6 +143,10 @@ html, body {
                          border: 2px solid black;
                     }
 
+          .basic {
+               display: block;
+          }
+
           .index {
                -moz-column-count: 4;
                -webkit-column-count: 4;
