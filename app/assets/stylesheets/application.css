@@ -106,9 +106,9 @@ html, body {
           .headline img {
                flex: 1 1 auto;
 
-               width: 70%;
-               border-radius: 50%;
                margin-top: 1rem;
+               border: 12px solid #111;
+               width: 35%;
           }
 
 
