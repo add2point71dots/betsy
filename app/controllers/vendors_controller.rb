@@ -10,7 +10,9 @@ class VendorsController < ApplicationController
     @vendors = Vendor.all
   end
 
-  def show; end
+  def show;
+     render layout: 'spotlight'
+  end
 
   def edit; end
 
