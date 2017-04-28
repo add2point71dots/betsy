@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
   end
 
   def cart_count
-    if current_cart && @cart.orderitems.count > 0
+    current_cart
+    if @cart.orderitems.count > 0
        quantity = @cart.orderitems.map { | orderitem | orderitem.quantity }
        @total_quantity = quantity.inject { | sum, quantity | sum + quantity }
     else
