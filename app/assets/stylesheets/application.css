@@ -106,9 +106,11 @@ html, body {
           .headline img {
                flex: 1 1 auto;
 
-               width: 70%;
-               border-radius: 50%;
                margin-top: 1rem;
+               width: 30%;
+
+               border: 15px solid #111;
+
           }
 
 
