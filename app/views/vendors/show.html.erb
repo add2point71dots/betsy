@@ -11,9 +11,12 @@
       <% if @vendor.description && @vendor.description != "" %>
         <p><strong>About Me: </strong><%= @vendor.description %></p>
       <% end %>
+      <% if current_vendor && current_vendor.id == @vendor.id %>
+        <p><%= link_to "Edit Profile", edit_vendor_path(@vendor.id) %></p>
+      <% end %>
     </section>
   </section>
-  
+
   <% if @vendor.products.length > 0 %>
     <h4><%= @vendor.username %>'s products</h4>
   <% else %>
