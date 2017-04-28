@@ -38,16 +38,5 @@ describe Orderitem do
         orderitem_no_status.valid?.must_equal true
       end
     end
-
   end
-
-  # describe "custom methods" do
-  #   it "returns true if there's enough products to fulfill the quantity entered" do
-  #
-  #   end
-  #
-  #   it "returns false if there aren't enough products to fulfill the quantity entered" do
-  #
-  #   end
-  # end
 end
