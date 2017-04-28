@@ -47,9 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if !current_vendor
-      flash[:error] = "You must be logged in to view this page."
-    elsif !owner?
+    if !owner?
       flash[:error] = "You don't have access to other vendor's products"
       redirect_to root_path
     else
