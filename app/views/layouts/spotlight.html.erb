@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+          <title><%= content_for?(:headline) ? yield(:headline) : "Blue Yourself" %></title>
+          <%= csrf_meta_tags %>
+          <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+          <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Poppins' %>
+
+     </head>
+
+     <body>
+          <header>
+               <div class='logo'>
+               <%= link_to root_path do %>
+                    <%= image_tag 'logo.png', alt: 'Blue Yourself' %>
+               <% end %>
+               </div>
+
+               <nav class='shop'>
+                    <%= link_to 'Products', root_path%>
+                    <%= link_to 'Vendors', vendors_path%>
+                    <%= link_to 'Categories', categories_path%>
+               </nav>
+
+               <nav class='login'>
+                    <% if current_vendor %>
+                         <%= link_to "Log out", logout_path, method: :delete %></li>
+                    <% else %>
+                         <%= link_to "Login", "/auth/google_oauth2" %></li>
+                    <% end %>
+               </nav>
+
+               <nav class='account'>
+                    <% if current_vendor %>
+                         <%= link_to fulfillment_path(current_vendor.id) do %>
+                              <%= image_tag 'account.png' %>
+                         <% end %>
+                    <% end %>
+               </nav>
+
+               <div class='divider'>
+               </div>
+
+               <nav class='cart'>
+                    <%= link_to cart_path do %>
+                         <%= image_tag 'cart.png' %>
+                    <% end %>
+                    <% if @total_quantity %>
+                         <h5 class='cart-count'> <%=  @total_quantity %> </h5>
+                    <% else %>
+                         <h5 class='cart-count'> 0 </h5>
+                    <% end %>
+               </nav>
+          </header>
+
+          <% if content_for?(:headline) %>
+               <article class='headline'>
+                    <h1><%= yield :headline%></h1>
+               </article>
+          <% end %>
+
+          <div class='frame'>
+               <% if content_for?(:categories) %>
+                    <article class='categories'>
+                         <%= yield :categories%>
+                    </article>
+               <% end %>
+
+               <% flash.each do |name, message| %>
+                    <h3 class="row status <%= name %>"><%= message %></h3>
+               <% end %>
+
+               <main class="index">
+                    <%= yield %>
+               </main>
+
+               <footer>
+                    <h6 class="copyright"> &copy; 2017 Arrested Developers. All rights reserved. </h6>
+
+                    <ul class='social'>
+                         <li class='facebook social-icon'>
+                         <a class='social-link' href='https://www.facebook.com/laboroflove2017/' target='_blank'></a>
+                         </li>
+                         <li class='instagram social-icon'>
+                         <a class='social-link' href='https://www.instagram.com/laboroflove2017/' target='_blank'></a>
+                         </li>
+                         <li class='mail social-icon'>
+                         <a class='social-link' href='mailto:janiceandmark@zawistoski.com'></a>
+                         </li>
+                    </ul>
+               </footer>
+          </div>
+     </body>
+</html>

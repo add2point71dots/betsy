@@ -95,11 +95,22 @@ html, body {
 
      .headline {
           display: flex;
+          flex-flow: column;
           flex: 1 1 auto;
 
+          align-items: center;
           justify-content: center;
           margin: 0 1.4rem;
           }
+
+          .headline img {
+               flex: 1 1 auto;
+
+               width: 70%;
+               border-radius: 50%;
+               margin-top: 1rem;
+          }
+
 
      .frame {
           display: flex;
