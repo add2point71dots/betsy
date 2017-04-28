@@ -23,13 +23,11 @@ class ApplicationController < ActionController::Base
       session[:order_id] = order.id
     end
     @cart = Order.find_by(id: session[:order_id])
-   end
+  end
   #   @cart = Order.find_by_id(session[:order_id])
   # rescue ActiveRecord::RecordNotFound
   #   @cart = Order.create(order_state: "pending")
   #   session[:order_id] = @cart.id
-
-  end
 
   def cart_count
     if @cart != nil
