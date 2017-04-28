@@ -1,8 +1,16 @@
-<%= link_to "All", fulfillment_path %>
-<%= link_to "Pending", fulfillment_pending_path %>
-<%= link_to "Paid", fulfillment_paid_path %>
-<%= link_to "Shipped", fulfillment_shipped_path %>
-<%= link_to "Cancelled", fulfillment_cancelled_path %>
+ <% content_for :headline do %>
+    Fulfillment
+  <% end %>
+
+<% content_for :categories do %>
+     <%= link_to "All", fulfillment_path, class: 'label' %>
+     <%= link_to "Pending", fulfillment_pending_path, class: 'label'  %>
+     <%= link_to "Paid", fulfillment_paid_path, class: 'label'  %>
+     <%= link_to "Shipped", fulfillment_shipped_path, class: 'label'  %>
+     <%= link_to "Cancelled", fulfillment_cancelled_path, class: 'label'  %>
+<% end %>
+
+
 
 <h1>Revenues</h1>
 <p>Total: <%= @total_earnings %> </p>
